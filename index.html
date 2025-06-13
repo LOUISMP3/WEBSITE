@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LOUISMP3</title>
+  <style>
+    :root {
+      --main-color: #0A1E40;
+      --play-button-color: #f8f8f8;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: var(--main-color);
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 30px;
+      background: white;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 4em;
+      margin: 0;
+      color: var(--main-color);
+      cursor: pointer;
+    }
+
+    .subtitle {
+      font-size: 0.5em;
+      font-weight: 300;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-left: 2px;
+      padding-left: 2px;
+      transform: translateY(-6px);
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      z-index: 1001;
+      padding: 10px 0;
+      white-space: nowrap;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+    }
+
+    .dropdown:hover .dropdown-content {
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 6px 20px;
+      color: var(--main-color);
+      text-decoration: none;
+      font-size: 0.8em;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+    .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+    .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+    .dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+    .dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+    .dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+
+    .dropdown:hover .dropdown-content a {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    main {
+      padding: 180px 20px 40px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center; /* centrage général */
+    }
+
+    h2 {
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: var(--main-color);
+      font-weight: normal;
+      text-align: left; /* titre aligné à gauche */
+      max-width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 span {
+      font-weight: 700;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 85%;
+      max-width: 85%;
+      margin: 0 auto; /* vidéo centrée */
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: pointer;
+    }
+
+    #playButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #playButton::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      margin: auto;
+      border-style: solid;
+      border-width: 15px 0 15px 30px;
+      border-color: transparent transparent transparent var(--play-button-color);
+    }
+
+    @media(max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+      }
+      .logo {
+        font-size: 2.5em;
+      }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      main {
+        padding: 200px 10px 40px;
+      }
+      h2 {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .video-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <a href="index.html" style="text-decoration: none;">
+        <h1 class="logo">LOUISMP3</h1>
+      </a>
+      <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
+    </div>
+    <nav>
+      <div class="dropdown">
+        <a>Sound To Image</a>
+        <div class="dropdown-content">
+          <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
+          <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
+          <a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a>
+          <a href="k3u.html">K3U mushtop campaign</a>
+          <a href="j4spar.html">J4SPÄR SAISON 2 show</a>
+          <a href="dance-now.html">« DANCE NOW » promo video</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a>Prod. by Louis</a>
+        <div class="dropdown-content">
+          <a href="#">Les Filles - sean</a>
+          <a href="#">Qui va écouter ça? - Elyon</a>
+          <a href="#">Feuille Shit Clope - sean</a>
+          <a href="#">Introduktion - Akkai</a>
+          <a href="#">N'na - Affa</a>
+          <a href="#">Seul - Sidi</a>
+        </div>
+      </div>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>
+      <span>Last work :</span> Nike x Ourhomecoming T90 campaign
+    </h2>
+    <div class="video-wrapper">
+      <button id="playButton" aria-label="Play"></button>
+      <video id="mainVideo" playsinline preload="auto" muted>
+        <source src="ta-video.mp4" type="video/mp4" />
+        Votre navigateur ne supporte pas la lecture vidéo.
+      </video>
+    </div>
+  </main>
+
+  <script>
+    const video = document.getElementById('mainVideo');
+    const playButton = document.getElementById('playButton');
+
+    playButton.addEventListener('click', () => {
+      video.muted = false;
+      video.play();
+      playButton.style.display = 'none';
+    });
+
+    video.addEventListener('click', () => {
+      if (!video.paused) {
+        video.pause();
+      } else {
+        video.play();
+      }
+    });
+  </script>
+
+</body>
+</html>
