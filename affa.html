@@ -10,6 +10,13 @@
       --play-button-color: #f8f8f8;
     }
 
+    @font-face {
+      font-family: 'Exposure';
+      src: url('fonts/Exposure.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -35,6 +42,7 @@
     }
 
     .logo {
+      font-family: 'Exposure', sans-serif !important;
       font-weight: bold;
       font-size: 4em;
       margin: 0;
@@ -54,7 +62,7 @@
       margin-top: 0;
       margin-left: 2px;
       padding-left: 2px;
-      transform: translateY(-6px);
+      transform: translateY(-2px);
     }
 
     nav {
@@ -99,6 +107,7 @@
       font-size: 0.85em;
       font-weight: 500;
       white-space: nowrap;
+      text-transform: uppercase;
       opacity: 0;
       transform: translateX(-15px);
       animation-fill-mode: forwards;
@@ -118,7 +127,8 @@
       }
     }
 
-    nav a {
+    nav > a,
+    nav .dropdown > a {
       text-decoration: none;
       color: var(--main-color);
       font-weight: bold;
@@ -180,6 +190,7 @@
       text-align: left;
     }
 
+    /* Responsive */
     @media(max-width: 600px) {
       header {
         flex-direction: column;
@@ -205,8 +216,21 @@
         text-align: center;
       }
     }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -235,6 +259,7 @@
         <a href="intro.html">Introduktion - Akkai</a>
         <a href="affa.html">N'na - Affa</a>
         <a href="seul.html">Seul - Sidi</a>
+
       </div>
     </div>
     <a href="contact.html">Contact</a>
@@ -242,15 +267,15 @@
 </header>
 
 
-  <main>
-    <div class="track-container">
-      <h2>N'na – Affa</h2>
-      <img src="affa.jpg" alt="N'na cover" class="cover" />
-      <iframe class="spotify" src="https://open.spotify.com/embed/track/7bv7eMvSBSaaLZoG6qRtDz?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <div class="description">Composition & arrangement</div>
-      <div class="credits">2024</div>
-    </div>
-  </main>
+<main>
+  <div class="track-container">
+    <h2 class="fade-in">N'na – Affa</h2>
+    <img src="affa.jpg" alt="N'na cover" class="cover fade-in" />
+    <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/7bv7eMvSBSaaLZoG6qRtDz?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <div class="description fade-in">Composition & arrangement</div>
+    <div class="credits fade-in">2024</div>
+  </div>
+</main>
 
 </body>
 </html>

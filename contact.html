@@ -11,6 +11,13 @@
       --text-color: #000000; /* texte en noir */
     }
 
+    @font-face {
+      font-family: 'Exposure';
+      src: url('fonts/Exposure.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -36,6 +43,7 @@
     }
 
     .logo {
+      font-family: 'Exposure', sans-serif !important;
       font-weight: bold;
       font-size: 4em;
       margin: 0;
@@ -55,7 +63,7 @@
       margin-top: 0;
       margin-left: 2px;
       padding-left: 2px;
-      transform: translateY(-6px);
+      transform: translateY(-2px);
       color: var(--main-color);
     }
 
