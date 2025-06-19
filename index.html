@@ -17,7 +17,6 @@
       font-style: normal;
     }
 
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -34,6 +33,13 @@
       padding: 10px 30px;
       background: #F5F5F5;
       z-index: 1000;
+    }
+
+    .mobile-divider {
+      display: none;
+      border: none;
+      border-top: 1px solid var(--main-color);
+      margin: 10px 0;
     }
 
     .logo-container {
@@ -205,32 +211,98 @@
       border-color: transparent transparent transparent var(--play-button-color);
     }
 
-    @media(max-width: 600px) {
+    @media (max-width: 600px) {
       header {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        padding: 10px 20px;
+        justify-content: space-between; /* espace entre logo et nav */
+      }
+
+      .mobile-divider {
+        display: none;
+        border: none;
+        border-top: 0.2px solid var(--main-color);
+        width: 100vw;
+        margin: 4px 0;
+        position: static;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 90%;
+      }
+
+      main {
+        padding: 280px 10px 40px; /* <-- garde ta modif */
+      }
+
+      .logo-container {
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 10px 20px;
+        width: auto; /* ne prend que la place du contenu */
       }
+
       .logo {
-        font-size: 2.5em;
+        font-size: 2.2em; /* taille réduite */
+        margin-right: 20px; /* espace entre logo et nav */
+        flex-shrink: 0;
       }
+
+      .subtitle {
+        display: block;       /* afficher le subtitle */
+        font-size: 0.4em;     /* adapte la taille si besoin */
+        margin-top: 3px;      /* petit espace sous le logo */
+        margin-left: -4px;
+        text-align: left;
+        color: var(--main-color);
+      }
+
       nav {
-        flex-direction: column;
-        gap: 10px;
+        display: flex;
+        flex-direction: column; /* navigation en colonne */
+        justify-content: space-between;
+        align-items: flex-end;
+        padding-left: 0;
+        margin-left: 0;
+        height: 100%;
+        font-size: 0.6em;
+        opacity: 90%;
+        gap: 0 !important;
       }
-      main {
-        padding: 200px 10px 40px;
+
+      nav > a,
+      nav > div.dropdown {
+        padding-left: 0;
+        margin-left: 0;
+        width: auto; /* largeur automatique */
+        text-align: left;
+        margin-bottom: 4px;
       }
+
+      .dropdown > a {
+        padding-left: 0;
+      }
+
+      .dropdown,
+      nav > a {
+        width: auto;
+      }
+
       h2 {
-        max-width: 100%;
+        font-size: 0.8em;
+        text-align: left;
         margin-left: 0;
         margin-right: 0;
       }
+
       .video-wrapper {
         width: 100%;
         max-width: 100%;
+        margin: 0 auto;
       }
     }
+
   </style>
 </head>
 <body>
@@ -240,6 +312,9 @@
     <a class='logo' href='/'>LOUISMP3</a>
     <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
   </div>
+
+  <hr class="mobile-divider" />
+  
   <nav>
     <div class="dropdown">
       <a>Sound To Image</a>
