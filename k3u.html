@@ -242,6 +242,73 @@
         max-width: 100%;
         padding: 180px 10px 40px;
       }
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        padding: 10px 20px;
+        justify-content: space-between;
+      }
+      .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+      }
+
+      .logo {
+        font-size: 2.2em;
+        margin-right: 20px;
+        flex-shrink: 0;
+      }
+      .subtitle {
+        display: block;
+        font-size: 0.4em;
+        margin-top: 3px;
+        margin-left: -4px;
+        text-align: left;
+        color: var(--main-color);
+      }
+      nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-left: 0;
+        margin-left: 0;
+        height: 100%;
+        font-size: 0.6em;
+        opacity: 90%;
+        position: relative;
+        z-index: 9999;
+        gap: 0 !important;
+      }
+
+      .dropdown {
+        position: relative;
+        overflow: visible;
+        z-index: 9999;
+        align-self: flex-start;
+      }
+
+      nav > a,
+      nav > div.dropdown {
+        padding-left: 0;
+        margin-left: 0;
+        width: auto;
+        text-align: left;
+        margin-bottom: 4px;
+      }
+
+      .dropdown > a {
+        padding-left: 0;
+      }
+
+      .dropdown,
+      nav > a {
+        width: auto;
+      }
+      
       .content-wrapper {
         max-width: 100%;
         padding: 0 10px;
@@ -263,16 +330,158 @@
         margin-bottom: 16px;
         align-items: center;
       }
-      .title-wrapper h2,
+      .title-wrapper h2 {
+        text-align: left;
+        font-size: 1em;
+        text-transform: uppercase;
+      }
       .description-wrapper .description {
-        text-align: center;
+        text-align: left;
+        font-size: 0.8em;
         white-space: normal;
+        margin-top: 6px;
         word-break: break-word;
       }
+        .dropdown-content {
+    position: absolute;
+    display: none;
+    background-color: #F5F5F5;
+    width: max-content;
+    min-width: 100vw;
+    padding: 10px 0;
+    border-top: 1px solid var(--main-color);
+    animation: dropdownFadeSlide 0.3s ease forwards;
+    top: 100%;
+    right: 0;
+    left: auto;
+    transform-origin: top;
+  }
+
+  .dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+  }
+
+  .dropdown-content a {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none;
+    padding: 10px 20px;
+    font-size: 1.3em;
+    display: block;
+  }
+
+  .dropdown-toggle {
+    display: inline-block;
+    position: relative;
+    width: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    z-index: 10000;
+    text-align: right;
+  }
+
+  .dropdown.open .dropdown-toggle {
+    position: fixed;
+    top: 10px;
+    left: 0;
+    width: 100vw;
+    background-color: #F5F5F5;
+    padding: 10px 20px;
+    z-index: 10000;
+  }
+
+  @keyframes dropdownFadeSlide {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
     }
-  </style>
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+body.dropdown-mode header > .logo-container,
+body.dropdown-mode nav > .dropdown:not(.open),
+body.dropdown-mode nav > a,
+body.dropdown-mode main {
+  display: none !important;
+}
+
+body.dropdown-mode .dropdown.open {
+  width: 100vw;
+}
+
+body.dropdown-mode .dropdown.open .dropdown-toggle {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100vw;
+  background-color: #F5F5F5;
+  padding: 10px 20px;
+  margin-left: 70px;
+  z-index: 9998;
+}
+
+body.dropdown-mode .dropdown.open .dropdown-content {
+  display: block !important;
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  width: 100vw;
+  border-top: 1px solid var(--main-color);
+  z-index: 9999;
+}
+
+body.dropdown-mode .dropdown.open .dropdown-toggle {
+  animation: moveAndGrow 0.4s ease forwards;
+}
+
+/* Animation coulissement + grossissement */
+@keyframes moveAndGrow {
+  from {
+    transform: translateX(50%) scale(1);
+    font-size: 1em;
+    text-align: center;
+  }
+  to {
+    transform: translateX(0) scale(1.4);
+    font-size: 1.4em;
+    text-align: left;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0) scale(1.4);
+    font-size: 1.4em;
+    text-align: left;
+  }
+  to {
+    transform: translateX(50%) scale(1);
+    font-size: 1em;
+    text-align: center;
+  }
+}
+
+.dropdown-toggle.animate-in {
+  animation: moveAndGrow 0.4s ease forwards;
+}
+
+.dropdown-toggle.animate-out {
+  animation: slideOut 0.4s ease forwards;
+}
+
+.dropdown-toggle.return-transition {
+  animation: slideOut 0.4s ease forwards;
+}
+</style>
 </head>
-<body>
+<body class="portrait-videos">
 
 <header>
   <div class="logo-container">
@@ -281,7 +490,7 @@
   </div>
   <nav>
     <div class="dropdown">
-      <a>Sound To Image</a>
+      <a class="dropdown-toggle">Sound To Image</a>
       <div class="dropdown-content">
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
         <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
@@ -292,7 +501,7 @@
       </div>
     </div>
     <div class="dropdown">
-      <a>Prod. by Louis</a>
+      <a class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
         <a href="les-filles.html">Les Filles - sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
@@ -338,8 +547,10 @@
 
     </div>
   </main>
-
   <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
     function setupVideoPlayButton(videoId, button) {
       const video = document.getElementById(videoId);
 
@@ -366,10 +577,12 @@
       });
     }
 
-    const playButtons = document.querySelectorAll('button.play-button');
-    setupVideoPlayButton('video1', playButtons[0]);
-    setupVideoPlayButton('video2', playButtons[1]);
-  </script>
+      const playButtons = document.querySelectorAll('button.play-button');
+      setupVideoPlayButton('video1', playButtons[0]);
+      setupVideoPlayButton('video2', playButtons[1]);
+    });
 
+</script>
+<script src="navigation.js"></script>
 </body>
 </html>

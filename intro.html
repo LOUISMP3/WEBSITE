@@ -200,32 +200,110 @@
       text-align: left;
     }
 
-    @media(max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
+    @media (max-width: 600px) {
+    main {
+      padding: 172px 20px 40px;
+      width: 85%;
+      display: flex;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    h2 {
+    font-size: 1em !important;
+    font-weight: bold !important;
+    text-align: left;
+    margin-left: 1px !important;
+    margin-right: 0;
+    text-transform: uppercase;
+  }
+  
+  .description {
+    font-size: 0.8em !important; /* Réduire la taille de la description */
+    margin-top: 1px;
+  }
+
+  .credits {
+    font-size: 0.7em !important; /* taille plus petite que sur desktop */
+  }
+  }
+
+body.dropdown-mode header > .logo-container,
+body.dropdown-mode nav > .dropdown:not(.open),
+body.dropdown-mode nav > a,
+body.dropdown-mode main {
+display: none !important;
+}
+
+body.dropdown-mode .dropdown.open {
+width: 100vw;
+}
+
+body.dropdown-mode .dropdown.open .dropdown-toggle {
+position: fixed;
+top: 10px;
+left: 0;
+width: 100vw;
+background-color: #F5F5F5;
+padding: 10px 20px;
+margin-left: 70px;
+z-index: 10000;
+}
+
+body.dropdown-mode .dropdown.open .dropdown-content {
+display: block !important;
+position: fixed;
+top: 50px;
+left: 0px;
+width: 100vw;
+border-top: 1px solid var(--main-color);
+z-index: 9999;
+}
+body.dropdown-mode .dropdown.open .dropdown-toggle {
+animation: moveAndGrow 0.4s ease forwards;
+}
+
+    @keyframes moveAndGrow {
+      from {
+    transform: translateX(50%) scale(1);
+    font-size: 1em;
+    text-align: center;
       }
-      .logo {
-        font-size: 2.5em;
+      to {
+    transform: translateX(0) scale(1.4);
+    font-size: 1.4em;
+    text-align: left;
       }
-      nav {
-        flex-direction: column;
-        gap: 10px;
+    }
+
+    @keyframes slideOut {
+      from {
+        transform: translateX(0) scale(1.4);
+        font-size: 1.4em;
+        text-align: left;
       }
-      main {
-        padding: 200px 10px 40px;
-      }
-      .track-container {
-        align-items: center;
-        text-align: center;
-        max-width: 100%;
-      }
-      h2, .description, .credits {
+      to {
+        transform: translateX(50%) scale(1);
+        font-size: 1em;
         text-align: center;
       }
     }
+
+.dropdown-toggle.animate-in {
+animation: moveAndGrow 0.4s ease forwards;
+}
+
+.dropdown-toggle.animate-out {
+animation: slideOut 0.4s ease forwards;
+}
+
+.dropdown-toggle.return-transition {
+transition: transform 0.4s ease, font-size 0.4s ease;
+transform: translateX(0) scale(1);
+font-size: 1em;
+}
   </style>
+  <link rel="stylesheet" href="header.css?v=2">
 </head>
 <body>
 
@@ -236,7 +314,7 @@
   </div>
   <nav>
     <div class="dropdown">
-      <a>Sound To Image</a>
+      <a class="dropdown-toggle">Sound To Image</a>
       <div class="dropdown-content">
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
         <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
@@ -247,7 +325,7 @@
       </div>
     </div>
     <div class="dropdown">
-      <a>Prod. by Louis</a>
+      <a class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
         <a href="les-filles.html">Les Filles - sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
@@ -270,6 +348,6 @@
       <div class="credits">2024</div>
     </div>
   </main>
-
+<script src="navigation.js"></script>
 </body>
 </html>
