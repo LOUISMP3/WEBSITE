@@ -138,7 +138,7 @@
 
     main {
       padding: 180px 20px 40px;
-      max-width: 400px;
+      max-width: 400xpx;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -150,15 +150,22 @@
       font-size: 2em;
       font-weight: bold;
       margin-bottom: 10px;
-      text-align: left;
+      text-align: center;
       text-transform: uppercase;
       color: var(--text-color);
+    }
+
+    .justified {
+      text-align: justify;
+      max-width: 600px; /* optionnel : pour plus de lisibilité */
+      margin: 0 auto;   /* optionnel : centrer le bloc */
+      line-height: 1.6; /* optionnel : améliorer l'espacement */
     }
 
     p {
       font-size: 1em;
       line-height: 1.4;
-      text-align: left;
+      text-align: center;
       margin: 6px 0;
       color: var(--text-color);
     }
@@ -212,7 +219,7 @@
 
   <main>
     <h1>CONTACT</h1>
-    <p>MY NAME IS LOUIS, I AM A PRODUCER/SOUND DESIGNER, BASED IN PARIS. LOVE SIMPLICITY, SINCERITY &amp; KINDNESS.</p>
+    <p class="justified"> MY NAME IS LOUIS. I’M A PRODUCER AND SOUND DESIGNER BASED IN PARIS. I CARE ABOUT SIMPLICITY, SINCERITY, AND KINDNESS — IN LIFE AND IN ART. I’M DRAWN TO RAW, HONEST CREATIONS THAT COME STRAIGHT FROM THE HEART, NOT SHAPED TO PLEASE.</p>
 
     <div class="contact-list">
       <p>Email : <a href="mailto:pleasecallmelouis@gmail.com" class="contact-link">pleasecallmelouis@gmail.com</a></p>
