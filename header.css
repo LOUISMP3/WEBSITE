@@ -42,7 +42,7 @@ text-decoration: none;
   }
 
   .logo {
-    font-size: 2.2em;
+    font-size: 2.8em;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -64,7 +64,7 @@ text-decoration: none;
     padding-left: 10px;
     margin-left: 0;
     height: 100%;
-    font-size: 0.6em;
+    font-size: 0.7em;
     opacity: 90%;
     position: relative;
     z-index: 9999;
@@ -109,6 +109,47 @@ text-decoration: none;
     right: 0;
     left: auto;
     transform-origin: top;
+  }
+
+    .side-text {
+    position: static; /* plus fixed, pour ne pas gêner */
+    width: auto;
+    max-width: 100%;
+    font-size: 1em;
+    text-align: center;
+    margin: 10px 0;
+    margin-bottom: 10px;
+    pointer-events: auto; /* pour pouvoir sélectionner si besoin */
+    user-select: text;
+  }
+  
+  .side-text.left,
+  .side-text.right {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    left: auto;
+    right: auto;
+    top: auto;
+  }
+  
+  /* On peut les placer dans main en colonne */
+  main {
+    padding-top: 160px; /* réduire le padding si besoin */
+  }
+  
+  /* Si tu veux, tu peux aussi réordonner avec flexbox */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .side-text.left {
+    order: -1; /* pour qu'elle soit au dessus */
+  }
+  
+  .side-text.right {
+    order: 2; /* en dessous du reste */
   }
 
   .dropdown.open .dropdown-content {
@@ -281,7 +322,7 @@ text-decoration: none;
   }
 
   .logo {
-    font-size: 1.7em;
+    font-size: 2.5em;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -303,7 +344,7 @@ text-decoration: none;
     padding-left: 10px;
     margin-left: 0;
     height: 100%;
-    font-size: 0.5em;
+    font-size: 0.7em;
     opacity: 90%;
     position: relative;
     z-index: 9999;
@@ -348,6 +389,47 @@ text-decoration: none;
     right: 0;
     left: auto;
     transform-origin: top;
+  }
+
+  .side-text {
+    position: static; /* plus fixed, pour ne pas gêner */
+    width: auto;
+    max-width: 100%;
+    font-size: 1em;
+    text-align: center;
+    margin: 10px 0;
+    margin-bottom: 10px;
+    pointer-events: auto; /* pour pouvoir sélectionner si besoin */
+    user-select: text;
+  }
+  
+  .side-text.left,
+  .side-text.right {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    left: auto;
+    right: auto;
+    top: auto;
+  }
+  
+  /* On peut les placer dans main en colonne */
+  main {
+    padding-top: 160px; /* réduire le padding si besoin */
+  }
+  
+  /* Si tu veux, tu peux aussi réordonner avec flexbox */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .side-text.left {
+    order: -1; /* pour qu'elle soit au dessus */
+  }
+  
+  .side-text.right {
+    order: 2; /* en dessous du reste */
   }
 
   .dropdown.open .dropdown-content {

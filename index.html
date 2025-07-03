@@ -137,6 +137,29 @@ margin: 0 auto;
 text-align: center;
 }
 
+.side-text {
+  position: fixed;
+  text-transform: uppercase;
+  top: 290px; /* ajuste selon la hauteur où tu veux aligner */
+  width: 240px;
+  font-size: 1.3em;
+  color: var(--main-color);
+  max-width: 240px;
+  text-align: justify;
+  pointer-events: none; /* pour ne pas gêner la navigation */
+  user-select: none;
+}
+
+.side-text.left {
+  left: 100px;
+  top: 300px;
+}
+
+.side-text.right {
+  right: 100px;
+  top: 320px;
+}
+
 h2 {
 font-size: 1em;
 margin-bottom: 8px;
@@ -272,7 +295,7 @@ font-size: 1em;
 
 <header>
 <div class="logo-container">
-<a class='logo' href='index.html'>LOUISMP3</a>
+<a class='logo' href='/'>LOUISMP3</a>
 <div class="subtitle">COMPOSITION & SOUND DESIGN</div>
 </div>
 
@@ -281,26 +304,26 @@ font-size: 1em;
 <div class="dropdown">
 <a class="dropdown-toggle">Sound To Image</a>
 <div class="dropdown-content">
-        <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
-        <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
-        <a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a>
-        <a href="k3u.html">K3U mushtop campaign</a>
-        <a href="j4spar.html">J4SPÄR SAISON DEUX show</a>
-        <a href="dance-now.html">"DANCE NOW" promo video</a>
+        <a href='/nike'>Nike &amp; ourhomecoming T90 campaign</a>
+        <a href='/dianev'>DIANEV "THE LOOK" campaign</a>
+        <a href='/nothing-left'>"Nothing Left" a vision by gabriel1999</a>
+        <a href='/k3u'>K3U mushtop campaign</a>
+        <a href='/j4spar'>J4SPÄR SAISON DEUX show</a>
+        <a href='/dance-now'>"DANCE NOW" promo video</a>
       </div>
     </div>
     <div class="dropdown">
       <a class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
-        <a href="les-filles.html">Les Filles - sean</a>
-        <a href="qui.html">Qui va écouter ça? - Elyon</a>
-        <a href="fsc.html">Feuille Shit Clope - sean</a>
-        <a href="intro.html">Introduktion - Akkai</a>
-        <a href="affa.html">N'na - Affa</a>
-        <a href="seul.html">Seul - Sidi</a>
+        <a href='/les-filles'>Les Filles - sean</a>
+        <a href='/qui'>Qui va écouter ça? - Elyon</a>
+        <a href='/fsc'>Feuille Shit Clope - sean</a>
+        <a href='/intro'>Introduktion - Akkai</a>
+        <a href='/affa'>N'na - Affa</a>
+        <a href='/seul'>Seul - Sidi</a>
 </div>
 </div>
-<a href='/contact.html'>Contact</a>
+<a href='/contact'>Contact</a>
 </nav>
 </header>
 
@@ -314,6 +337,14 @@ font-size: 1em;
 <source src="ta-video.mp4" type="video/mp4" />
         Votre navigateur ne supporte pas la lecture vidéo.
 </video>
+</div>
+<div class="side-text left fade-in">
+  MY NAME IS LOUIS.
+I’M A PRODUCER AND SOUND DESIGNER BASED IN PARIS.
+I CARE ABOUT <strong>SINCERITY</strong> AND <strong>SIMPLICITY</strong> — IN LIFE AND IN ART.
+</div>
+<div class="side-text right fade-in">
+  I’M DRAWN TO RAW, <strong>HONEST CREATIONS</strong> THAT COME STRAIGHT FROM THE HEART, <strong>NOT SHAPED TO PLEASE</strong>.
 </div>
 </main>
 
