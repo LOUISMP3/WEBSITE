@@ -175,6 +175,12 @@
       margin-left: 0;
     }
 
+    .other-projects {
+  display: none;
+  text-align: center;
+  margin-top: 90px;
+    }
+
     .title-wrapper h2 {
       font-size: 1.1em;
       font-weight: bold;
@@ -324,13 +330,48 @@
         max-width: none;
         aspect-ratio: 9 / 16;
       }
-      .text-wrapper {
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 16px;
-        align-items: center;
-      }
+
+      .other-projects {
+  display: none;
+  text-align: center;
+  margin-top: 90px;
+  }
+
+.other-projects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.other-projects li {
+  margin: 12px 0;
+}
+
+.other-projects a {
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1em;
+  opacity: 80%;
+}
+
+.other-projects {
+  display: block;
+  }
+
+.dropdown-active .other-projects {
+  opacity: 0;
+  pointer-events: none;
+  }
+
+.text-wrapper {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 16px;
+  align-items: center;
+  }
       .title-wrapper h2 {
         text-align: left;
         font-size: 1em;
@@ -423,6 +464,18 @@
         align-items: flex-start;
         width: auto;
       }
+
+          .other-projects {
+    display: block;
+  }
+
+    body.dropdown-mode .other-projects {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  position: relative !important;
+}
 
       .logo {
         font-size: 2.5em;
@@ -572,6 +625,9 @@
       transform: translateY(0);
     }
   }
+    body.dropdown-other.other-projects {
+display: none !important;
+}
 }
 
 body.dropdown-mode header > .logo-container,
@@ -580,6 +636,14 @@ body.dropdown-mode nav > a,
 body.dropdown-mode main {
   display: none !important;
 }
+
+body.dropdown-mode .other-projects {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    position: relative !important;
+  }
 
 body.dropdown-mode .dropdown.open {
   width: 100vw;
@@ -618,7 +682,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     text-align: center;
   }
   to {
-    transform: translateX(0) scale(1.4);
+    transform: translateX(5%) scale(1.4);
     font-size: 1.4em;
     text-align: left;
   }
@@ -716,6 +780,15 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
 
     </div>
   </main>
+  <div class="other-projects">
+  <ul>
+    <li><a href="nike.html">Nike & ourhomecoming T90 campaign</a></li>
+    <li><a href="dianev.html">DIANEV "THE LOOK" campaign</a></li>
+    <li><a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a></li>
+    <li><a href="k3u.html">K3U mushtop campaign</a></li>
+    <li><a href="j4spar.html">J4SPÄR SAISON DEUX show</a></li>
+  </ul>
+</div>
   <script>
 
     document.addEventListener('DOMContentLoaded', () => {

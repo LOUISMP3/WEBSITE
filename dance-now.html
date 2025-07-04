@@ -71,6 +71,31 @@
       align-items: flex-start;
     }
 
+    .other-projects {
+  display: none;
+  text-align: center;
+  margin-top: 90px;
+}
+
+.other-projects ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.other-projects li {
+  margin: 12px 0;
+}
+
+.other-projects a {
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1em;
+  opacity: 80%;
+}
+
     .dropdown {
       position: relative;
     }
@@ -245,6 +270,10 @@
     opacity: 90%;
   }
 
+    .other-projects {
+    display: block;
+  }
+
   main {
     padding: 172px 11px 40px;
   }
@@ -384,7 +413,13 @@
     background-color: #F5F5F5;
     padding: 10px 20px;
     z-index: 10000;
+    transform-origin: left;
   }
+
+  .dropdown-active .other-projects {
+    opacity: 0;
+    pointer-events: none;
+}
 
   @keyframes dropdownFadeSlide {
     from {
@@ -396,6 +431,27 @@
       transform: translateY(0);
     }
   }
+
+  body.dropdown-mode .other-projects {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+    position: relative !important;
+  }
+
+.dropdown.open .dropdown-toggle {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100vw;
+  background-color: #F5F5F5;
+  padding: 10px 20px;
+  z-index: 10000;
+  transform: translateX(-15%) scale(1.4);
+  transform-origin: left;
+  text-align: left;
+}
 }
 
     @media screen and (max-width: 413px) {
@@ -411,6 +467,10 @@
     border-top: 0.2px solid var(--main-color);
     width: 100vw;
     margin: 4px 0;
+  }
+
+    .other-projects {
+    display: block;
   }
 
   .logo-container {
@@ -543,6 +603,14 @@
     display: none !important;
   }
 
+  body.dropdown-mode .other-projects {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  position: relative !important;
+}
+
   body.dropdown-mode .dropdown.open {
     width: 100vw;
   }
@@ -570,19 +638,6 @@
 
   body.dropdown-mode .dropdown.open .dropdown-toggle {
     animation: moveAndGrow 0.4s ease forwards;
-  }
-
-  @keyframes moveAndGrow {
-    from {
-      transform: translateX(50%) scale(1);
-      font-size: 1em;
-      text-align: center;
-    }
-    to {
-      transform: translateX(0) scale(1.4);
-      font-size: 1.4em;
-      text-align: left;
-    }
   }
 
   @keyframes slideOut {
@@ -656,6 +711,10 @@ body.dropdown-mode main {
   display: none !important;
 }
 
+body.dropdown-other.other-projects {
+display: none !important;
+}
+
 body.dropdown-mode .dropdown.open {
   width: 100vw;
 }
@@ -693,7 +752,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     text-align: center;
   }
   to {
-    transform: translateX(0) scale(1.4);
+    transform: translateX(5%) scale(1.4);
     font-size: 1.4em;
     text-align: left;
   }
@@ -779,6 +838,15 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
       Director: Louis Le Mahec & Sean Nam / 2024
     </div>
   </main>
+<div class="other-projects">
+  <ul>
+    <li><a href="nike.html">Nike & ourhomecoming T90 campaign</a></li>
+    <li><a href="dianev.html">DIANEV "THE LOOK" campaign</a></li>
+    <li><a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a></li>
+    <li><a href="k3u.html">K3U mushtop campaign</a></li>
+    <li><a href="j4spar.html">J4SPÄR SAISON DEUX show</a></li>
+  </ul>
+</div>
 
 <script src="menu.js"></script>
 </body>
