@@ -383,7 +383,7 @@ video {
 }
 
 .other-projects {
-    display: block;
+    display: none;
   }
 
     .dropdown-active .other-projects {
@@ -533,7 +533,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   }
 
     .other-projects {
-    display: block;
+    display: none;
   }
   .logo-container {
     display: flex;
