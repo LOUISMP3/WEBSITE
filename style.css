@@ -227,7 +227,7 @@ video {
   .mobile-divider {
     display: none;
     border: none;
-    border-top: 0.2px solid var(--main-color);
+    border-top: none;
     width: 100vw;
     margin: 4px 0;
     position: static;
@@ -333,7 +333,7 @@ video {
     width: max-content;
     min-width: 100vw;
     padding: 10px 0;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     animation: dropdownFadeSlide 0.3s ease forwards;
     top: 100%;
     right: 0;
@@ -459,7 +459,7 @@ body.dropdown-mode .dropdown.open .dropdown-content {
   top: 50px;
   left: 0px;
   width: 100vw;
-  border-top: 1px solid var(--main-color);
+  border-top: none;
   z-index: 9999;
 }
 
@@ -519,7 +519,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   .mobile-divider {
     display: none;
     border: none;
-    border-top: 0.2px solid var(--main-color);
+    border-top: none;
     width: 100vw;
     margin: 4px 0;
     position: static;
@@ -636,7 +636,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     width: max-content;
     min-width: 100vw;
     padding: 10px 0;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     animation: dropdownFadeSlide 0.3s ease forwards;
     top: 100%;
     right: 0;

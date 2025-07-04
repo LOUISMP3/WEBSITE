@@ -31,7 +31,7 @@ text-decoration: none;
   .mobile-divider {
     display: none;
     border: none;
-    border-top: 0.2px solid var(--main-color);
+    border-top: none;
     width: 100vw;
     margin: 4px 0;
     position: static;
@@ -144,7 +144,7 @@ text-decoration: none;
     width: max-content;
     min-width: 100vw;
     padding: 10px 0;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     animation: dropdownFadeSlide 0.3s ease forwards;
     top: 100%;
     right: 0;
@@ -166,13 +166,16 @@ text-decoration: none;
   
   .side-text.left,
   .side-text.right {
-    margin-bottom: 60px;
-    margin-top: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     left: auto;
     right: auto;
     top: auto;
   }
-  
+
+  .side-text.right {
+    margin-bottom: 120px;
+  }
   /* On peut les placer dans main en colonne */
   main {
     padding-top: 160px; /* réduire le padding si besoin */
@@ -186,11 +189,11 @@ text-decoration: none;
   }
   
   .side-text.left {
-    order: -1; /* pour qu'elle soit au dessus */
+    order: -2; /* pour qu'elle soit au dessus */
   }
   
   .side-text.right {
-    order: 2; /* en dessous du reste */
+    order: -1; /* en dessous du reste */
   }
 
   .dropdown.open .dropdown-content {
@@ -275,7 +278,7 @@ body.dropdown-mode .other-projects {
     top: 50px;
     left: 0px;
     width: 100vw;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     z-index: 9999;
   }
 
@@ -358,7 +361,7 @@ body.dropdown-mode .other-projects {
   }
 
   .mobile-divider {
-    border-top: 0.2px solid var(--main-color);
+    border-top: none;
     width: 100vw;
     margin: 4px 0;
   }
@@ -445,7 +448,7 @@ body.dropdown-mode .other-projects {
     width: max-content;
     min-width: 100vw;
     padding: 10px 0;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     animation: dropdownFadeSlide 0.3s ease forwards;
     top: 100%;
     right: 0;
@@ -568,7 +571,7 @@ body.dropdown-mode .other-projects {
     top: 50px;
     left: 0px;
     width: 100vw;
-    border-top: 1px solid var(--main-color);
+    border-top: none;
     z-index: 9999;
   }
 
