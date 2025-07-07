@@ -1,7 +1,5 @@
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
-    if (window.innerWidth > 600) return; // ignore sur desktop
-
     const parent = this.parentElement;
     const isOpen = parent.classList.contains('open');
 
@@ -10,14 +8,15 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
       if (d !== parent) {
         d.classList.remove('open');
         const otherToggle = d.querySelector('.dropdown-toggle');
-        otherToggle.classList.remove('animate-in', 'animate-out');
+        if (otherToggle) {
+          otherToggle.classList.remove('animate-in', 'animate-out');
+        }
       }
     });
 
     if (isOpen) {
       this.classList.remove('animate-in');
       this.classList.add('animate-out');
-
       setTimeout(() => {
         parent.classList.remove('open');
         document.body.classList.remove('dropdown-mode');

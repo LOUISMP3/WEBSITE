@@ -1,5 +1,10 @@
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
+        if (window.innerWidth > 768) {
+      // Sur desktop, on ne fait rien au clic
+      return;
+    }
+
     const parent = this.parentElement;
     const isOpen = parent.classList.contains('open');
 
@@ -83,6 +88,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     video.addEventListener("ended", () => {
       playButton.style.display = "block";
+    });
+  }
+  const fullscreenButton = document.getElementById("fullscreenButton");
+
+  if (fullscreenButton && video) {
+    fullscreenButton.addEventListener("click", () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) { // Safari
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) { // IE/Edge
+        video.msRequestFullscreen();
+      }
     });
   }
 });
