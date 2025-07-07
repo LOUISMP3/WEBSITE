@@ -10,6 +10,27 @@
   text-align: center;
   margin-top: 90px;
 }
+
+#fullscreenButton {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 11;
+  }
+
+  @media screen and (max-width: 768px) {
+    #fullscreenButton {
+    display: block;
+  }
+  }
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -51,6 +72,7 @@
     <h2 class="fade-in">DIANEV "THE LOOK" campaign</h2>
     <div class="video-wrapper fade-in">
       <button id="playButton" aria-label="Play"></button>
+      <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
       <video id="mainVideo" playsinline poster="vignette-dianev.jpg">
         <source src="dianev-look.mp4" type="video/mp4" />
         Votre navigateur ne supporte pas la lecture vidéo.
