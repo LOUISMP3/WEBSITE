@@ -460,7 +460,7 @@ body.dropdown-mode .other-projects {
     position: static; /* plus fixed, pour ne pas gêner */
     width: auto;
     max-width: 100%;
-    font-size: 1em;
+    font-size: 0.8em;
     text-align: center;
     margin: 10px 0;
     margin-bottom: 10px;
@@ -477,7 +477,10 @@ body.dropdown-mode .other-projects {
     top: auto;
   }
     .side-text.right {
-    margin-bottom: 120px;
+    margin-bottom: 100px;
+  }
+  .side-text.side-text.left {
+    margin-bottom: -10px;
   }
   
   /* On peut les placer dans main en colonne */
