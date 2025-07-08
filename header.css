@@ -374,7 +374,7 @@ body.dropdown-mode .other-projects {
   }
 
   .logo {
-    font-size: 1.8em;
+    font-size: 2em;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -409,7 +409,7 @@ body.dropdown-mode .other-projects {
     padding-left: 10px;
     margin-left: 0;
     height: 100%;
-    font-size: 0.5em;
+    font-size: 0.6em;
     opacity: 90%;
     position: relative;
     z-index: 9999;
