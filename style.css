@@ -551,14 +551,14 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
 }
 
   .logo {
-    font-size: 2.3em;
+    font-size: 1.8em;
     margin-right: 20px;
     flex-shrink: 0;
   }
 
   .subtitle {
     display: block;
-    font-size: 0.3em;
+    font-size: 0.2em;
     margin-top: 3px;
     margin-left: -4px;
     text-align: left;
@@ -573,7 +573,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     padding-left: 0;
     margin-left: 0;
     height: 100%;
-    font-size: 0.7em;
+    font-size: 0.5em;
     opacity: 90%;
     position: relative;
     z-index: 9999;
