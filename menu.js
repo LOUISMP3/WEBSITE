@@ -1,6 +1,7 @@
+// ----- DROPDOWN TOGGLES -----
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
-        if (window.innerWidth > 768) {
+    if (window.innerWidth > 768) {
       // Sur desktop, on ne fait rien au clic
       return;
     }
@@ -36,17 +37,14 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   });
 });
 
-// Fermer les menus quand on clique en dehors
+// ----- FERMETURE DROPDOWN AU CLIC EXTERNE -----
 document.addEventListener('click', function(e) {
   if (window.innerWidth > 600) return; // ignore sur desktop
 
-  // Si on clique sur un lien dans dropdown-content, laisse la navigation, ne ferme pas immédiatement
   if (e.target.closest('.dropdown-content a')) {
-    // Ne pas fermer le menu ici, on peut laisser la navigation se faire naturellement
-    return; 
+    return; // Laisse la navigation naturelle
   }
 
-  // Sinon, si on clique en dehors du dropdown, ferme les menus
   if (!e.target.closest('.dropdown')) {
     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
     document.body.classList.remove('dropdown-mode');
@@ -57,12 +55,12 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// ----- VIDEO CONTROLS -----
+// ----- VIDEO CONTROLS + FULLSCREEN BUTTON -----
 document.addEventListener("DOMContentLoaded", function () {
   const video = document.getElementById("mainVideo");
   const playButton = document.getElementById("playButton");
+  const fullscreenButton = document.getElementById("fullscreenButton");
 
-  // On vérifie que la vidéo existe sur la page
   if (video && playButton) {
     playButton.addEventListener("click", () => {
       video.play();
@@ -70,12 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     video.addEventListener("click", () => {
-        video.muted = false;
-    if (video.paused) {
+      video.muted = false;
+      if (video.paused) {
         video.play();
-    } else {
+      } else {
         video.pause();
-    }
+      }
     });
 
     video.addEventListener("play", () => {
@@ -90,16 +88,20 @@ document.addEventListener("DOMContentLoaded", function () {
       playButton.style.display = "block";
     });
   }
-  const fullscreenButton = document.getElementById("fullscreenButton");
 
   if (fullscreenButton && video) {
     fullscreenButton.addEventListener("click", () => {
-      if (video.requestFullscreen) {
+      // iOS Safari
+      if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      } else if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) { // Safari
+      } else if (video.webkitRequestFullscreen) {
         video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) { // IE/Edge
+      } else if (video.msRequestFullscreen) {
         video.msRequestFullscreen();
+      } else {
+        console.warn("Fullscreen non supporté");
       }
     });
   }
