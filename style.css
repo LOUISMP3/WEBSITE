@@ -253,6 +253,7 @@ video {
 
   .logo {
     font-size: 2.8em;
+    font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -555,7 +556,8 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
 }
 
   .logo {
-    font-size: 2em;
+    font-size: 2.3em;
+    font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -574,7 +576,7 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end !important;
-    padding-left: 0;
+    padding-left: 10px;
     margin-left: 0;
     height: 100%;
     font-size: 0.6em;

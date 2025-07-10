@@ -87,6 +87,7 @@ display: inline-block;
 
   .logo {
     font-size: 2.8em;
+    font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -378,7 +379,8 @@ body.dropdown-mode .other-projects {
   }
 
   .logo {
-    font-size: 2em;
+    font-size: 2.3em;
+    font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
