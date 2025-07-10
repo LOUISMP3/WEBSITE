@@ -1,9 +1,10 @@
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', function(e) {
-            if (window.innerWidth > 768) {
+    if (window.innerWidth > 768) {
       // Sur desktop, on ne fait rien au clic
       return;
     }
+
     const parent = this.parentElement;
     const isOpen = parent.classList.contains('open');
 
@@ -38,9 +39,8 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
 document.addEventListener('click', function(e) {
   if (window.innerWidth > 600) return; // ignore sur desktop
 
-  // Si on clique sur un lien dans dropdown-content, laisse la navigation, ne ferme pas immédiatement
+  // Si on clique sur un lien dans dropdown-content, laisse la navigation
   if (e.target.closest('.dropdown-content a')) {
-    // Ne pas fermer le menu ici, on peut laisser la navigation se faire naturellement
     return; 
   }
 
@@ -53,16 +53,27 @@ document.addEventListener('click', function(e) {
       toggle.classList.remove('animate-in', 'animate-out');
     });
   }
-    const fullscreenButton = document.getElementById("fullscreenButton");
+});
+
+// ----- FULLSCREEN BUTTON -----
+document.addEventListener("DOMContentLoaded", function () {
+  const video = document.getElementById("mainVideo");
+  const fullscreenButton = document.getElementById("fullscreenButton");
 
   if (fullscreenButton && video) {
     fullscreenButton.addEventListener("click", () => {
-      if (video.requestFullscreen) {
+      if (video.webkitEnterFullscreen) {
+        // iOS Safari
+        video.webkitEnterFullscreen();
+      } else if (video.requestFullscreen) {
+        // Android, Chrome, etc.
         video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) { // Safari
+      } else if (video.webkitRequestFullscreen) {
         video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) { // IE/Edge
+      } else if (video.msRequestFullscreen) {
         video.msRequestFullscreen();
+      } else {
+        console.warn("Fullscreen API non supportée.");
       }
     });
   }
