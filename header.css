@@ -1,5 +1,5 @@
 .logo {
-font-family: 'Naancy Trial', sans-serif !important;
+font-family: 'Kanit', sans-serif !important;
 font-size: 4em;
 margin: 0;
 margin-bottom: 3px;
@@ -17,8 +17,8 @@ display: inline-block;
 }
 
 @font-face {
-  font-family: 'NaancyTrial-Grade2';
-  src: url('Fonts/NaancyTrial-Grade2.otf') format('opentype');
+  font-family: 'Kanit-Regular';
+  src: url('Fonts/Kanit-Regular.ttf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -87,7 +87,7 @@ display: inline-block;
 
   .logo {
     font-size: 2.8em;
-    font-family: 'Naancy Trial', sans-serif !important;
+    font-family: 'Kanit', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -380,7 +380,7 @@ body.dropdown-mode .other-projects {
 
   .logo {
     font-size: 2.3em;
-    font-family: 'Naancy Trial', sans-serif !important;
+    font-family: 'Kanit', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
