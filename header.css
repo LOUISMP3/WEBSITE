@@ -1,14 +1,14 @@
 .logo {
-font-family: 'Kanit', sans-serif !important;
-font-size: 4em;
-margin: 0;
-margin-bottom: 3px;
-margin-top: -5px;
-margin-left: -16px;
-color: var(--main-color);
-transform: scaleX(0.9);
-text-decoration: none;
-display: inline-block;
+  font-family: 'Milling Trial', sans-serif !important;
+  font-size: 4em;
+  margin: 0;
+  margin-bottom: 3px;
+  margin-top: -5px;
+  margin-left: -16px;
+  color: var(--main-color);
+  transform: scaleX(0.9);
+  text-decoration: none;
+  display: inline-block;
 }
 
 :root {
@@ -17,10 +17,11 @@ display: inline-block;
 }
 
 @font-face {
-  font-family: 'Kanit-Regular';
-  src: url('Fonts/Kanit-Regular.ttf') format('opentype');
+  font-family: 'Milling Trial';
+  src: url('Fonts/MillingTrial-Triplex2,5mm.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @media screen and (min-width: 414px) and (max-width: 768px) {
@@ -87,7 +88,7 @@ display: inline-block;
 
   .logo {
     font-size: 2.8em;
-    font-family: 'Kanit', sans-serif !important;
+    font-family: 'Milling Trial', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
@@ -380,7 +381,7 @@ body.dropdown-mode .other-projects {
 
   .logo {
     font-size: 2.3em;
-    font-family: 'Kanit', sans-serif !important;
+    font-family: 'Milling Trial', sans-serif !important;
     margin-right: 20px;
     flex-shrink: 0;
   }
