@@ -18,7 +18,8 @@ display: inline-block;
 
 @font-face {
   font-family: 'MillingTrial-Triplex2,5mm';
-  src: url('Fonts/MillingTrial-Triplex2,5mm.otf') format('opentype');
+  src: url('/fonts/MillingTrial-Triplex25mm.woff2') format('woff2'),
+       url('/fonts/MillingTrial-Triplex25mm.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
