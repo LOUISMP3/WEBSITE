@@ -104,7 +104,7 @@ nav {
   padding: 6px 20px;
   color: var(--main-color);
   text-decoration: none;
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: 500;
   white-space: nowrap;
   opacity: 0;
@@ -129,6 +129,9 @@ nav {
 }
 .dropdown:hover .dropdown-content a:nth-child(6) {
   animation: slideFadeIn 0.25s ease forwards 0.55s;
+}
+.dropdown:hover .dropdown-content a:nth-child(7) {
+  animation: slideFadeIn 0.25s ease forwards 0.65s;
 }
 
 @keyframes slideFadeIn {
