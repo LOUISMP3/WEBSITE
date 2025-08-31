@@ -8,7 +8,7 @@
     :root {
       --main-color: #0A1E40;
       --play-button-color: #F5F5F5;
-      --text-color: #0A1E40; /* texte en noir */
+      --text-color: #0A1E40;
     }
 
     @font-face {
@@ -43,16 +43,16 @@
     }
 
     .logo {
-    font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
-    font-size: 4em;
-    margin: 0;
-    margin-bottom: 3px;
-    margin-top: -5px;
-    margin-left: -16px;
-    color: var(--main-color);
-    transform: scaleX(0.9);
-    text-decoration: none;
-    display: inline-block;
+      font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
+      font-size: 4em;
+      margin: 0;
+      margin-bottom: 3px;
+      margin-top: -5px;
+      margin-left: -16px;
+      color: var(--main-color);
+      transform: scaleX(0.9);
+      text-decoration: none;
+      display: inline-block;
     }
 
     .logo:hover {
@@ -62,7 +62,6 @@
     .subtitle {
       font-size: 0.5em;
       font-weight: 300;
-      letter-spacing: 0.15px;
       text-transform: uppercase;
       margin-top: 0;
       margin-left: 2px;
@@ -124,6 +123,7 @@
     .dropdown:hover .dropdown-content a:nth-child(4) { animation: slideFadeIn 0.25s ease forwards 0.35s; }
     .dropdown:hover .dropdown-content a:nth-child(5) { animation: slideFadeIn 0.25s ease forwards 0.45s; }
     .dropdown:hover .dropdown-content a:nth-child(6) { animation: slideFadeIn 0.25s ease forwards 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(7) { animation: slideFadeIn 0.25s ease forwards 0.65s; }
 
     @keyframes slideFadeIn {
       to {
@@ -142,50 +142,36 @@
 
     main {
       padding: 180px 20px 40px;
-      max-width: 400xpx;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      color: var(--text-color);
+      text-align: center;
     }
 
     h1 {
       font-size: 2em;
       font-weight: bold;
-      margin-bottom: 10px;
-      text-align: center;
+      margin-bottom: 40px;
       text-transform: uppercase;
       color: var(--text-color);
     }
 
-    .justified {
-      text-align: justify;
-      max-width: 600px; /* optionnel : pour plus de lisibilité */
-      margin: 0 auto;   /* optionnel : centrer le bloc */
-      line-height: 1.6; /* optionnel : améliorer l'espacement */
+    .icons {
+      display: flex;
+      flex-direction: column; /* Icônes en colonne */
+      align-items: center; /* Centrage horizontal */
+      gap: 30px; /* Espace entre les icônes */
     }
 
-    p {
-      font-size: 1em;
-      line-height: 1.4;
-      text-align: center;
-      margin: 6px 0;
-      color: var(--text-color);
+    .icons a img {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    a.contact-link {
-      color: var(--text-color);
-      text-decoration: none;
-      font-weight: bold;
+    .icons a img:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
     }
-
-    a.contact-link:hover {
-      text-decoration: underline;
-    }
-
   </style>
-<link rel="stylesheet" href="header.css?v=2">
+  <link rel="stylesheet" href="header.css?v=2">
 </head>
 <body>
 
@@ -222,15 +208,21 @@
   </nav>
 </header>
 
-  <main>
-    <h1>CONTACT</h1>
+<main>
+  <h1></h1>
+  <div class="icons">
+    <a href="mailto:pleasecallmelouis@gmail.com">
+      <img src="email.png" alt="Email">
+    </a>
+    <a href="https://www.instagram.com/louislouis.mp3/" target="_blank" rel="noopener noreferrer">
+      <img src="camera.png" alt="Instagram">
+    </a>
+    <a href="https://soundcloud.com/louislouis_mp3" target="_blank" rel="noopener noreferrer">
+      <img src="soundcloud.png" alt="SoundCloud">
+    </a>
+  </div>
+</main>
 
-    <div class="contact-list">
-      <p>Email : <a href="mailto:pleasecallmelouis@gmail.com" class="contact-link">pleasecallmelouis@gmail.com</a></p>
-      <p>Instagram : <a href="https://www.instagram.com/louislouis.mp3/" target="_blank" rel="noopener noreferrer" class="contact-link">@louislouis.mp3</a></p>
-      <p>SoundCloud : <a href="https://soundcloud.com/louislouis_mp3" target="_blank" rel="noopener noreferrer" class="contact-link">LOUIS</a></p>
-    </div>
-  </main>
 <script src="menu.js"></script>
 </body>
 </html>
