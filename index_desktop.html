@@ -248,11 +248,13 @@ h2 span { font-weight: 700; }
 <div class="side-text left fade-in">MY NAME IS LOUIS. I’M A PRODUCER AND SOUND DESIGNER BASED IN PARIS. I CARE ABOUT <strong>SINCERITY</strong> AND <strong>SIMPICITY</strong> — IN LIFE AND IN ART.</div>
 <div class="side-text right fade-in">I’M DRAWN TO RAW, <strong>HONEST CREATIONS</strong> THAT COME STRAIGHT FROM THE HEART, <strong>NOT SHAPED TO PLEASE</strong>.</div>
 </main>
-
 <script>
 /* Fade-in global de la page */
 window.addEventListener('load', () => {
+  // Supprime preload, le body passe de opacity:0 à opacity:1 automatiquement
   document.body.classList.remove('preload');
+
+  // Ensuite, fade-in progressif pour les éléments individuels
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
 });
 
@@ -284,12 +286,12 @@ function updateStackVisual() {
 
 /* Scroll avec molette */
 let lastWheelTime = 0;
-const wheelCooldown = 900; // ms entre deux changements
+const wheelCooldown = 900;
 
 document.querySelector('.stack-carousel').addEventListener('wheel', (e) => {
   e.preventDefault();
   const now = Date.now();
-  if(now - lastWheelTime < wheelCooldown) return; // cooldown
+  if(now - lastWheelTime < wheelCooldown) return;
   lastWheelTime = now;
 
   if(e.deltaY > 0) stackIndex = (stackIndex + 1) % stackItems.length;
@@ -320,7 +322,6 @@ stackItems.forEach(item => {
 
 updateStackVisual();
 </script>
-
 
 <script src="navigation.js"></script>
 </body>
