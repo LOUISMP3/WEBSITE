@@ -5,31 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>J4SPÄR SAISON 2 show</title>
   <style>
-   .other-projects {
-  display: none;
-  text-align: center;
-  margin-top: 90px;
-}
-#fullscreenButton {
-  display: none;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: none;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 11;
-  }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #F5F5F5;
+      color: #0A1E40;
+    }
 
-  @media screen and (max-width: 768px) {
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 30px;
+      background: #F5F5F5;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #0A1E40;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    main {
+      padding-top: 120px; /* espace sous le header */
+      text-align: center;
+    }
+
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 900px;
+      width: 90%;
+      margin: 0px auto;
+      aspect-ratio: 16 / 9;
+      background: black;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: black;
+    }
+
+    .video-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      color: #000;
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .video-arrow:hover { color: #555; }
+
+    .video-arrow svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .video-arrow--next svg { transform: scaleX(-1); }
+
+    #prevButton { left: -70px; }
+    #nextButton { right: -70px; }
+
     #fullscreenButton {
-    display: block;
-  }
-  }
+      display: none;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: none;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 11;
+    }
+
+    .other-projects {
+      display: none;
+      text-align: center;
+      margin-top: 90px;
+    }
+
+    @media screen and (max-width: 768px) {
+      #fullscreenButton { display: block; }
+      .video-arrow { display: none; } /* flèches masquées sur mobile */
+    }
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -68,24 +156,37 @@
   </nav>
 </header>
 
-  <main>
-    <h2 class="fade-in">J4SPÄR SAISON DEUX show</h2>
-    <div class="video-wrapper fade-in">
-      <button id="playButton" aria-label="Play"></button>
-      <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
-      <video id="mainVideo" playsinline poster="j4.jpg">
-        <source src="j4spar.mp4" type="video/mp4" />
-        Votre navigateur ne supporte pas la lecture vidéo.
-      </video>
-    </div>
-    <div class="description fade-in">
-      Composition & sound design for "J4SPÄR SAISON DEUX" show.
-    </div>
-    <div class="credits fade-in">
-      J4SPÄR / 2024
-    </div>
-  </main>
-  <div class="other-projects">
+<main>
+  <h2 class="fade-in">J4SPÄR SAISON DEUX show</h2>
+  <div class="video-wrapper fade-in">
+    <button id="playButton" aria-label="Play"></button>
+    <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
+    <video id="mainVideo" playsinline poster="j4.jpg">
+      <source src="j4spar.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+
+    <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+
+    <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="description fade-in">
+    Composition & sound design for "J4SPÄR SAISON DEUX" show.
+  </div>
+  <div class="credits fade-in">
+    J4SPÄR / 2024
+  </div>
+</main>
+
+<div class="other-projects">
   <ul>
     <li><a href="pink.html">DIANEV x Pinkpantheress bag campaign</a></li>
     <li><a href="nike.html">Nike & ourhomecoming T90 campaign</a></li>
@@ -93,8 +194,48 @@
     <li><a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a></li>
     <li><a href="k3u.html">K3U mushtop campaign</a></li>
     <li><a href="j4spar.html">J4SPÄR SAISON DEUX show</a></li>
+    <li><a href="dance-now.html">"DANCE NOW" promo video</a></li>
   </ul>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = [
+    "pink.html",
+    "nike.html",
+    "dianev.html",
+    "nothing-left.html",
+    "k3u.html",
+    "j4spar.html",
+    "dance-now.html"
+  ];
+
+  const currentPage = window.location.pathname.split("/").pop();
+  const currentIndex = pages.indexOf(currentPage);
+
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+
+  if (currentIndex !== -1) {
+    if (currentIndex > 0) {
+      prevButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex - 1];
+      });
+    } else {
+      prevButton.style.display = "none";
+    }
+
+    if (currentIndex < pages.length - 1) {
+      nextButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex + 1];
+      });
+    } else {
+      nextButton.style.display = "none";
+    }
+  }
+});
+</script>
 <script src="menu.js"></script>
+
 </body>
 </html>

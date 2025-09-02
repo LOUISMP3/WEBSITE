@@ -103,6 +103,43 @@ display: inline-block;
       pointer-events: auto;
     }
 
+    .video-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;      /* pas de fond */
+  appearance: none;              /* neutralise styles natifs */
+  -webkit-appearance: none;
+  color: #000;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-arrow:hover { color: #555; } /* léger hover, pas de fond */
+
+.video-arrow svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Miroir pour la flèche droite, même dessin */
+.video-arrow--next svg { transform: scaleX(-1); }
+
+#prevButton { left: -410px; }
+#nextButton { right: -70px; }
+
     .dropdown-content a {
       display: block;
       padding: 6px 20px;
@@ -721,6 +758,16 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
 .dropdown-toggle.return-transition {
   animation: slideOut 0.4s ease forwards;
 }
+.video-arrow {
+  display: flex; /* assure qu’elles s’affichent */
+}
+
+/* Cacher les flèches sur mobile */
+@media screen and (max-width: 768px) {
+  .video-arrow {
+    display: none;
+  }
+}
 </style>
 </head>
 <body class="portrait-videos">
@@ -779,6 +826,17 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
             <source src="k3u2.mp4" type="video/mp4" />
             Votre navigateur ne supporte pas la lecture vidéo.
           </video>
+           <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
+
+<button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
         </div>
       </div>
 
@@ -803,39 +861,61 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   <script>
 
     document.addEventListener('DOMContentLoaded', () => {
+  const pages = [
+    "pink.html",
+    "nike.html",
+    "dianev.html",
+    "nothing-left.html",
+    "k3u.html",
+    "j4spar.html",
+    "dance-now.html"
+  ];
 
-    function setupVideoPlayButton(videoId, button) {
-      const video = document.getElementById(videoId);
+  // Récupère la page actuelle (nom du fichier)
+  const currentPage = window.location.pathname.split("/").pop();
 
-      button.addEventListener('click', () => {
-        if (video.paused) {
-          video.muted = false;
-          video.play();
-          button.style.display = 'none';
-        }
+  // Trouve l’index de la page actuelle dans le tableau
+  const currentIndex = pages.indexOf(currentPage);
+
+  // Boutons
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+
+  if (currentIndex !== -1) {
+    // Page précédente (si pas la première)
+    if (currentIndex > 0) {
+      prevButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex - 1];
       });
-
-      video.addEventListener('click', () => {
-        if (!video.paused) {
-          video.pause();
-          button.style.display = 'block';
-        } else {
-          video.play();
-          button.style.display = 'none';
-        }
-      });
-
-      video.addEventListener('ended', () => {
-        button.style.display = 'block';
-      });
+    } else {
+      prevButton.style.display = "none"; // cache si pas de précédent
     }
 
-      const playButtons = document.querySelectorAll('button.play-button');
-      setupVideoPlayButton('video1', playButtons[0]);
-      setupVideoPlayButton('video2', playButtons[1]);
-    });
+    // Page suivante (si pas la dernière)
+    if (currentIndex < pages.length - 1) {
+      nextButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex + 1];
+      });
+    } else {
+      nextButton.style.display = "none"; // cache si pas de suivant
+    }
+  }
+});
+
 
 </script>
 <script src="navigation.js"></script>
+<script>
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+
+  prevButton.addEventListener('click', () => {
+    window.location.href = 'nike.html';
+  });
+
+  nextButton.addEventListener('click', () => {
+    window.location.href = 'nothing-left.html';
+  });
+</script>
 </body>
 </html>
