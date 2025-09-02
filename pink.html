@@ -157,41 +157,47 @@
 
   <script src="menu.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const pages = [
-        "pink.html",
-        "nike.html",
-        "dianev.html",
-        "nothing-left.html",
-        "k3u.html",
-        "j4spar.html",
-        "dance-now.html"
-      ];
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = [
+    "pink.html",
+    "nike.html",
+    "dianev.html",
+    "nothing-left.html",
+    "k3u.html",
+    "j4spar.html",
+    "dance-now.html"
+  ];
 
-      const currentPage = window.location.pathname.split("/").pop();
-      const currentIndex = pages.indexOf(currentPage);
+  // Récupère le nom du fichier actuel avec .html
+  const currentPage = window.location.pathname.split("/").pop();
+  const currentIndex = pages.indexOf(currentPage);
 
-      const prevButton = document.getElementById('prevButton');
-      const nextButton = document.getElementById('nextButton');
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
 
-      if (currentIndex !== -1) {
-        if (currentIndex > 0) {
-          prevButton.addEventListener('click', () => {
-            window.location.href = pages[currentIndex - 1];
-          });
-        } else {
-          prevButton.style.display = "none";
-        }
+  if (!prevButton || !nextButton) return;
 
-        if (currentIndex < pages.length - 1) {
-          nextButton.addEventListener('click', () => {
-            window.location.href = pages[currentIndex + 1];
-          });
-        } else {
-          nextButton.style.display = "none";
-        }
-      }
-    });
-  </script>
+  if (currentIndex !== -1) {
+    // Page précédente
+    if (currentIndex > 0) {
+      prevButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex - 1];
+      });
+    } else {
+      prevButton.style.display = "none";
+    }
+
+    // Page suivante
+    if (currentIndex < pages.length - 1) {
+      nextButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex + 1];
+      });
+    } else {
+      nextButton.style.display = "none";
+    }
+  }
+});
+</script>
+
 </body>
 </html>

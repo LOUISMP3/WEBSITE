@@ -859,63 +859,65 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   </ul>
 </div>
   <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+  // Liste des pages (sans extension)
   const pages = [
-    "pink.html",
-    "nike.html",
-    "dianev.html",
-    "nothing-left.html",
-    "k3u.html",
-    "j4spar.html",
-    "dance-now.html"
+    "pink",
+    "nike",
+    "dianev",
+    "nothing-left",
+    "k3u",
+    "j4spar",
+    "dance-now"
   ];
 
-  // Récupère la page actuelle (nom du fichier)
-  const currentPage = window.location.pathname.split("/").pop();
+  // Nom de la page actuelle
+  let currentPage = window.location.pathname.split("/").pop();
 
-  // Trouve l’index de la page actuelle dans le tableau
+  // En local : enlever ".html"
+  if (currentPage.endsWith(".html")) {
+    currentPage = currentPage.replace(".html", "");
+  }
+
+  // Si on est à la racine → on sort
+  if (currentPage === "") return;
+
   const currentIndex = pages.indexOf(currentPage);
 
-  // Boutons
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
 
   if (currentIndex !== -1) {
-    // Page précédente (si pas la première)
+    // Flèche gauche
     if (currentIndex > 0) {
       prevButton.addEventListener('click', () => {
-        window.location.href = pages[currentIndex - 1];
+        const target = pages[currentIndex - 1];
+        if (window.location.protocol === "file:") {
+          window.location.href = target + ".html";
+        } else {
+          window.location.href = "/" + target;
+        }
       });
     } else {
-      prevButton.style.display = "none"; // cache si pas de précédent
+      prevButton.style.display = "none";
     }
 
-    // Page suivante (si pas la dernière)
+    // Flèche droite
     if (currentIndex < pages.length - 1) {
       nextButton.addEventListener('click', () => {
-        window.location.href = pages[currentIndex + 1];
+        const target = pages[currentIndex + 1];
+        if (window.location.protocol === "file:") {
+          window.location.href = target + ".html";
+        } else {
+          window.location.href = "/" + target;
+        }
       });
     } else {
-      nextButton.style.display = "none"; // cache si pas de suivant
+      nextButton.style.display = "none";
     }
   }
 });
-
-
 </script>
-<script src="navigation.js"></script>
-<script>
-  const prevButton = document.getElementById('prevButton');
-  const nextButton = document.getElementById('nextButton');
 
-  prevButton.addEventListener('click', () => {
-    window.location.href = 'nike.html';
-  });
-
-  nextButton.addEventListener('click', () => {
-    window.location.href = 'nothing-left.html';
-  });
-</script>
 </body>
 </html>
