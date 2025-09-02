@@ -54,7 +54,6 @@ header {
   background: #F5F5F5;
   z-index: 1000;
 }
-
 .logo-container { display: flex; flex-direction: column; line-height: 1; }
 .logo {
   font-family: 'MillingTrial-Triplex25mm', sans-serif !important;
@@ -69,7 +68,6 @@ header {
   display: inline-block;
 }
 .logo:hover { opacity: 0.8; }
-
 .subtitle {
   font-size: 0.5em;
   font-weight: 300;
@@ -78,7 +76,6 @@ header {
   margin-left: 2px;
   color: var(--main-color);
 }
-
 nav { display: flex; gap: 30px; align-items: flex-start; }
 nav a { text-decoration: none; color: var(--main-color); font-weight: bold; text-transform: uppercase; cursor: pointer; }
 
@@ -134,7 +131,6 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .side-text.right { right: 100px; top: 360px; }
 
 .stack-carousel { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 450px; perspective: 1000px; }
-
 .stack-item {
   position: absolute; top: 0; left: 50%;
   width: 100%; max-width: 800px; height: 100%;
@@ -175,6 +171,7 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .stack-next { display: none; }
 </style>
 </head>
+
 <body class="preload">
 
 <header>
@@ -243,16 +240,22 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 </main>
 
 <script>
-/* --- Fade-in global --- */
+/* --- Fade-in + mobile redirection silencieuse --- */
 window.addEventListener('load', () => {
   document.body.classList.remove('preload');
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+
+  // redirection mobile si largeur <= 768px
+  setTimeout(() => {
+    if(window.innerWidth <= 768 && !location.pathname.includes('mobile')) {
+      window.location.href = 'index-mobile.html';
+    }
+  }, 600); // correspond à la durée du fade-in
 });
 
 /* --- Carousel scroll --- */
 const stackItems = document.querySelectorAll('.stack-item');
 let stackIndex = 0;
-
 function updateStackVisual() {
   const len = stackItems.length;
   stackItems.forEach((item,i) => {
@@ -271,18 +274,16 @@ function updateStackVisual() {
 
 let lastWheelTime = 0;
 const wheelCooldown = 900;
-
 document.querySelector('.stack-carousel').addEventListener('wheel', e => {
   e.preventDefault();
   const now = Date.now();
   if(now - lastWheelTime < wheelCooldown) return;
   lastWheelTime = now;
-
   stackIndex = e.deltaY > 0 ? (stackIndex +1) % stackItems.length : (stackIndex -1 + stackItems.length) % stackItems.length;
   updateStackVisual();
 }, {passive:false});
 
-/* --- Play/pause videos --- */
+/* --- Play/pause vidéos --- */
 stackItems.forEach(item => {
   const video = item.querySelector('video');
   const playBtn = item.querySelector('.play-button');
