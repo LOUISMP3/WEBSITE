@@ -12,7 +12,7 @@
 
 body.preload {
   opacity: 0;
-  transition: opacity 0.5s ease; /* durée et effet de fade */
+  transition: opacity 0.6s ease; /* durée et effet de fade */
 }
 
 @font-face {
@@ -251,10 +251,7 @@ h2 span { font-weight: 700; }
 <script>
 /* Fade-in global de la page */
 window.addEventListener('load', () => {
-  // Supprime preload, le body passe de opacity:0 à opacity:1 automatiquement
-  document.body.classList.remove('preload');
-
-  // Ensuite, fade-in progressif pour les éléments individuels
+  document.body.classList.remove('preload'); // déclenche le fade-in
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
 });
 
