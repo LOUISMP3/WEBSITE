@@ -51,7 +51,15 @@ header {
 
 .logo-container { display: flex; flex-direction: column; line-height: 1; }
 
+@font-face {
+  font-family: 'MillingTrial-Triplex25mm'; /* nom réel de la police */
+  src: url('fonts/MillingTrial-Triplex25mm.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .logo {
+  font-family: 'MillingTrial-Triplex25mm', sans-serif !important; /* utiliser exactement le nom déclaré */
   font-size: 4em;
   margin: 0; margin-bottom: 3px; margin-top: -5px; margin-left: -16px;
   color: var(--main-color);
