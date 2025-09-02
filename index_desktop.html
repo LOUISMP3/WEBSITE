@@ -10,10 +10,14 @@
   --play-button-color: #F5F5F5;
 }
 
-/* Fade-in global */
 body.preload {
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease; /* durée et effet de fade */
+}
+
+@font-face {
+  font-family: 'MillingTrial-Triplex2,5mm';
+  src: url('fonts/MillingTrial-Triplex25mm.otf') format('truetype');
 }
 
 body {
@@ -21,23 +25,8 @@ body {
   font-family: Arial, sans-serif;
   background: #F5F5F5;
   color: var(--main-color);
-  opacity: 1;
-  transition: opacity 0.6s ease;
 }
 
-/* Fade-in progressif pour les éléments */
-.fade-in {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Header / Nav --- */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -51,21 +40,21 @@ header {
 
 .logo-container { display: flex; flex-direction: column; line-height: 1; }
 
-@font-face {
-  font-family: 'MillingTrial-Triplex25mm'; /* nom réel de la police */
-  src: url('fonts/MillingTrial-Triplex25mm.otf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
 .logo {
-  font-family: 'MillingTrial-Triplex25mm', sans-serif !important; /* utiliser exactement le nom déclaré */
+  font-family: 'MillingTrial-Triplex2,5mm', sans-serif !important;
   font-size: 4em;
-  margin: 0; margin-bottom: 3px; margin-top: -5px; margin-left: -16px;
+  margin: 0;
+  margin-bottom: 3px;
+  margin-top: -5px;
+  margin-left: -16px;
   color: var(--main-color);
   transform: scaleX(0.9);
   text-decoration: none;
   display: inline-block;
+}
+
+.stack-next {
+  display: none;
 }
 
 .logo:hover { opacity: 0.8; }
@@ -76,6 +65,8 @@ header {
   text-transform: uppercase;
   margin-top: 0;
   margin-left: 2px;
+  padding-left: 2px;
+  transform: translateY(-2px);
   color: var(--main-color);
 }
 
@@ -130,12 +121,14 @@ nav a { text-decoration: none; color: var(--main-color); font-weight: bold; text
 
 @keyframes slideFadeIn { to { opacity: 1; transform: translateX(0); } }
 
-/* --- Main --- */
 main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: center; }
 
 .side-text { position: fixed; text-transform: uppercase; width: 240px; font-size: 1.3em; color: var(--main-color); max-width: 240px; text-align: justify; pointer-events: none; user-select: none; }
 .side-text.left { left: 100px; top: 340px; }
 .side-text.right { right: 100px; top: 360px; }
+
+h2 { font-size: 1em; margin-top: 2px; color: var(--main-color); font-weight: normal; text-align: left; max-width: 85%; margin-left: 0; margin-right: auto; }
+h2 span { font-weight: 700; }
 
 .stack-carousel { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 450px; perspective: 1000px; }
 
@@ -149,7 +142,7 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
   width: 100%; height: 100%; object-fit: cover; border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   pointer-events: auto;
-  opacity: 0;
+  opacity: 0; /* par défaut invisible */
   transition: opacity 0.6s ease;
 }
 
@@ -187,9 +180,8 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .stack-next:hover { opacity: 1; }
 </style>
 </head>
-
-<body class="preload">
-
+<body>
+<body class="preload"></body>
 <header>
 <div class="logo-container">
   <a class="logo" href="/">LOUISMP3</a>
@@ -199,37 +191,37 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
   <div class="dropdown">
     <a class="dropdown-toggle">Sound To Image</a>
     <div class="dropdown-content">
-      <a href="pink.html">DIANEV x PinkPantheress bag campaign</a>
-      <a href='nike.html'>Nike &amp; ourhomecoming T90 campaign</a>
-      <a href='dianev.html'>DIANEV "THE LOOK" campaign</a>
-      <a href='nothing-left.html'>"Nothing Left" a vision by gabriel1999</a>
-      <a href='k3u.html'>K3U mushtop campaign</a>
-      <a href='j4spar.html'>J4SPÄR SAISON DEUX show</a>
-      <a href='dance-now.html'>"DANCE NOW" promo video</a>
+      <a href="pink.html">DIANEV x PinkPanthress bag campaign</a>
+      <a href='/nike'>Nike &amp; ourhomecoming T90 campaign</a>
+      <a href='/dianev'>DIANEV "THE LOOK" campaign</a>
+      <a href='/nothing-left'>"Nothing Left" a vision by gabriel1999</a>
+      <a href='/k3u'>K3U mushtop campaign</a>
+      <a href='/j4spar'>J4SPÄR SAISON DEUX show</a>
+      <a href='/dance-now'>"DANCE NOW" promo video</a>
     </div>
   </div>
   <div class="dropdown">
     <a class="dropdown-toggle">Prod. by Louis</a>
     <div class="dropdown-content">
-      <a href='les-filles.html'>Les Filles - sean</a>
-      <a href='qui.html'>Qui va écouter ça? - Elyon</a>
-      <a href='fsc.html'>Feuille Shit Clope - sean</a>
-      <a href='intro.html'>Introduktion - Akkai</a>
-      <a href='affa.html'>N'na - Affa</a>
-      <a href='seul.html'>Seul - Sidi</a>
+      <a href='/les-filles'>Les Filles - sean</a>
+      <a href='/qui'>Qui va écouter ça? - Elyon</a>
+      <a href='/fsc'>Feuille Shit Clope - sean</a>
+      <a href='/intro'>Introduktion - Akkai</a>
+      <a href='/affa'>N'na - Affa</a>
+      <a href='/seul'>Seul - Sidi</a>
     </div>
   </div>
-  <a href='contact.html'>Contact</a>
+  <a href='/contact'>Contact</a>
 </nav>
 </header>
 
 <main>
-<div class="stack-carousel fade-in">
+<div class="stack-carousel">
   <div class="stack-item active">
     <video class="stack-video" playsinline poster="nike2.jpg"><source src="ta-video.mp4" type="video/mp4"></video>
     <button class="play-button"></button>
   </div>
-  <div class="stack-item">
+    <div class="stack-item">
     <video class="stack-video" playsinline poster="pink2.png"><source src="pink.mp4" type="video/mp4"></video>
     <button class="play-button"></button>
   </div>
@@ -290,11 +282,23 @@ function updateStackVisual() {
   });
 }
 
-stackNext.addEventListener('click', () => {
-  stackIndex = (stackIndex + 1) % stackItems.length;
-  updateStackVisual();
-});
+/* Scroll avec molette */
+let lastWheelTime = 0;
+const wheelCooldown = 900; // ms entre deux changements
 
+document.querySelector('.stack-carousel').addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const now = Date.now();
+  if(now - lastWheelTime < wheelCooldown) return; // cooldown
+  lastWheelTime = now;
+
+  if(e.deltaY > 0) stackIndex = (stackIndex + 1) % stackItems.length;
+  else if(e.deltaY < 0) stackIndex = (stackIndex - 1 + stackItems.length) % stackItems.length;
+
+  updateStackVisual();
+}, { passive: false });
+
+/* Play / pause vidéos */
 stackItems.forEach(item => {
   const video = item.querySelector('video');
   const playBtn = item.querySelector('.play-button');
@@ -316,6 +320,7 @@ stackItems.forEach(item => {
 
 updateStackVisual();
 </script>
+
 
 <script src="navigation.js"></script>
 </body>
