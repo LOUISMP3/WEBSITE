@@ -1071,6 +1071,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+  const video = wrapper.querySelector('video');
+  const button = wrapper.querySelector('.play-button');
+
+  if (video && button) {
+    const togglePlay = () => {
+      if (video.paused) {
+        video.play();
+        button.style.display = 'none';
+      } else {
+        video.pause();
+        button.style.display = 'block';
+      }
+    }
+
+    // clic sur le bouton play
+    button.addEventListener('click', togglePlay);
+
+    // clic sur la vidéo elle-même
+    video.addEventListener('click', togglePlay);
+
+    // quand la vidéo se termine → remettre le bouton
+    video.addEventListener('ended', () => {
+      button.style.display = 'block';
+    });
+  }
+});
 </script>
 </body>
 </html>
