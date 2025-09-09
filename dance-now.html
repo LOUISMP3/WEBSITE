@@ -7,8 +7,14 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     :root {
-      --main-color: #0A1E40;
+      --main-color: #121027;
       --play-button-color: #F5F5F5;
+    }
+
+        body, h2, p, div, a, button {
+    --main-color: #121027;
+      color: #000;
+      letter-spacing: -0.5px;
     }
 
     body {
@@ -60,6 +66,14 @@
       border-width: 15px 0 15px 30px;
       border-color: transparent transparent transparent var(--play-button-color);
     }
+
+        .logo {
+    letter-spacing: -2px;
+    }
+
+      nav > .dropdown:nth-child(2) > .dropdown-toggle {
+  opacity: 0.6; /* modifie selon ton goût */
+}
 
     .video-arrow {
       position: absolute;
@@ -128,30 +142,47 @@
       padding: 0 20px !important;
       margin-left: -20px !important;
     }
+    #mobilePageDownButton {
+  display: none;
+}
 
-    .other-projects {
+@media screen and (max-width: 768px) {
+  .video-arrow { display: none; } /* cache les flèches desktop */
+  #fullscreenButton { display: block; }
+
+  #mobilePageDownButton {
+    display: flex;
+    margin: 42px auto 0 auto;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #mobilePageDownButton svg {
+    width: 28px;
+    height: 28px;
+    stroke: #000; /* couleur forcée */
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg) scaleX(-1);
+  }
+
+  #mobilePageDownButton:hover svg {
+    stroke: #555; /* hover */
+  }
+
+        .other-projects {
       display: none;
       text-align: center;
       margin-top: 90px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .video-wrapper {
-        width: 100%;
-        margin-top: 160px;
-      }
-      #fullscreenButton { display: block; }
-      .video-arrow { display: none; }
-      video { margin-top: -152px !important; }
-      .description,
-      .credits {
-        font-size: 0.75em;
-        padding: 0 15px;
-        margin-top: -5px !important;
-        margin-bottom: 3px !important;
-      }
-      .credits { margin-top: 0px !important; }
-    }
+    }}
   </style>
 </head>
 
@@ -201,13 +232,13 @@
 
     <!-- Flèches desktop uniquement -->
     <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
         <path d="M15 6l-6 6 6 6"></path>
       </svg>
     </button>
 
     <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
         <path d="M15 6l-6 6 6 6"></path>
       </svg>
     </button>
@@ -218,19 +249,16 @@
   </div>
 
   <div class="credits fade-in">
-    Director: Louis Le Mahec & Sean Nam / 2024
+    Louis Le Mahec & Sean Nam / 2024
   </div>
-</main>
 
-<div class="other-projects">
-  <ul>
-    <li><a href="nike.html">Nike & ourhomecoming T90 campaign</a></li>
-    <li><a href="dianev.html">DIANEV "THE LOOK" campaign</a></li>
-    <li><a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a></li>
-    <li><a href="k3u.html">K3U mushtop campaign</a></li>
-    <li><a href="j4spar.html">J4SPÄR SAISON DEUX show</a></li>
-  </ul>
-</div>
+  <!-- BOUTON MOBILE -->
+  <button id="mobilePageDownButton" aria-label="Page suivante">
+    <svg viewBox="0 0 24 24">
+      <path d="M15 6l-6 6 6 6"></path>
+    </svg>
+  </button>
+</main>
 
 <script src="menu.js"></script>
 <script>
@@ -288,6 +316,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       nextButton.style.display = "none";
+    }
+  }
+      const mobilePageDownButton = document.getElementById('mobilePageDownButton');
+  if (mobilePageDownButton) {
+    if (currentIndex < pages.length - 1) {
+      mobilePageDownButton.addEventListener('click', () => {
+        window.location.href = pages[currentIndex + 1];
+      });
+    } else {
+      mobilePageDownButton.style.display = 'none';
     }
   }
 });

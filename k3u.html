@@ -17,6 +17,12 @@
   font-style: normal;
 }
 
+        body, h2, p, div, a, button {
+    --main-color: #121027;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -54,6 +60,14 @@ text-decoration: none;
 display: inline-block;
 }
 
+        .logo {
+    letter-spacing: -2px;
+    }
+
+      nav > .dropdown:nth-child(2) > .dropdown-toggle {
+  opacity: 0.6; /* modifie selon ton goût */
+}
+
     .logo:hover {
       opacity: 0.8;
     }
@@ -61,11 +75,11 @@ display: inline-block;
     .subtitle {
       font-size: 0.5em;
       font-weight: 300;
-      letter-spacing: 0.15px;
+      letter-spacing: -0.2px;
       text-transform: uppercase;
-      margin-top: 0;
-      margin-left: 2px;
-      padding-left: 2px;
+      margin-top: 1.5px;
+      margin-left: 0.8px;
+      padding-left: 1.5px;
       transform: translateY(-2px);
     }
 
@@ -197,13 +211,13 @@ display: inline-block;
     nav a {
       text-decoration: none;
       color: var(--main-color);
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
       cursor: pointer;
     }
 
     main {
-      padding: 180px 20px 40px;
+      padding: 150px 20px 40px;
       max-width: 840px;
       margin: 0 auto;
       text-align: left;
@@ -239,6 +253,7 @@ display: inline-block;
       word-break: normal;
       color: var(--main-color);
       opacity: 0.8;
+      letter-spacing: -0.5px;
     }
 
     .videos-container {
@@ -287,6 +302,10 @@ display: inline-block;
       border-color: transparent transparent transparent var(--play-button-color);
     }
 
+        #mobilePageDownButton {
+  display: none; /* caché par défaut */
+}
+
     @media screen and (min-width: 414px) and (max-width: 768px) {
       main {
         max-width: 100%;
@@ -329,7 +348,7 @@ display: inline-block;
         margin-left: 0;
         height: 100%;
         font-size: 0.7em;
-        opacity: 90%;
+        opacity: 1;
         position: relative;
         z-index: 9999;
         gap: 0 !important;
@@ -490,6 +509,30 @@ display: inline-block;
       transform: translateY(0);
     }
   }
+   #mobilePageDownButton {
+        display: flex;
+        margin: 75px auto 0 auto; /* centré horizontalement */
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: #000; /* couleur noire fixe */
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1); /* flèche vers le bas */
+        
+      }
+      #mobilePageDownButton:hover { color: #555; }
 }
 @media screen and (max-width: 413px) {
       main {
@@ -545,7 +588,7 @@ display: inline-block;
         margin-left: 0;
         height: 100%;
         font-size: 0.7em;
-        opacity: 90%;
+        opacity: 1;
         position: relative;
         z-index: 9999;
         gap: 0 !important;
@@ -767,6 +810,56 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   .video-arrow {
     display: none;
   }
+
+  .dropdown.open .dropdown-content {
+    position: fixed;       /* recouvre tout l'écran */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;         /* prend toute la hauteur */
+    background-color: #F5F5F5; /* fond blanc opaque */
+    overflow-y: auto;      /* scroll si beaucoup de liens */
+    padding: 40px 20px;    /* espace intérieur */
+    z-index: 9999;         /* au-dessus du reste */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+    .dropdown.open .dropdown-content a {
+    font-size: 1.2em;
+    padding: 12px 0;
+    margin-right: 30px;
+    display: block;
+    text-align: right; /* ou center selon ton style */
+  }
+    #mobilePageDownButton {
+    display: flex;
+    margin: 40px auto 0 auto;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #mobilePageDownButton svg {
+    width: 28px;
+    height: 28px;
+    stroke: #000;   /* couleur forcée */
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg) scaleX(-1);
+  }
+
+  #mobilePageDownButton:hover {
+    color: #555;
+    stroke: #555; /* changement hover */
+  }
 }
 </style>
 </head>
@@ -845,6 +938,11 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
           Composition & sound design for K3U mushtop campaign.
         </div>
       </div>
+        <button id="mobilePageDownButton" aria-label="Page suivante">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 6l-6 6 6 6"></path>
+    </svg>
+  </button>
 
     </div>
   </main>
@@ -917,7 +1015,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
-</script>
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    const parent = toggle.closest('.dropdown');
 
+    // fermer les autres
+    document.querySelectorAll('.dropdown').forEach(drop => {
+      if (drop !== parent) drop.classList.remove('open');
+    });
+
+    // basculer celui-ci
+    parent.classList.toggle('open');
+  });
+});
+
+// fermer si clic à l’extérieur
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = ["pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  if (!currentPage) return;
+
+  const currentIndex = pages.indexOf(currentPage);
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+
+  const isLocal = window.location.protocol === "file:";
+
+  if (currentIndex !== -1) {
+    if (currentIndex > 0 && prevButton) {
+      prevButton.addEventListener('click', () => {
+        const target = pages[currentIndex - 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (prevButton) prevButton.style.display = "none";
+
+    if (currentIndex < pages.length - 1 && nextButton) {
+      nextButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (nextButton) nextButton.style.display = "none";
+  }
+
+  const mobilePageDownButton = document.getElementById('mobilePageDownButton');
+  if (mobilePageDownButton) {
+    if (currentIndex < pages.length - 1) {
+      mobilePageDownButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobilePageDownButton.style.display = 'none';
+    }
+  }
+});
+</script>
 </body>
 </html>

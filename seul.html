@@ -34,59 +34,68 @@
       line-height: 1;
     }
 
-        .other-projects {
-  display: none;
-  text-align: center;
-  margin-top: 90px;
-  }
-
-    .logo:hover {
-      opacity: 0.8;
-    }
-
+    .logo:hover { opacity: 0.8; }
     .subtitle {
       font-size: 0.5em;
       font-weight: 300;
       letter-spacing: 0.15px;
       text-transform: uppercase;
-      margin-top: 0;
+      margin-top: -2px;
       margin-left: 2px;
       padding-left: 2px;
-      transform: translateY(-2px);
     }
 
-    nav {
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
+    nav { display: flex; gap: 30px; align-items: flex-start; }
+
+    nav a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: normal;
+      text-transform: uppercase;
+      cursor: pointer;
     }
 
-    .dropdown {
-      position: relative;
-    }
+    .dropdown { position: relative; }
 
     .dropdown-content {
-      display: block;
-      visibility: hidden;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
       position: absolute;
       top: 100%;
       left: 0;
       background-color: #F5F5F5;
       z-index: 1001;
       padding: 10px 0;
-      pointer-events: none;
-      overflow: hidden;
       white-space: nowrap;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
     }
 
-    .dropdown:hover .dropdown-content {
+      .dropdown:hover .dropdown-content {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .dropdown:hover .dropdown-content a {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+  .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+  .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+  .dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+  .dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+  .dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+  .dropdown:hover .dropdown-content a:nth-child(7) { transition-delay: 0.65s; }
+
+    .dropdown.open .dropdown-content {
+      pointer-events: auto;
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
-      pointer-events: auto;
     }
 
     .dropdown-content a {
@@ -94,26 +103,23 @@
       padding: 6px 20px;
       color: var(--main-color);
       text-decoration: none;
-      font-size: 0.85em;
+      font-size: 0.8em;
       font-weight: 500;
-      white-space: nowrap;
       opacity: 0;
       transform: translateX(-15px);
-      animation-fill-mode: forwards;
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
-    .dropdown:hover .dropdown-content a:nth-child(1) { animation: slideFadeIn 0.25s ease forwards 0.05s; }
-    .dropdown:hover .dropdown-content a:nth-child(2) { animation: slideFadeIn 0.25s ease forwards 0.15s; }
-    .dropdown:hover .dropdown-content a:nth-child(3) { animation: slideFadeIn 0.25s ease forwards 0.25s; }
-    .dropdown:hover .dropdown-content a:nth-child(4) { animation: slideFadeIn 0.25s ease forwards 0.35s; }
-    .dropdown:hover .dropdown-content a:nth-child(5) { animation: slideFadeIn 0.25s ease forwards 0.45s; }
-    .dropdown:hover .dropdown-content a:nth-child(6) { animation: slideFadeIn 0.25s ease forwards 0.55s; }
+    .dropdown.open .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+    .dropdown.open .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+    .dropdown.open .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+    .dropdown.open .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+    .dropdown.open .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+    .dropdown.open .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
 
-    @keyframes slideFadeIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    .dropdown.open .dropdown-content a {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .fade-in {
@@ -121,26 +127,15 @@
       animation: fadeIn 1.5s ease forwards;
       animation-delay: 0.5s;
     }
-    
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
 
-    nav a {
-      text-decoration: none;
-      color: var(--main-color);
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     main {
       padding: 180px 20px 40px;
       width: 100%;
       display: flex;
       justify-content: center;
+      position: relative;
     }
 
     .track-container {
@@ -149,149 +144,58 @@
       align-items: flex-start;
       max-width: 400px;
       width: 100%;
+      position: relative;
     }
 
-    h2 {
-      font-size: 1.1em;
-      font-weight: bold;
-      margin-bottom: 12px;
-      text-align: left;
-      width: 100%;
-    }
+    h2 { font-size: 1.1em; font-weight: bold; margin-bottom: 12px; width: 100%; }
+    .cover { max-width: 400px; width: 100%; margin-bottom: 12px; display: block; }
+    iframe.spotify { width: 100%; max-width: 400px; height: 80px; border: none; border-radius: 10px; margin-bottom: 12px; display: block; }
+    .description { font-size: 0.95em; margin-bottom: 4px; width: 100%; text-align: left; }
+    .credits { font-size: 0.85em; color: #555; width: 100%; text-align: left; }
 
-    .cover {
-      max-width: 400px;
-      width: 100%;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    iframe.spotify {
-      width: 100%;
-      max-width: 400px;
-      height: 80px;
+    /* Flèches desktop */
+    .nav-arrow {
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      background: transparent;
       border: none;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      display: block;
+      width: 56px; height: 56px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 30; color: var(--main-color);
+      opacity: 0; animation: fadeIn 1.5s ease forwards; animation-delay: 0.5s;
     }
-
-    .description {
-      font-size: 0.95em;
-      margin-bottom: 4px;
-      width: 100%;
-      text-align: left;
-    }
-
-    .credits {
-      font-size: 0.85em;
-      color: #555;
-      width: 100%;
-      text-align: left;
-    }
+    .nav-arrow svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-arrow--next svg { transform: scaleX(-1); }
+    #prevButton { left: -80px; } #nextButton { right: -80px; }
 
     @media (max-width: 600px) {
-    main {
-      padding: 172px 20px 40px;
-      width: 85%;
-      display: flex;
-      margin: 0 auto;
-      justify-content: center;
+      .nav-arrow { display: none; }
+      main { padding: 172px 20px 40px; width: 85%; margin: 0 auto; justify-content: center; }
+      h2 { font-size: 1em; font-weight: bold; margin-left:1px; text-transform: uppercase; }
+      .description { font-size: 0.8em; margin-top:1px; }
+      .credits { font-size: 0.7em; }
+
+      /* Flèche mobile */
+      #mobilePageDownButton {
+        display: flex; margin: -30px auto 0 auto; width: 56px; height: 56px;
+        border: none; background: transparent; color: #000; cursor: pointer;
+        align-items: center; justify-content: center;
+      }
+      #mobilePageDownButton svg {
+        width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2.4;
+        stroke-linecap: round; stroke-linejoin: round; transform: rotate(90deg) scaleX(-1);
+      }
+      #mobilePageDownButton:hover { color: #555; }
     }
 
-    h2 {
-    font-size: 1em !important;
-    font-weight: bold !important;
-    text-align: left;
-    margin-left: 1px !important;
-    margin-right: 0;
-    text-transform: uppercase;
-  }
-  
-  .description {
-    font-size: 0.8em !important; /* Réduire la taille de la description */
-    margin-top: 1px;
-  }
-
-  .credits {
-    font-size: 0.7em !important; /* taille plus petite que sur desktop */
-  }
-  }
-
-body.dropdown-mode header > .logo-container,
-body.dropdown-mode nav > .dropdown:not(.open),
-body.dropdown-mode nav > a,
-body.dropdown-mode main {
-display: none !important;
-}
-
-body.dropdown-mode .dropdown.open {
-width: 100vw;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-position: fixed;
-top: 10px;
-left: 0;
-width: 100vw;
-background-color: #F5F5F5;
-padding: 10px 20px;
-margin-left: 70px;
-z-index: 10000;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-content {
-display: block !important;
-position: fixed;
-top: 50px;
-left: 0px;
-width: 100vw;
-border-top: 1px solid var(--main-color);
-z-index: 9999;
-}
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-    @keyframes moveAndGrow {
-      from {
-    transform: translateX(50%) scale(1);
-    font-size: 1em;
-    text-align: center;
-      }
-      to {
-    transform: translateX(0) scale(1.4);
-    font-size: 1.4em;
-    text-align: left;
-      }
+        .dropdown.open .dropdown-content {
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    @keyframes slideOut {
-      from {
-        transform: translateX(0) scale(1.4);
-        font-size: 1.4em;
-        text-align: left;
-      }
-      to {
-        transform: translateX(50%) scale(1);
-        font-size: 1em;
-        text-align: center;
-      }
-    }
-
-.dropdown-toggle.animate-in {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-.dropdown-toggle.animate-out {
-animation: slideOut 0.4s ease forwards;
-}
-
-.dropdown-toggle.return-transition {
-transition: transform 0.4s ease, font-size 0.4s ease;
-transform: translateX(0) scale(1);
-font-size: 1em;
-}
+    
   </style>
   <link rel="stylesheet" href="header.css?v=2">
 </head>
@@ -304,7 +208,7 @@ font-size: 1em;
   </div>
   <nav>
     <div class="dropdown">
-      <a class="dropdown-toggle">Sound To Image</a>
+      <a href="#" class="dropdown-toggle">Sound To Image</a>
       <div class="dropdown-content">
         <a href="pink.html">DIANEV x PinkPanthress bag campaign</a>
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
@@ -316,7 +220,7 @@ font-size: 1em;
       </div>
     </div>
     <div class="dropdown">
-      <a class="dropdown-toggle">Prod. by Louis</a>
+      <a href="#" class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
         <a href="les-filles.html">Les Filles - sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
@@ -330,25 +234,90 @@ font-size: 1em;
   </nav>
 </header>
 
-  <main>
-    <div class="track-container fade-in">
-      <h2>SEUL – SIDI</h2>
-      <img src="seul.jpg" alt="Seul cover" class="cover" />
-      <iframe class="spotify" src="https://open.spotify.com/embed/track/5Oi3XZUZOhYBuwnt9BLZv0?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <div class="description">Composition & arrangement.</div>
-      <div class="credits">2024</div>
-    </div>
-  </main>
-    <div class="other-projects">
-  <ul>
-    <li><a href="les-filles.html">Les Filles - sean</a></li>
-    <li><a href="qui.html">Qui va écouter ça? - Elyon</a></li>
-    <li><a href="fsc.html">Feuille Shit Clope - sean</a></li>
-    <li><a href="intro.html">Introduktion - Akkai</a></li>
-    <li><a href="affa.html">N'na - Affa</a></li>
-    <li><a href="seul.html">Seul - Sidi</a></li>
-  </ul>
-</div>
-<script src="navigation.js"></script>
+<main>
+  <div class="track-container">
+    <h2 class="fade-in">SEUL – SIDI</h2>
+    <img src="seul.jpg" alt="Seul cover" class="cover fade-in" />
+    <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/5Oi3XZUZOhYBuwnt9BLZv0?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <div class="description fade-in">Composition & arrangement.</div>
+    <div class="credits fade-in">2024</div>
+
+    <!-- Flèches desktop -->
+    <button id="prevButton" class="nav-arrow fade-in" aria-label="Précédent">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+    <button id="nextButton" class="nav-arrow nav-arrow--next fade-in" aria-label="Suivant">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+  </div>
+</main>
+
+<!-- Flèche mobile -->
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // DROPDOWN au clic
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', e => {
+      e.preventDefault();
+      const parent = toggle.parentElement;
+      parent.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', e => {
+    dropdownToggles.forEach(toggle => {
+      const parent = toggle.parentElement;
+      if (!parent.contains(e.target)) parent.classList.remove('open');
+    });
+  });
+
+  // NAVIGATION PROJETS
+  const pages = ["les-filles","qui","fsc","intro","affa","seul"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  const idx = pages.indexOf(currentPage);
+  const prev = document.getElementById('prevButton');
+  const next = document.getElementById('nextButton');
+  const mobile = document.getElementById('mobilePageDownButton');
+  const isLocal = window.location.protocol === "file:";
+
+  if (idx === -1) {
+    if (prev) prev.style.display = 'none';
+    if (next) next.style.display = 'none';
+    if (mobile) mobile.style.display = 'none';
+    return;
+  }
+
+  if (idx > 0 && prev) {
+    prev.addEventListener('click', () => {
+      const target = pages[idx - 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (prev) prev.style.display = 'none';
+
+  if (idx < pages.length - 1 && next) {
+    next.addEventListener('click', () => {
+      const target = pages[idx + 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (next) next.style.display = 'none';
+
+  if (mobile) {
+    if (idx < pages.length - 1) {
+      mobile.addEventListener('click', () => {
+        const target = pages[idx + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobile.style.display = 'none';
+    }
+  }
+});
+</script>
+
 </body>
 </html>

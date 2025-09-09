@@ -18,133 +18,135 @@
     }
 
     body {
-margin: 0;
-font-family: Arial, sans-serif;
-background: #F5F5F5;
-color: var(--main-color);
-}
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #F5F5F5;
+      color: var(--main-color);
+    }
 
-header {
-position: fixed;
-top: 0; left: 0; right: 0;
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
-padding: 10px 30px;
-background: #F5F5F5;
-z-index: 1000;
-}
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 30px;
+      background: #F5F5F5;
+      z-index: 1000;
+    }
 
-.other-projects {
-  display: none;
-  text-align: center;
-  margin-top: 90px;
-  }
+    .other-projects {
+      display: none;
+      text-align: center;
+      margin-top: 90px;
+    }
 
-.mobile-divider {
-display: none;
-border: none;
-border-top: 1px solid var(--main-color);
-margin: 10px 0;
-}
+    .mobile-divider {
+      display: none;
+      border: none;
+      border-top: 1px solid var(--main-color);
+      margin: 10px 0;
+    }
 
-.logo-container {
-display: flex;
-flex-direction: column;
-line-height: 1;
-}
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
 
-.subtitle {
-font-size: 0.5em;
-font-weight: 300;
-letter-spacing: 0.15px;
-text-transform: uppercase;
-margin-top: -2px;
-margin-left: 2px;
-padding-left: 2px;
-}
+    .subtitle {
+      font-size: 0.5em;
+      font-weight: 300;
+      letter-spacing: 0.15px;
+      text-transform: uppercase;
+      margin-top: -2px;
+      margin-left: 2px;
+      padding-left: 2px;
+    }
 
-nav {
-display: flex;
-gap: 30px;
-align-items: flex-start;
-}
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
 
-nav a {
-text-decoration: none;
-color: var(--main-color);
-font-weight: bold;
-text-transform: uppercase;
-cursor: pointer;
-}
+    nav a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: normal;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
 
-.dropdown {
-position: relative;
-}
+    .dropdown {
+      position: relative;
+    }
 
-.dropdown-content {
-position: absolute;
-top: 100%;
-left: 0;
-background-color: #F5F5F5;
-z-index: 1001;
-padding: 10px 0;
-white-space: nowrap;
-pointer-events: none;
-visibility: hidden;
-opacity: 0;
-transform: translateY(-10px);
-transition: all 0.2s ease;
-}
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #F5F5F5;
+      z-index: 1001;
+      padding: 10px 0;
+      white-space: nowrap;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+    }
 
-.dropdown:hover .dropdown-content {
-pointer-events: auto;
-visibility: visible;
-opacity: 1;
-transform: translateY(0);
-}
+    .dropdown:hover .dropdown-content {
+      pointer-events: auto;
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.dropdown-content a {
-display: block;
-padding: 6px 20px;
-color: var(--main-color);
-text-decoration: none;
-font-size: 0.8em;
-font-weight: 500;
-opacity: 0;
-transform: translateX(-15px);
-transition: opacity 0.25s ease, transform 0.25s ease;
-}
+    .dropdown-content a {
+      display: block;
+      padding: 6px 20px;
+      color: var(--main-color);
+      text-decoration: none;
+      font-size: 0.8em;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
 
-.dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
-.dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
-.dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
-.dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
-.dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
-.dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+    .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+    .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+    .dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+    .dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+    .dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(7) { transition-delay: 0.65s; }
 
-.dropdown:hover .dropdown-content a {
-opacity: 1;
-transform: translateX(0);
-}
+    .dropdown:hover .dropdown-content a {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-@keyframes slideFadeIn {
-  to {
-opacity: 1;
-transform: translateX(0);
-  }
-}
+    @keyframes slideFadeIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-.fade-in {
-opacity: 0;
-animation: fadeIn 1.5s ease forwards;
-animation-delay: 0.5s;
-}
-@keyframes fadeIn {
-  to {
-opacity: 1;
-  }
-}
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
 
     main {
       padding: 180px 20px 40px;
@@ -159,6 +161,7 @@ opacity: 1;
       align-items: flex-start;
       max-width: 400px;
       width: 100%;
+      position: relative; /* pour les flèches */
     }
 
     h2 {
@@ -200,112 +203,98 @@ opacity: 1;
       text-align: left;
     }
 
-  @media (max-width: 600px) {
-    main {
-      padding: 172px 20px 40px;
-      width: 85%;
+    /* Flèches desktop */
+    .nav-arrow {
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      width: 56px;
+      height: 56px;
       display: flex;
-      margin: 0 auto;
+      align-items: center;
       justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      color: var(--main-color);
+    }
+    .nav-arrow svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-arrow--next svg { transform: scaleX(-1); }
+
+    #prevButton { left: -80px; }
+    #nextButton { right: -80px; }
+
+    @media (max-width: 600px) {
+      .nav-arrow { display: none; }
     }
 
-    h2 {
-    font-size: 1em !important;
-    font-weight: bold !important;
-    text-align: left;
-    margin-left: 1px !important;
-    margin-right: 0;
-    text-transform: uppercase;
-  }
-  
-  .description {
-    font-size: 0.8em !important; /* Réduire la taille de la description */
-    margin-top: 1px;
-  }
-
-  .credits {
-    font-size: 0.7em !important; /* taille plus petite que sur desktop */
-  }
-  }
-
-body.dropdown-mode header > .logo-container,
-body.dropdown-mode nav > .dropdown:not(.open),
-body.dropdown-mode nav > a,
-body.dropdown-mode main {
-display: none !important;
-}
-
-body.dropdown-mode .dropdown.open {
-width: 100vw;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-position: fixed;
-top: 10px;
-left: 0;
-width: 100vw;
-background-color: #F5F5F5;
-padding: 10px 20px;
-margin-left: 70px;
-z-index: 10000;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-content {
-display: block !important;
-position: fixed;
-top: 50px;
-left: 0px;
-width: 100vw;
-border-top: 1px solid var(--main-color);
-z-index: 9999;
-}
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-    @keyframes moveAndGrow {
-      from {
-    transform: translateX(50%) scale(1);
-    font-size: 1em;
-    text-align: center;
-      }
-      to {
-    transform: translateX(0) scale(1.4);
-    font-size: 1.4em;
-    text-align: left;
-      }
+    #mobilePageDownButton {
+      display: none; /* desktop par défaut */
     }
 
-    @keyframes slideOut {
-      from {
-        transform: translateX(0) scale(1.4);
-        font-size: 1.4em;
+    @media (max-width: 600px) {
+      main {
+        padding: 172px 20px 40px;
+        width: 85%;
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+      }
+
+      h2 {
+        font-size: 1em !important;
+        font-weight: bold !important;
         text-align: left;
+        margin-left: 1px !important;
+        margin-right: 0;
+        text-transform: uppercase;
       }
-      to {
-        transform: translateX(50%) scale(1);
-        font-size: 1em;
-        text-align: center;
+
+      .description {
+        font-size: 0.8em !important;
+        margin-top: 1px;
       }
+
+      .credits {
+        font-size: 0.7em !important;
+      }
+
+      #mobilePageDownButton {
+        display: flex;
+        margin: -30px auto 0 auto;
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1);
+      }
+      #mobilePageDownButton:hover { color: #555; }
     }
-
-.dropdown-toggle.animate-in {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-.dropdown-toggle.animate-out {
-animation: slideOut 0.4s ease forwards;
-}
-
-.dropdown-toggle.return-transition {
-transition: transform 0.4s ease, font-size 0.4s ease;
-transform: translateX(0) scale(1);
-font-size: 1em;
-}
   </style>
   <link rel="stylesheet" href="header.css?v=2">
 </head>
-
 <body>
 
 <header>
@@ -335,13 +324,11 @@ font-size: 1em;
         <a href="intro.html">Introduktion - Akkai</a>
         <a href="affa.html">N'na - Affa</a>
         <a href="seul.html">Seul - Sidi</a>
-
       </div>
     </div>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-
 
 <main>
   <div class="track-container">
@@ -350,8 +337,24 @@ font-size: 1em;
     <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/7bv7eMvSBSaaLZoG6qRtDz?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
     <div class="description fade-in">Composition & arrangement.</div>
     <div class="credits fade-in">2024</div>
+
+    <!-- flèches desktop avec fondu -->
+    <button id="prevButton" class="nav-arrow fade-in" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+
+    <button id="nextButton" class="nav-arrow nav-arrow--next fade-in" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
   </div>
 </main>
+
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
+
 <div class="other-projects">
   <ul>
     <li><a href="les-filles.html">Les Filles - sean</a></li>
@@ -362,6 +365,50 @@ font-size: 1em;
     <li><a href="seul.html">Seul - Sidi</a></li>
   </ul>
 </div>
-<script src="navigation.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = ["les-filles","qui","fsc","intro","affa","seul"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  const idx = pages.indexOf(currentPage);
+  const prev = document.getElementById('prevButton');
+  const next = document.getElementById('nextButton');
+  const mobile = document.getElementById('mobilePageDownButton');
+  const isLocal = window.location.protocol === "file:";
+
+  if (idx === -1) {
+    if (prev) prev.style.display = 'none';
+    if (next) next.style.display = 'none';
+    if (mobile) mobile.style.display = 'none';
+    return;
+  }
+
+  if (idx > 0 && prev) {
+    prev.addEventListener('click', () => {
+      const target = pages[idx - 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (prev) prev.style.display = 'none';
+
+  if (idx < pages.length - 1 && next) {
+    next.addEventListener('click', () => {
+      const target = pages[idx + 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (next) next.style.display = 'none';
+
+  if (mobile) {
+    if (idx < pages.length - 1) {
+      mobile.addEventListener('click', () => {
+        const target = pages[idx + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobile.style.display = 'none';
+    }
+  }
+});
+</script>
 </body>
 </html>

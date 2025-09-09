@@ -5,10 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DIANEV x PinkPantheress campaign</title>
   <style>
+    /* Texte global en noir et espacement resserré */
+    body, h2, p, div, a, button {
+      --main-color: #121027;
+      color: #000;
+      letter-spacing: -0.5px;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+
     .other-projects {
       display: none;
       text-align: center;
       margin-top: 90px;
+    }
+
+    .logo { letter-spacing: -2px; }
+
+        nav > .dropdown:nth-child(2) > .dropdown-toggle {
+      opacity: 0.6; /* Prod. by Louis */
     }
 
     #fullscreenButton {
@@ -29,12 +45,12 @@
     /* --- Flèches desktop uniquement --- */
     @media screen and (min-width: 769px) {
       .video-arrow {
-        display: flex; /* visible sur desktop */
+        display: flex;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         border: none;
-        background: transparent;      /* pas de fond */
+        background: transparent;
         appearance: none;
         -webkit-appearance: none;
         color: #000;
@@ -45,9 +61,7 @@
         align-items: center;
         justify-content: center;
       }
-
       .video-arrow:hover { color: #555; }
-
       .video-arrow svg {
         width: 28px;
         height: 28px;
@@ -58,105 +72,127 @@
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-
       .video-arrow--next svg { transform: scaleX(-1); }
-
       #prevButton { left: -70px; }
       #nextButton { right: -70px; }
     }
 
-    /* Mobile : on cache complètement les flèches */
+    #mobilePageDownButton {
+  display: none; /* caché par défaut */
+}
+
+    /* Mobile : flèche sous description avec style video-arrow */
     @media screen and (max-width: 768px) {
-      #fullscreenButton {
-        display: block;
+      #fullscreenButton { display: block; }
+
+      #mobilePageDownButton {
+        display: flex;
+        margin: 75px auto 0 auto; /* centré horizontalement */
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
       }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1); /* flèche vers le bas */
+      }
+      #mobilePageDownButton:hover { color: #555; }
       .video-arrow {
-        display: none;
-      }
-    }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+  #prevButton,
+  #nextButton {
+    display: none;  /* complètement retirés du flux sur mobile */
+  }
+}
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <header>
-    <div class="logo-container">
-      <a href="index.html" class="logo">LOUISMP3</a>
-      <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
-    </div>
-    <nav>
-      <div class="dropdown">
-        <a class="dropdown-toggle">Sound To Image</a>
-        <div class="dropdown-content">
-          <a href="pink.html">DIANEV x PinkPanthress bag campaign</a>
-          <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
-          <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
-          <a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a>
-          <a href="k3u.html">K3U mushtop campaign</a>
-          <a href="j4spar.html">J4SPÄR SAISON DEUX show</a>
-          <a href="dance-now.html">"DANCE NOW" promo video</a>
-        </div>
+<header>
+  <div class="logo-container">
+    <a href="index.html" class="logo">LOUISMP3</a>
+    <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
+  </div>
+  <nav>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Sound To Image</a>
+      <div class="dropdown-content">
+        <a href="pink.html">DIANEV x PinkPantheress bag campaign</a>
+        <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
+        <a href="dianev.html">DIANEV "THE LOOK" campaign</a>
+        <a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a>
+        <a href="k3u.html">K3U mushtop campaign</a>
+        <a href="j4spar.html">J4SPÄR SAISON DEUX show</a>
+        <a href="dance-now.html">"DANCE NOW" promo video</a>
       </div>
-      <div class="dropdown">
-        <a class="dropdown-toggle">Prod. by Louis</a>
-        <div class="dropdown-content">
-          <a href="les-filles.html">Les Filles - sean</a>
-          <a href="qui.html">Qui va écouter ça? - Elyon</a>
-          <a href="fsc.html">Feuille Shit Clope - sean</a>
-          <a href="intro.html">Introduktion - Akkai</a>
-          <a href="affa.html">N'na - Affa</a>
-          <a href="seul.html">Seul - Sidi</a>
-        </div>
+    </div>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Prod. by Louis</a>
+      <div class="dropdown-content">
+        <a href="les-filles.html">Les Filles - sean</a>
+        <a href="qui.html">Qui va écouter ça? - Elyon</a>
+        <a href="fsc.html">Feuille Shit Clope - sean</a>
+        <a href="intro.html">Introduktion - Akkai</a>
+        <a href="affa.html">N'na - Affa</a>
+        <a href="seul.html">Seul - Sidi</a>
       </div>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-
-  <main>
-    <h2 class="fade-in">DIANEV x PinkPantheress bag campaign</h2>
-    <div class="video-wrapper fade-in">
-      <button id="playButton" aria-label="Play"></button>
-      <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
-      <video id="mainVideo" playsinline poster="pink.png">
-        <source src="pink.mp4" type="video/mp4" />
-        Votre navigateur ne supporte pas la lecture vidéo.
-      </video>
-
-      <!-- Flèches desktop uniquement -->
-      <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 6l-6 6 6 6"></path>
-        </svg>
-      </button>
-
-      <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M15 6l-6 6 6 6"></path>
-        </svg>
-      </button>
     </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-    <div class="description fade-in">
-      Sound design for DIANEV x PinkPantheress bag campaign.
-    </div>
-    <div class="credits fade-in">
-      DIANEV / 2024
-    </div>
-  </main>
-
-  <div class="other-projects">
-    <ul>
-      <li><a href="pink.html">DIANEV x PinkPantheress bag campaign</a></li>
-      <li><a href="nike.html">Nike & ourhomecoming T90 campaign</a></li>
-      <li><a href="dianev.html">DIANEV "THE LOOK" campaign</a></li>
-      <li><a href="nothing-left.html">"Nothing Left" a vision by gabriel1999</a></li>
-      <li><a href="k3u.html">K3U mushtop campaign</a></li>
-      <li><a href="j4spar.html">J4SPÄR SAISON DEUX show</a></li>
-    </ul>
+<main>
+  <h2 class="fade-in">DIANEV x PinkPantheress bag campaign</h2>
+  <div class="video-wrapper fade-in">
+    <button id="playButton" aria-label="Play"></button>
+    <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
+    <video id="mainVideo" playsinline poster="pink.png">
+      <source src="pink.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+    <!-- Flèches desktop uniquement -->
+    <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+    <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
   </div>
 
-  <script src="menu.js"></script>
-  <script>
+  <div class="description fade-in">
+    Sound design for DIANEV x PinkPantheress bag campaign.
+  </div>
+
+  <div class="credits fade-in">DIANEV / 2024</div>
+
+  <!-- Flèche mobile : dernier élément, style video-arrow, pointe vers le bas -->
+  <button id="mobilePageDownButton" aria-label="Page suivante">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 6l-6 6 6 6"></path>
+    </svg>
+  </button>
+</main>
+
+<script src="menu.js"></script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   const pages = [
     "pink.html",
@@ -168,40 +204,35 @@ document.addEventListener('DOMContentLoaded', () => {
     "dance-now.html"
   ];
 
-  // Récupère le nom du fichier actuel depuis l'URL
+  // Page actuelle
   let currentPage = window.location.pathname.split("/").pop();
-  if (!currentPage || !currentPage.endsWith('.html')) {
-    currentPage = currentPage ? currentPage + '.html' : 'pink.html';
-  }
-
+  if (!currentPage || !currentPage.endsWith('.html')) currentPage = 'pink.html';
   const currentIndex = pages.indexOf(currentPage);
+
+  // Desktop navigation
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
+  if (prevButton) {
+    if (currentIndex === 0) prevButton.style.display = "none";
+    else prevButton.addEventListener('click', () => { window.location.href = pages[currentIndex - 1]; });
+  }
+  if (nextButton) {
+    if (currentIndex >= pages.length - 1) nextButton.style.display = "none";
+    else nextButton.addEventListener('click', () => { window.location.href = pages[currentIndex + 1]; });
+  }
 
-  if (!prevButton || !nextButton) return;
-
-  if (currentIndex !== -1) {
-    // Premier élément : bouton gauche caché
-    if (currentIndex === 0) {
-      prevButton.style.display = "none";
-    } else {
-      prevButton.addEventListener('click', () => {
-        window.location.href = pages[currentIndex - 1];
-      });
-    }
-
-    // Bouton suivant actif si ce n’est pas le dernier
+  // Mobile flèche sous description
+  const mobilePageDownButton = document.getElementById('mobilePageDownButton');
+  if (mobilePageDownButton) {
     if (currentIndex < pages.length - 1) {
-      nextButton.addEventListener('click', () => {
+      mobilePageDownButton.addEventListener('click', () => {
         window.location.href = pages[currentIndex + 1];
       });
     } else {
-      nextButton.style.display = "none";
+      mobilePageDownButton.style.display = 'none';
     }
   }
 });
 </script>
-
-
 </body>
 </html>

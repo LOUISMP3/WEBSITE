@@ -17,12 +17,6 @@
       color: var(--main-color);
     }
 
-    .other-projects {
-  display: none;
-  text-align: center;
-  margin-top: 90px;
-  }
-
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -40,19 +34,14 @@
       line-height: 1;
     }
 
-    .logo:hover {
-      opacity: 0.8;
-    }
-
     .subtitle {
       font-size: 0.5em;
       font-weight: 300;
       letter-spacing: 0.15px;
       text-transform: uppercase;
-      margin-top: 0;
+      margin-top: -2px;
       margin-left: 2px;
       padding-left: 2px;
-      transform: translateY(-2px);
     }
 
     nav {
@@ -61,32 +50,38 @@
       align-items: flex-start;
     }
 
+    nav a {
+      text-decoration: none;
+      color: var(--main-color);
+      font-weight: normal;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
     .dropdown {
       position: relative;
     }
 
     .dropdown-content {
-      display: block;
-      visibility: hidden;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
       position: absolute;
       top: 100%;
       left: 0;
       background-color: #F5F5F5;
       z-index: 1001;
       padding: 10px 0;
-      pointer-events: none;
-      overflow: hidden;
       white-space: nowrap;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
     }
 
     .dropdown:hover .dropdown-content {
+      pointer-events: auto;
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
-      pointer-events: auto;
     }
 
     .dropdown-content a {
@@ -94,26 +89,24 @@
       padding: 6px 20px;
       color: var(--main-color);
       text-decoration: none;
-      font-size: 0.85em;
+      font-size: 0.8em;
       font-weight: 500;
-      white-space: nowrap;
       opacity: 0;
       transform: translateX(-15px);
-      animation-fill-mode: forwards;
+      transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
-    .dropdown:hover .dropdown-content a:nth-child(1) { animation: slideFadeIn 0.25s ease forwards 0.05s; }
-    .dropdown:hover .dropdown-content a:nth-child(2) { animation: slideFadeIn 0.25s ease forwards 0.15s; }
-    .dropdown:hover .dropdown-content a:nth-child(3) { animation: slideFadeIn 0.25s ease forwards 0.25s; }
-    .dropdown:hover .dropdown-content a:nth-child(4) { animation: slideFadeIn 0.25s ease forwards 0.35s; }
-    .dropdown:hover .dropdown-content a:nth-child(5) { animation: slideFadeIn 0.25s ease forwards 0.45s; }
-    .dropdown:hover .dropdown-content a:nth-child(6) { animation: slideFadeIn 0.25s ease forwards 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+    .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+    .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+    .dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+    .dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+    .dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(7) { transition-delay: 0.65s; }
 
-    @keyframes slideFadeIn {
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    .dropdown:hover .dropdown-content a {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .fade-in {
@@ -121,20 +114,8 @@
       animation: fadeIn 1.5s ease forwards;
       animation-delay: 0.5s;
     }
-    
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
 
-    nav a {
-      text-decoration: none;
-      color: var(--main-color);
-      font-weight: bold;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     main {
       padding: 180px 20px 40px;
@@ -149,11 +130,12 @@
       align-items: flex-start;
       max-width: 400px;
       width: 100%;
+      position: relative; /* pour les flèches */
     }
 
     h2 {
       font-size: 1.1em;
-      font-weight: bold;
+      font-weight: bold !important;
       margin-bottom: 12px;
       text-align: left;
       width: 100%;
@@ -190,108 +172,76 @@
       text-align: left;
     }
 
-    @media (max-width: 600px) {
-    main {
-      padding: 172px 20px 40px;
-      width: 85%;
+    /* Flèches desktop */
+    .nav-arrow {
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      width: 56px;
+      height: 56px;
       display: flex;
-      margin: 0 auto;
+      align-items: center;
       justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      color: var(--main-color);
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.5s;
+    }
+    .nav-arrow svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-arrow--next svg { transform: scaleX(-1); }
+
+    #prevButton { left: -80px; }
+    #nextButton { right: -80px; }
+
+    @media (max-width: 600px) {
+      .nav-arrow { display: none; }
     }
 
-    h2 {
-    font-size: 1em !important;
-    font-weight: bold !important;
-    text-align: left;
-    margin-left: 1px !important;
-    margin-right: 0;
-    text-transform: uppercase;
-  }
-  
-  .description {
-    font-size: 0.8em !important; /* Réduire la taille de la description */
-    margin-top: 1px;
-  }
-
-  .credits {
-    font-size: 0.7em !important; /* taille plus petite que sur desktop */
-  }
-  }
-
-body.dropdown-mode header > .logo-container,
-body.dropdown-mode nav > .dropdown:not(.open),
-body.dropdown-mode nav > a,
-body.dropdown-mode main {
-display: none !important;
-}
-
-body.dropdown-mode .dropdown.open {
-width: 100vw;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-position: fixed;
-top: 10px;
-left: 0;
-width: 100vw;
-background-color: #F5F5F5;
-padding: 10px 20px;
-margin-left: 70px;
-z-index: 10000;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-content {
-display: block !important;
-position: fixed;
-top: 50px;
-left: 0px;
-width: 100vw;
-border-top: 1px solid var(--main-color);
-z-index: 9999;
-}
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-    @keyframes moveAndGrow {
-      from {
-    transform: translateX(50%) scale(1);
-    font-size: 1em;
-    text-align: center;
-      }
-      to {
-    transform: translateX(0) scale(1.4);
-    font-size: 1.4em;
-    text-align: left;
-      }
+    /* Flèche mobile */
+    #mobilePageDownButton {
+      display: none;
     }
 
-    @keyframes slideOut {
-      from {
-        transform: translateX(0) scale(1.4);
-        font-size: 1.4em;
-        text-align: left;
+    @media (max-width: 600px) {
+      main { padding: 172px 20px 40px; width: 85%; margin: 0 auto; justify-content: center; }
+      h2 { font-size: 1em !important; font-weight: bold !important; margin-left:1px!important; text-transform: uppercase; }
+      .description { font-size: 0.8em !important; margin-top:1px; }
+      .credits { font-size: 0.7em !important; }
+      #mobilePageDownButton {
+        display: flex;
+        margin: -30px auto 0 auto;
+        width: 56px; height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
       }
-      to {
-        transform: translateX(50%) scale(1);
-        font-size: 1em;
-        text-align: center;
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1);
       }
+      #mobilePageDownButton:hover { color: #555; }
     }
-
-.dropdown-toggle.animate-in {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-.dropdown-toggle.animate-out {
-animation: slideOut 0.4s ease forwards;
-}
-
-.dropdown-toggle.return-transition {
-transition: transform 0.4s ease, font-size 0.4s ease;
-transform: translateX(0) scale(1);
-font-size: 1em;
-}
   </style>
   <link rel="stylesheet" href="header.css?v=2">
 </head>
@@ -330,25 +280,76 @@ font-size: 1em;
   </nav>
 </header>
 
-  <main>
-    <div class="track-container fade-in">
-      <h2>QUI VA ÉCOUTER ÇA? – ELYON</h2>
-      <img src="qui.jpg" alt="Qui va écouter ça? cover" class="cover" />
-      <iframe class="spotify" src="https://open.spotify.com/embed/track/5K88mcKVDjdCgup1ud1MHN?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <div class="description">Composition & arrangement.</div>
-      <div class="credits">2024</div>
-    </div>
-  </main>
-    <div class="other-projects">
-  <ul>
-    <li><a href="les-filles.html">Les Filles - sean</a></li>
-    <li><a href="qui.html">Qui va écouter ça? - Elyon</a></li>
-    <li><a href="fsc.html">Feuille Shit Clope - sean</a></li>
-    <li><a href="intro.html">Introduktion - Akkai</a></li>
-    <li><a href="affa.html">N'na - Affa</a></li>
-    <li><a href="seul.html">Seul - Sidi</a></li>
-  </ul>
-</div>
-<script src="navigation.js"></script>
+<main>
+  <div class="track-container">
+    <h2 class="fade-in">QUI VA ÉCOUTER ÇA? – ELYON</h2>
+    <img src="qui.jpg" alt="Qui va écouter ça? cover" class="cover fade-in" />
+    <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/5K88mcKVDjdCgup1ud1MHN?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <div class="description fade-in">Composition & arrangement.</div>
+    <div class="credits fade-in">2024</div>
+
+    <!-- flèches desktop -->
+    <button id="prevButton" class="nav-arrow fade-in" aria-label="Précédent">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+
+    <button id="nextButton" class="nav-arrow nav-arrow--next fade-in" aria-label="Suivant">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+  </div>
+</main>
+
+<!-- flèche mobile -->
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = ["les-filles","qui","fsc","intro","affa","seul"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  const idx = pages.indexOf(currentPage);
+  const prev = document.getElementById('prevButton');
+  const next = document.getElementById('nextButton');
+  const mobile = document.getElementById('mobilePageDownButton');
+  const isLocal = window.location.protocol === "file:";
+
+  if (idx === -1) {
+    if (prev) prev.style.display = 'none';
+    if (next) next.style.display = 'none';
+    if (mobile) mobile.style.display = 'none';
+    return;
+  }
+
+  if (idx > 0 && prev) {
+    prev.addEventListener('click', () => {
+      const target = pages[idx - 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (prev) prev.style.display = 'none';
+
+  if (idx < pages.length - 1 && next) {
+    next.addEventListener('click', () => {
+      const target = pages[idx + 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (next) next.style.display = 'none';
+
+  if (mobile) {
+    if (idx < pages.length - 1) {
+      mobile.addEventListener('click', () => {
+        const target = pages[idx + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobile.style.display = 'none';
+    }
+  }
+});
+</script>
+
 </body>
 </html>

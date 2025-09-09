@@ -17,12 +17,6 @@
       color: var(--main-color);
     }
 
-        .other-projects {
-  display: none;
-  text-align: center;
-  margin-top: 90px;
-  }
-
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -108,6 +102,7 @@
     .dropdown:hover .dropdown-content a:nth-child(4) { animation: slideFadeIn 0.25s ease forwards 0.35s; }
     .dropdown:hover .dropdown-content a:nth-child(5) { animation: slideFadeIn 0.25s ease forwards 0.45s; }
     .dropdown:hover .dropdown-content a:nth-child(6) { animation: slideFadeIn 0.25s ease forwards 0.55s; }
+    .dropdown:hover .dropdown-content a:nth-child(7) { animation: slideFadeIn 0.25s ease forwards 0.65s; }
 
     @keyframes slideFadeIn {
       to {
@@ -131,7 +126,7 @@
     nav a {
       text-decoration: none;
       color: var(--main-color);
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
       cursor: pointer;
     }
@@ -141,6 +136,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      position: relative;
     }
 
     .track-container {
@@ -149,6 +145,7 @@
       align-items: flex-start;
       max-width: 400px;
       width: 100%;
+      position: relative; /* pour flèches desktop */
     }
 
     h2 {
@@ -190,108 +187,93 @@
       text-align: left;
     }
 
-    @media (max-width: 600px) {
-    main {
-      padding: 172px 20px 40px;
-      width: 85%;
+    /* Flèches desktop */
+    .nav-arrow {
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      width: 56px;
+      height: 56px;
       display: flex;
-      margin: 0 auto;
+      align-items: center;
       justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      color: var(--main-color);
+    }
+    .nav-arrow svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .nav-arrow--next svg { transform: scaleX(-1); }
+
+    #prevButton { left: -80px; }
+    #nextButton { right: -80px; }
+
+    /* Flèche mobile */
+    #mobilePageDownButton {
+      display: none;
     }
 
-    h2 {
-    font-size: 1em !important;
-    font-weight: bold !important;
-    text-align: left;
-    margin-left: 1px !important;
-    margin-right: 0;
-    text-transform: uppercase;
-  }
-  
-  .description {
-    font-size: 0.8em !important; /* Réduire la taille de la description */
-    margin-top: 1px;
-  }
-
-  .credits {
-    font-size: 0.7em !important; /* taille plus petite que sur desktop */
-  }
-  }
-
-body.dropdown-mode header > .logo-container,
-body.dropdown-mode nav > .dropdown:not(.open),
-body.dropdown-mode nav > a,
-body.dropdown-mode main {
-display: none !important;
-}
-
-body.dropdown-mode .dropdown.open {
-width: 100vw;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-position: fixed;
-top: 10px;
-left: 0;
-width: 100vw;
-background-color: #F5F5F5;
-padding: 10px 20px;
-margin-left: 70px;
-z-index: 10000;
-}
-
-body.dropdown-mode .dropdown.open .dropdown-content {
-display: block !important;
-position: fixed;
-top: 50px;
-left: 0px;
-width: 100vw;
-border-top: 1px solid var(--main-color);
-z-index: 9999;
-}
-body.dropdown-mode .dropdown.open .dropdown-toggle {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-    @keyframes moveAndGrow {
-      from {
-    transform: translateX(50%) scale(1);
-    font-size: 1em;
-    text-align: center;
+    @media (max-width: 600px) {
+      main {
+        padding: 172px 20px 40px;
+        width: 85%;
+        margin: 0 auto;
+        justify-content: center;
       }
-      to {
-    transform: translateX(0) scale(1.4);
-    font-size: 1.4em;
-    text-align: left;
-      }
-    }
 
-    @keyframes slideOut {
-      from {
-        transform: translateX(0) scale(1.4);
-        font-size: 1.4em;
+      h2 {
+        font-size: 1em !important;
+        font-weight: bold !important;
         text-align: left;
+        margin-left: 1px !important;
+        margin-right: 0;
+        text-transform: uppercase;
       }
-      to {
-        transform: translateX(50%) scale(1);
-        font-size: 1em;
-        text-align: center;
+
+      .description {
+        font-size: 0.8em !important;
+        margin-top: 1px;
       }
+
+      .credits {
+        font-size: 0.7em !important;
+      }
+
+      .nav-arrow { display: none; }
+
+      #mobilePageDownButton {
+        display: flex;
+        margin: 10px auto 0 auto;
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1);
+      }
+      #mobilePageDownButton:hover { color: #555; }
     }
-
-.dropdown-toggle.animate-in {
-animation: moveAndGrow 0.4s ease forwards;
-}
-
-.dropdown-toggle.animate-out {
-animation: slideOut 0.4s ease forwards;
-}
-
-.dropdown-toggle.return-transition {
-transition: transform 0.4s ease, font-size 0.4s ease;
-transform: translateX(0) scale(1);
-font-size: 1em;
-}
   </style>
   <link rel="stylesheet" href="header.css?v=2">
 </head>
@@ -330,25 +312,67 @@ font-size: 1em;
   </nav>
 </header>
 
-  <main>
-    <div class="track-container fade-in">
-      <h2>INTRODUKTION – AKKAI</h2>
-      <img src="intro.jpg" alt="Introduktion cover" class="cover" />
-      <iframe class="spotify" src="https://open.spotify.com/embed/track/0w7XYcWmSGxmidMZrdEXf1?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
-      <div class="description">Composition & arrangement.</div>
-      <div class="credits">2024</div>
-    </div>
-  </main>
-    <div class="other-projects">
-  <ul>
-    <li><a href="les-filles.html">Les Filles - sean</a></li>
-    <li><a href="qui.html">Qui va écouter ça? - Elyon</a></li>
-    <li><a href="fsc.html">Feuille Shit Clope - sean</a></li>
-    <li><a href="intro.html">Introduktion - Akkai</a></li>
-    <li><a href="affa.html">N'na - Affa</a></li>
-    <li><a href="seul.html">Seul - Sidi</a></li>
-  </ul>
-</div>
+<main>
+  <div class="track-container fade-in">
+    <h2>INTRODUKTION – AKKAI</h2>
+    <img src="intro.jpg" alt="Introduktion cover" class="cover fade-in" />
+    <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/0w7XYcWmSGxmidMZrdEXf1?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <div class="description fade-in">Composition & arrangement.</div>
+    <div class="credits fade-in">2024</div>
+
+    <!-- Flèches desktop -->
+    <button id="prevButton" class="nav-arrow" aria-label="Précédent">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+    <button id="nextButton" class="nav-arrow nav-arrow--next" aria-label="Suivant">
+      <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+    </button>
+  </div>
+
+  <!-- Flèche mobile -->
+  <button id="mobilePageDownButton" aria-label="Page suivante">
+    <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg>
+  </button>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = ["les-filles","qui","fsc","intro","affa","seul"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  const idx = pages.indexOf(currentPage);
+
+  const prev = document.getElementById('prevButton');
+  const next = document.getElementById('nextButton');
+  const mobile = document.getElementById('mobilePageDownButton');
+  const isLocal = window.location.protocol === "file:";
+
+  if (idx > 0 && prev) {
+    prev.addEventListener('click', () => {
+      const target = pages[idx - 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (prev) prev.style.display = 'none';
+
+  if (idx < pages.length - 1 && next) {
+    next.addEventListener('click', () => {
+      const target = pages[idx + 1];
+      window.location.href = isLocal ? target + ".html" : "/" + target;
+    });
+  } else if (next) next.style.display = 'none';
+
+  if (mobile) {
+    if (idx < pages.length - 1) {
+      mobile.addEventListener('click', () => {
+        const target = pages[idx + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobile.style.display = 'none';
+    }
+  }
+});
+</script>
 <script src="navigation.js"></script>
 </body>
 </html>

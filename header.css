@@ -1,3 +1,9 @@
+body, h2, p, div, a, button {
+    --main-color: #121027;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
 .logo {
   font-family: 'Milling Trial Triplex 2,5mm', sans-serif !important;
   font-size: 4em;
@@ -9,6 +15,26 @@
   transform: scaleX(0.9);
   text-decoration: none;
   display: inline-block;
+  letter-spacing: -2px;
+}
+
+    main {
+      padding-top: 160px;
+      }
+
+    .subtitle {
+      font-size: 0.5em;
+      font-weight: 300;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      margin-top: 1.5px;
+      margin-left: 0.8px;
+      padding-left: 1.5px;
+      transform: translateY(-2px);
+    }
+
+          nav > .dropdown:nth-child(2) > .dropdown-toggle {
+  opacity: 0.6; /* modifie selon ton goût */
 }
 
 :root {
@@ -93,14 +119,16 @@
     flex-shrink: 0;
   }
 
-  .subtitle {
-    display: block;
-    font-size: 0.4em;
-    margin-top: 3px;
-    margin-left: -4px;
-    text-align: left;
-    color: var(--main-color);
-  }
+    .subtitle {
+      font-size: 0.12em;
+      font-weight: 300;
+      letter-spacing: -0.25px;
+      text-transform: uppercase;
+      margin-top: 0px;
+      margin-left: -4px;
+      padding-left: 0px;
+      transform: translateY(-2px);
+    }
 
   nav {
     display: flex;
@@ -351,10 +379,11 @@ body.dropdown-mode .other-projects {
     max-width: none;
   }
 
-  video {
+video {
     width: 100% !important;
-    height: auto !important;
-  }
+    height: 100% !important; /* force le carousel à imposer la hauteur */
+    object-fit: cover;       /* rempli tout le container sans respecter le ratio original */
+}
 }
 
 @media screen and (max-width: 413px) {
@@ -386,14 +415,16 @@ body.dropdown-mode .other-projects {
     flex-shrink: 0;
   }
 
-  .subtitle {
-    display: block;
-    font-size: 0.2em;
-    margin-top: 2px;
-    margin-left: -4px;
-    text-align: left;
-    color: var(--main-color);
-  }
+    .subtitle {
+      font-size: 0.12em;
+      font-weight: 300;
+      letter-spacing: -0.25px;
+      text-transform: uppercase;
+      margin-top: 0px;
+      margin-left: -4px;
+      padding-left: 0px;
+      transform: translateY(-2px);
+    }
 
       .other-projects {
     display: none;
@@ -429,6 +460,11 @@ body.dropdown-mode .other-projects {
     z-index: 9999;
     align-self: flex-start;
   }
+
+  .video-j4spar {
+  object-fit: cover !important;
+}
+
 
   nav > a,
   nav > div.dropdown {
@@ -466,11 +502,11 @@ body.dropdown-mode .other-projects {
   .side-text {
     position: static; /* plus fixed, pour ne pas gêner */
     width: auto;
-    max-width: 100%;
-    font-size: 0.8em;
+    max-width: 80%;
+    font-size: 0.9em;
     text-align: center;
     margin: 10px 0;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     pointer-events: auto; /* pour pouvoir sélectionner si besoin */
     user-select: text;
   }
@@ -484,10 +520,10 @@ body.dropdown-mode .other-projects {
     top: auto;
   }
     .side-text.right {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
   }
   .side-text.left {
-    margin-top: -30px;
+    margin-top: -10px;
   }
   
   /* On peut les placer dans main en colonne */

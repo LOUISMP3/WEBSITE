@@ -135,7 +135,7 @@
     nav a {
       text-decoration: none;
       color: var(--main-color);
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
       cursor: pointer;
     }
@@ -143,6 +143,12 @@
     main {
       padding: 180px 20px 40px;
       text-align: center;
+      opacity: 0;
+      animation: fadeInMain 2s ease forwards;
+    }
+
+    @keyframes fadeInMain {
+      to { opacity: 1; }
     }
 
     h1 {
@@ -155,9 +161,9 @@
 
     .icons {
       display: flex;
-      flex-direction: column; /* Icônes en colonne */
-      align-items: center; /* Centrage horizontal */
-      gap: 30px; /* Espace entre les icônes */
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
     }
 
     .icons a img {
@@ -170,6 +176,16 @@
       transform: scale(1.1);
       opacity: 0.8;
     }
+
+    .projects-line {
+  margin-top: 120px;
+  font-size: 0.9em;
+  opacity: 80%;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing);
+  opacity: 0.6;
+}
   </style>
   <link rel="stylesheet" href="header.css?v=2">
 </head>
@@ -221,6 +237,9 @@
       <img src="soundcloud.png" alt="SoundCloud">
     </a>
   </div>
+  <p class="projects-line fade-in">
+  ADVERTISING CAMPAIGNS, PROMO VIDEOS, ANIMATION, DOCUMENTARIES, SHORTFILMS, SHOWS...
+</p>
 </main>
 
 <script src="menu.js"></script>

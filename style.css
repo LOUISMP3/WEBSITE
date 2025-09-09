@@ -1,5 +1,5 @@
 :root {
-  --main-color: #0A1E40;
+  --main-color: #000000;
   --play-button-color: #F5F5F5;
 }
 
@@ -15,8 +15,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #F5F5F5;
-  color: var(--main-color);
+  color: #000000;
 }
+
 
 header {
   position: fixed;
@@ -43,25 +44,25 @@ header {
   margin-bottom: 3px;
   margin-top: -5px;
   margin-left: -16px;
-  color: var(--main-color);
+  color: #121027;
   transform: scaleX(0.9);
   text-decoration: none;
   display: inline-block;
+  letter-spacing: -1,1px;
 }
 
 .logo:hover {
   opacity: 0.8;
 }
 
-.subtitle {
+    .subtitle {
   font-size: 0.5em;
   font-weight: 300;
-  letter-spacing: 0.15px;
   text-transform: uppercase;
   margin-top: 0;
   margin-left: 2px;
-  padding-left: 2px;
-  transform: translateY(-2px);
+  color: #121027;
+  letter-spacing: -0.25px;
 }
 
 nav {
@@ -102,7 +103,7 @@ nav {
 .dropdown-content a {
   display: block;
   padding: 6px 20px;
-  color: var(--main-color);
+  color: #000000;
   text-decoration: none;
   font-size: 0.8em;
   font-weight: 500;
@@ -155,8 +156,8 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: var(--main-color);
-  font-weight: bold;
+  color: #000000;
+  font-weight: normal;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -243,6 +244,7 @@ video {
     transform: translateX(-50%);
     opacity: 90%;
   }
+  
 
   main {
     padding: 172px 11px 40px;
@@ -265,10 +267,10 @@ video {
   .subtitle {
     display: block;
     font-size: 0.4em;
-    margin-top: 3px;
+    margin-top: -2px;
     margin-left: -4px;
     text-align: left;
-    color: var(--main-color);
+    color: #000000;
   }
 
   nav {
@@ -566,14 +568,14 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
     flex-shrink: 0;
   }
 
-  .subtitle {
-    display: block;
-    font-size: 0.2em;
-    margin-top: 3px;
-    margin-left: -4px;
-    text-align: left;
-    color: var(--main-color);
-  }
+.subtitle {
+  display: block;
+  font-size: 0.2em;
+  margin-top: -2px;   /* réduit l’espace vertical */
+  margin-left: -4px;
+  text-align: left;
+  color: #000000;
+}
 
   nav {
     display: flex;

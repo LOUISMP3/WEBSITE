@@ -12,6 +12,12 @@
       color: #0A1E40;
     }
 
+            body, h2, p, div, a, button {
+    --main-color: #121027;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -26,7 +32,7 @@
     nav a {
       text-decoration: none;
       color: #0A1E40;
-      font-weight: bold;
+      font-weight: normal;
       text-transform: uppercase;
       cursor: pointer;
     }
@@ -35,6 +41,14 @@
       padding-top: 120px;
       text-align: center;
     }
+
+    .logo {
+    letter-spacing: -2px;
+    }
+
+      nav > .dropdown:nth-child(2) > .dropdown-toggle {
+  opacity: 0.6; /* modifie selon ton goût */
+}
 
 .video-wrapper {
   position: relative;
@@ -106,14 +120,38 @@
 
       #prevButton { left: -70px; }
       #nextButton { right: -70px; }
-    }
+        #mobilePageDownButton {
+  display: none; /* desktop */
+}}
 
-    /* Mobile : flèches cachées, vidéo responsive */
     @media screen and (max-width: 768px) {
       #fullscreenButton { display: block; }
       .video-arrow { display: none; }
       video { width: 100%; }
-    }
+
+    #mobilePageDownButton {
+    display: flex;
+    margin: 40px auto 0 auto;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  #mobilePageDownButton svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg) scaleX(-1); /* flèche vers le bas */
+  }
+  #mobilePageDownButton:hover { color: #555; }}
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -183,6 +221,11 @@
     DIANEV / 2024
   </div>
 </main>
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
 
 <div class="other-projects">
   <ul>
@@ -198,57 +241,45 @@
 <script src="menu.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const pages = [
-    "pink",
-    "nike",
-    "dianev",
-    "nothing-left",
-    "k3u",
-    "j4spar",
-    "dance-now"
-  ];
-
-  // Récupère juste le nom de la page sans extension
+  const pages = ["pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
   let currentPage = window.location.pathname.split("/").pop();
-  if (currentPage.endsWith(".html")) {
-    currentPage = currentPage.replace(".html", "");
-  }
-  if (currentPage === "") {
-    currentPage = "index";
-  }
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  if (!currentPage) return;
 
   const currentIndex = pages.indexOf(currentPage);
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
 
-  // Vérifie si on est en local (file://)
   const isLocal = window.location.protocol === "file:";
 
-  function buildUrl(page) {
-    return isLocal ? page + ".html" : "/" + page;
+  if (currentIndex !== -1) {
+    if (currentIndex > 0 && prevButton) {
+      prevButton.addEventListener('click', () => {
+        const target = pages[currentIndex - 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (prevButton) prevButton.style.display = "none";
+
+    if (currentIndex < pages.length - 1 && nextButton) {
+      nextButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (nextButton) nextButton.style.display = "none";
   }
 
-  if (currentIndex !== -1) {
-    if (currentIndex > 0) {
-      prevButton.addEventListener('click', () => {
-        window.location.href = buildUrl(pages[currentIndex - 1]);
-      });
-    } else {
-      prevButton.style.display = "none";
-    }
-
+  const mobilePageDownButton = document.getElementById('mobilePageDownButton');
+  if (mobilePageDownButton) {
     if (currentIndex < pages.length - 1) {
-      nextButton.addEventListener('click', () => {
-        window.location.href = buildUrl(pages[currentIndex + 1]);
+      mobilePageDownButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
       });
     } else {
-      nextButton.style.display = "none";
+      mobilePageDownButton.style.display = 'none';
     }
   }
 });
 </script>
-
-
-
 </body>
 </html>
