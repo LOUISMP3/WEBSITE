@@ -5,6 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sean "La Niche" EP teaser</title>
   <style>
+
+    :root {
+  --main-color: #121027; 
+  --text-color: #000;     
+  --letter-spacing: -0.03em; 
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F5F5F5;
+  color: var(--text-color);
+  letter-spacing: var(--letter-spacing);
+}
+
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 30px;
+  background: #F5F5F5;
+  z-index: 1000;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--main-color);
+  text-decoration: none;
+  display: inline-block;
+  transform: scaleX(0.9);
+  letter-spacing: -0.03em;
+  margin-bottom: 3px;
+}
+
+.subtitle {
+  font-size: 0.7em;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--text-color);
+  letter-spacing: 0.5px; 
+  margin-top: 2px;
+}
+
+nav { 
+  display: flex; 
+  gap: 30px; 
+  align-items: flex-start; 
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: var(--letter-spacing);
+}
+
+/* Opacité "Prod. by Louis" */
+nav > .dropdown:nth-child(2) > .dropdown-toggle {
+  opacity: 0.6;
+}
+
     .other-projects {
       display: none;
       text-align: center;
@@ -118,7 +191,7 @@
       <button id="playButton" aria-label="Play"></button>
       <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
       <video id="mainVideo" playsinline poster="sean.png">
-        <source src="sean.mp4" type="video/mp4" />
+        <source src="sean.mov" type="video/mp4" />
         Votre navigateur ne supporte pas la lecture vidéo.
       </video>
 
