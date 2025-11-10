@@ -6,7 +6,6 @@
 <title>LOUISMP3</title>
 <meta name="description" content="Composition & Sound Design">
 <style>
-/* === TON STYLE EXISTANT (inchangé) === */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -84,17 +83,15 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .side-text.left { left: 100px; top: 360px; }
 .side-text.right { right: 100px; top: 380px; }
 
-h2 { font-size: 1em; margin-top: 2px; color: var(--main-color); font-weight: normal; text-align: left; max-width: 85%; margin-left: auto; margin-right: auto; }
-h2 span { font-weight: 700; }
-
-/* === CAROUSEL CORRIGÉ (pile de cartes) === */
+/* === CAROUSEL AJUSTÉ === */
 .carousel {
   position: relative;
   width: 100%;
-  max-width: 100%;
+  max-width: 900px;
   margin: -140px auto 40px;
-  height: 500px;
+  aspect-ratio: 16 / 9;
   perspective: 1000px;
+  overflow: visible;
 }
 
 .carousel-card {
@@ -121,14 +118,12 @@ h2 span { font-weight: 700; }
 }
 
 .carousel-card.active { transform: translateX(-50%) translateY(0) scale(1); z-index: 3; }
-.carousel-card.middle { transform: translateX(-50%) translateY(30px) scale(0.97); z-index: 2; }
-.carousel-card.last { 
-  transform: translateX(-50%) translateY(50px) scale(0.94); 
-  z-index: 1; 
-}
+.carousel-card.middle { transform: translateX(-50%) translateY(50px) scale(0.96); z-index: 2; }
+.carousel-card.last { transform: translateX(-50%) translateY(100px) scale(0.92); z-index: 1; }
+
 .carousel-card.active video { opacity: 1; }
 .carousel-card.middle video { opacity: 0.8; }
-.carousel-card.last video { opacity: 0.2; }
+.carousel-card.last video { opacity: 0.3; }
 
 .play-button {
   position: absolute;
@@ -149,9 +144,115 @@ h2 span { font-weight: 700; }
   border-width: 15px 0 15px 30px;
   border-color: transparent transparent transparent var(--play-button-color);
 }
+
+/* === RESPONSIVE === */
+@media screen and (max-width: 768px) {
+  .carousel {
+    margin: -80px auto 20px;
+    max-width: 95%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .carousel-card.middle {
+    transform: translateX(-50%) translateY(25px) scale(0.96);
+  }
+
+  .carousel-card.last {
+    transform: translateX(-50%) translateY(50px) scale(0.93);
+  }
+
+  .play-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .play-button::before {
+    border-width: 10px 0 10px 20px;
+  }
+
+  .side-text {
+    position: relative;
+    width: auto;
+    max-width: 90%;
+    margin: 25px auto;
+    text-align: center;
+    font-size: 1em;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
+  main {
+    padding-top: 160px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel {
+    margin: -60px auto 15px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .carousel-card video {
+    border-radius: 6px;
+  }
+
+  .play-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .play-button::before {
+    border-width: 8px 0 8px 16px;
+  }
+}
+
+/* --- FIX pour écrans très étroits (< 413px) --- */
+@media screen and (max-width: 412px) {
+  main {
+    padding-top: 240px; /* ⬅️ On pousse un peu plus bas qu’avant */
+  }
+
+.carousel {
+  margin: -5px auto 15px;
+  max-width: 95%;
+  aspect-ratio: 16 / 9; /* même ratio que les grands écrans */
+}
+
+  .carousel-card.middle {
+    transform: translateX(-50%) translateY(18px) scale(0.97);
+  }
+
+  .carousel-card.last {
+    transform: translateX(-50%) translateY(36px) scale(0.94);
+  }
+
+  .play-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .play-button::before {
+    border-width: 7px 0 7px 14px;
+  }
+
+  .side-text {
+    position: static;
+    margin: 18px auto;
+    max-width: 90%;
+    text-align: center;
+    top: auto;
+    left: auto;
+    right: auto;
+    font-size: 0.95em;
+    pointer-events: none;
+  }
+}
 </style>
+
 <link rel="stylesheet" href="header.css?v=2">
 </head>
+
 <body>
 
 <header>
@@ -195,23 +296,23 @@ h2 span { font-weight: 700; }
       <video playsinline poster="nike3.jpg"><source src="T90 Lagos vF.mov" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
-        <div class="carousel-card">
+    <div class="carousel-card middle">
       <video playsinline poster="nl.jpg"><source src="nothing-left.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
-    <div class="stack-item middle">
-      <video class="stack-video" playsinline poster="mini.png"><source src="sean.mov" type="video/mp4"></video>
-     <button class="play-button"></button>
+    <div class="carousel-card last">
+      <video playsinline poster="mini.png"><source src="sean.mov" type="video/mp4"></video>
+      <button class="play-button"></button>
     </div>
-        <div class="carousel-card last">
+    <div class="carousel-card">
       <video playsinline poster="diane.jpg"><source src="dianev-look.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
-        <div class="carousel-card">
+    <div class="carousel-card">
       <video playsinline poster="dance-now.jpg"><source src="dance-now.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
-    <div class="carousel-card middle">
+    <div class="carousel-card">
       <video playsinline poster="pink2.png"><source src="pink.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
@@ -225,6 +326,7 @@ h2 span { font-weight: 700; }
     MY NAME IS LOUIS. I’M A PRODUCER AND SOUND DESIGNER BASED IN PARIS.
     I CARE ABOUT <strong>SINCERITY</strong> AND <strong>SIMPLICITY</strong> — IN LIFE AND IN ART.
   </div>
+
   <div class="side-text right fade-in">
     I AIM TO MAKE MUSIC THAT FEELS <strong>TRUE</strong> AND <strong>EMOTIONAL</strong>, AND THAT AMPLIFIES THE <strong>VISION</strong> OF EVERY PROJECT I WORK ON.
   </div>
@@ -245,30 +347,37 @@ function updateCarousel() {
   });
 }
 
-// Scroll vertical
 let lastWheel = 0;
 const cooldown = 500;
-document.querySelector('.carousel').addEventListener('wheel', e => {
-  e.preventDefault();
-  const now = Date.now();
-  if(now - lastWheel < cooldown) return;
-  lastWheel = now;
+const carouselEl = document.querySelector('.carousel');
+if (carouselEl) {
+  carouselEl.addEventListener('wheel', e => {
+    e.preventDefault();
+    const now = Date.now();
+    if(now - lastWheel < cooldown) return;
+    lastWheel = now;
+    index = e.deltaY > 0 ? (index + 1) % cards.length : (index - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }, {passive:false});
+}
 
-  index = e.deltaY > 0 ? (index + 1) % cards.length : (index - 1 + cards.length) % cards.length;
-  updateCarousel();
-}, {passive:false});
-
-// Play button functionality
 cards.forEach(card => {
   const video = card.querySelector('video');
   const btn = card.querySelector('.play-button');
-  btn.addEventListener('click', () => { video.play(); btn.style.display='none'; });
-  video.addEventListener('click', () => {
-    if(video.paused) video.play();
-    else video.pause();
-    btn.style.display = video.paused ? 'block' : 'none';
+  if (!video) return;
+
+  if (btn) btn.addEventListener('click', () => {
+    video.play();
+    btn.style.display = 'none';
   });
-  video.addEventListener('ended', () => { btn.style.display='block'; });
+
+  video.addEventListener('click', () => {
+    if (!card.classList.contains('active')) return;
+    if (video.paused) { video.play(); btn.style.display = 'none'; }
+    else { video.pause(); btn.style.display = 'block'; }
+  });
+
+  video.addEventListener('ended', () => { if (btn) btn.style.display = 'block'; });
 });
 
 updateCarousel();
