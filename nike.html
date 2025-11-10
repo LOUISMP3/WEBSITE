@@ -45,7 +45,6 @@
       display: inline-block;
       transform: scaleX(0.9);
       margin-bottom: 3px;
-      letter-spacing: -2px;
     }
 
     .subtitle {
@@ -114,7 +113,6 @@
     }
 
     .video-arrow:hover { color: #555; }
-
     .video-arrow svg {
       width: 28px;
       height: 28px;
@@ -125,9 +123,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-
     .video-arrow--next svg { transform: scaleX(-1); }
-
     #prevButton { left: -70px; }
     #nextButton { right: -70px; }
 
@@ -147,16 +143,10 @@
     }
 
     #mobilePageDownButton {
-      display: none; /* desktop */
-    }
-
-    .other-projects {
       display: none;
-      text-align: center;
-      margin-top: 90px;
     }
 
-    /* --- Mobile / tablette --- */
+    /* --- Mobile --- */
     @media screen and (max-width: 768px) {
       #fullscreenButton { display: block; }
       .video-arrow { display: none; }
@@ -185,19 +175,17 @@
         transform: rotate(90deg) scaleX(-1);
       }
       #mobilePageDownButton:hover { color: #555; }
-    }
 
-    /* --- Correction iPhone / petit écran pour le logo (comme pour J4SPÄR) --- */
-    @media screen and (max-width: 414px) {
+      /* --- Correction iPhone / petit écran pour le logo --- */
       .logo-container {
-        display: block;       /* pas de flex */
-        text-align: center;   /* centré horizontalement */
+        display: block;
+        text-align: center;
       }
       .logo {
-        font-size: 1.6em;    /* même taille que pink.html */
+        font-size: 1.6em;
         width: auto;
-        max-width: 90%;      /* jamais plus large que l’écran */
-        transform: none;     /* retire scaleX */
+        max-width: 90vw;
+        transform: none;
         display: inline-block;
         letter-spacing: -2px;
         margin-bottom: 3px;
@@ -290,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentIndex = pages.indexOf(currentPage);
   const prevButton = document.getElementById('prevButton');
   const nextButton = document.getElementById('nextButton');
-
   const isLocal = window.location.protocol === "file:";
 
   if (currentIndex !== -1) {
