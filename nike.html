@@ -146,14 +146,15 @@
         display: block;
         text-align: center;
       }
-      .logo {
-        font-size: 1.6em;
-        max-width: 90vw;
-        transform: none; /* supprime scaleX pour mobile */
-        display: inline-block;
-        letter-spacing: -2px;
-        margin-bottom: 3px;
-      }
+  .logo {
+    font-size: 1.6em;
+    max-width: 90vw;
+    transform: none; /* supprime scaleX */
+    -webkit-transform: translateZ(0); /* force rendu correct iOS */
+    display: inline-block;
+    letter-spacing: -2px;
+    margin-bottom: 3px;
+  }
 
       video { width: 100%; }
       .video-arrow { display: none; }
