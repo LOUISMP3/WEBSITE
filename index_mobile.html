@@ -210,14 +210,14 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 /* --- FIX pour écrans très étroits (< 413px) --- */
 @media screen and (max-width: 412px) {
   main {
-    padding-top: 240px; /* ⬅️ On pousse un peu plus bas qu’avant */
+    padding-top: 240px;
   }
 
-.carousel {
-  margin: -5px auto 15px;
-  max-width: 95%;
-  aspect-ratio: 16 / 9; /* même ratio que les grands écrans */
-}
+  .carousel {
+    margin: -5px auto 15px;
+    max-width: 95%;
+    aspect-ratio: 16 / 9;
+  }
 
   .carousel-card.middle {
     transform: translateX(-50%) translateY(18px) scale(0.97);
@@ -335,10 +335,11 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 <script>
 const cards = document.querySelectorAll('.carousel-card');
 let index = 0;
+const carouselEl = document.querySelector('.carousel'); // défini avant usage
 
 function updateCarousel() {
   const len = cards.length;
-  cards.forEach((card,i) => {
+  cards.forEach((card, i) => {
     card.classList.remove('active','middle','last');
     const rel = (i - index + len) % len;
     if(rel === 0) card.classList.add('active');
@@ -346,30 +347,10 @@ function updateCarousel() {
     else if(rel === 2) card.classList.add('last');
   });
 }
-// Swipe tactile pour mobile
-let startX = 0;
-let isDragging = false;
 
-carouselEl.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-});
-
-carouselEl.addEventListener('touchmove', e => {
-  if (!isDragging) return;
-  const currentX = e.touches[0].clientX;
-  const diff = startX - currentX;
-  carouselEl.scrollLeft += diff;
-  startX = currentX;
-});
-
-carouselEl.addEventListener('touchend', () => {
-  isDragging = false;
-});
-
+// Rotation avec la molette (desktop)
 let lastWheel = 0;
 const cooldown = 500;
-const carouselEl = document.querySelector('.carousel');
 if (carouselEl) {
   carouselEl.addEventListener('wheel', e => {
     e.preventDefault();
@@ -381,6 +362,23 @@ if (carouselEl) {
   }, {passive:false});
 }
 
+// Swipe tactile pour mobile
+let startX = 0;
+carouselEl.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+});
+
+carouselEl.addEventListener('touchend', e => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = startX - endX;
+  if(Math.abs(diff) > 30){ // seuil de swipe
+    if(diff > 0) index = (index + 1) % cards.length;
+    else index = (index - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }
+});
+
+// Play vidéo au clic
 cards.forEach(card => {
   const video = card.querySelector('video');
   const btn = card.querySelector('.play-button');
@@ -393,11 +391,11 @@ cards.forEach(card => {
 
   video.addEventListener('click', () => {
     if (!card.classList.contains('active')) return;
-    if (video.paused) { video.play(); btn.style.display = 'none'; }
-    else { video.pause(); btn.style.display = 'block'; }
+    if (video.paused) { video.play(); btn.style.display='none'; }
+    else { video.pause(); btn.style.display='block'; }
   });
 
-  video.addEventListener('ended', () => { if (btn) btn.style.display = 'block'; });
+  video.addEventListener('ended', () => { if (btn) btn.style.display='block'; });
 });
 
 updateCarousel();
