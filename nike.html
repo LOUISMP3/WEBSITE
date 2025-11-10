@@ -66,10 +66,6 @@
       letter-spacing: var(--letter-spacing);
     }
 
-    nav > .dropdown:nth-child(2) > .dropdown-toggle {
-      opacity: 0.6;
-    }
-
     main {
       padding-top: 120px;
       text-align: center;
@@ -142,15 +138,26 @@
       z-index: 11;
     }
 
-    #mobilePageDownButton {
-      display: none;
-    }
+    #mobilePageDownButton { display: none; }
 
     /* --- Mobile --- */
     @media screen and (max-width: 768px) {
-      #fullscreenButton { display: block; }
-      .video-arrow { display: none; }
+      .logo-container {
+        display: block;
+        text-align: center;
+      }
+      .logo {
+        font-size: 1.6em;
+        max-width: 90vw;
+        transform: none; /* supprime scaleX pour mobile */
+        display: inline-block;
+        letter-spacing: -2px;
+        margin-bottom: 3px;
+      }
+
       video { width: 100%; }
+      .video-arrow { display: none; }
+      #fullscreenButton { display: block; }
 
       #mobilePageDownButton {
         display: flex;
@@ -175,21 +182,6 @@
         transform: rotate(90deg) scaleX(-1);
       }
       #mobilePageDownButton:hover { color: #555; }
-
-      /* --- Correction iPhone / petit écran pour le logo --- */
-      .logo-container {
-        display: block;
-        text-align: center;
-      }
-      .logo {
-        font-size: 1.6em;
-        width: auto;
-        max-width: 90vw;
-        transform: none;
-        display: inline-block;
-        letter-spacing: -2px;
-        margin-bottom: 3px;
-      }
     }
   </style>
   <link rel="stylesheet" href="style.css" />
@@ -209,10 +201,6 @@
         <a href="pink.html">DIANEV &amp; PinkPantheress bag campaign</a>
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
         <a href="dianev.html">"THE LOOK" DIANEV campaign</a>
-        <a href="nothing-left.html">"Nothing Left" gabriel1999 shortfilm</a>
-        <a href="k3u.html">K3U mushtop campaign</a>
-        <a href="j4spar.html">"SAISON DEUX" J4SPÄR show</a>
-        <a href="dance-now.html">"DANCE NOW"</a>
       </div>
     </div>
     <div class="dropdown">
@@ -220,10 +208,6 @@
       <div class="dropdown-content">
         <a href="les-filles.html">Les Filles - sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
-        <a href="fsc.html">Feuille Shit Clope - sean</a>
-        <a href="intro.html">Introduktion - Akkai</a>
-        <a href="affa.html">N'na - Affa</a>
-        <a href="seul.html">Seul - Sidi</a>
       </div>
     </div>
     <a href='/contact.html'>Contact</a>
@@ -232,6 +216,7 @@
 
 <main>
   <h2 class="fade-in">Nike x Ourhomecoming T90 campaign</h2>
+
   <div class="video-wrapper fade-in">
     <button id="playButton" aria-label="Play"></button>
     <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
