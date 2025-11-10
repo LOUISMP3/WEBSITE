@@ -13,7 +13,7 @@
     }
 
     body, h2, p, div, a, button {
-    --main-color: #121027;
+      --main-color: #121027;
       color: #000;
       letter-spacing: -0.5px;
     }
@@ -45,12 +45,12 @@
     }
 
     .logo {
-    letter-spacing: -2px;
+      letter-spacing: -2px;
     }
 
-      nav > .dropdown:nth-child(2) > .dropdown-toggle {
-  opacity: 0.6; /* modifie selon ton goût */
-}
+    nav > .dropdown:nth-child(2) > .dropdown-toggle {
+      opacity: 0.6; /* modifie selon ton goût */
+    }
 
     .video-wrapper {
       position: relative;
@@ -128,15 +128,15 @@
       margin-top: 90px;
     }
 
-        #mobilePageDownButton {
-  display: none; /* caché par défaut */
-}
+    #mobilePageDownButton {
+      display: none; /* caché par défaut */
+    }
 
     @media screen and (max-width: 768px) {
       #fullscreenButton { display: block; }
       .video-arrow { display: none; } /* flèches masquées sur mobile */
     
-    #mobilePageDownButton {
+      #mobilePageDownButton {
         display: flex;
         margin: 42px auto 0 auto; /* centré horizontalement */
         width: 56px;
@@ -159,6 +159,19 @@
         transform: rotate(90deg) scaleX(-1); /* flèche vers le bas */
       }
       #mobilePageDownButton:hover { color: #555; }
+    }
+
+    /* CORRECTION iPhone XR : description sous la vidéo */
+    @media screen and (max-width: 414px) {
+      .video-wrapper {
+        display: block; 
+        margin-bottom: 0;
+      }
+      .description {
+        position: relative;
+        margin-top: 10px; 
+        z-index: 1;
+      }
     }
   </style>
   <link rel="stylesheet" href="style.css" />
@@ -228,12 +241,12 @@
     J4SPÄR / 2024
   </div>
 </main>
-  <button id="mobilePageDownButton" aria-label="Page suivante">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M15 6l-6 6 6 6"></path>
-    </svg>
-  </button>
-</main>
+
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
 
 <div class="other-projects">
   <ul>
