@@ -49,23 +49,23 @@
     }
 
     nav > .dropdown:nth-child(2) > .dropdown-toggle {
-      opacity: 0.6; /* modifie selon ton goût */
+      opacity: 0.6;
     }
 
+    /* --- CORRECTION iOS pour que description reste sous la vidéo --- */
     .video-wrapper {
-      position: relative;
-      display: inline-block;
-      max-width: 900px;
+      display: block; /* forcer flux normal */
       width: 90%;
-      margin: 0px auto;
-      aspect-ratio: 16 / 9;
+      max-width: 900px;
+      margin: 0 auto 10px; /* espace sous la vidéo */
       background: black;
+      -webkit-transform: translateZ(0); /* corrige superposition iOS */
     }
 
     video {
-      width: 100%;
-      height: 100%;
       display: block;
+      width: 100%;
+      height: auto; /* ne pas forcer 100% hauteur */
       object-fit: contain;
       background: black;
     }
@@ -129,16 +129,16 @@
     }
 
     #mobilePageDownButton {
-      display: none; /* caché par défaut */
+      display: none;
     }
 
     @media screen and (max-width: 768px) {
       #fullscreenButton { display: block; }
-      .video-arrow { display: none; } /* flèches masquées sur mobile */
-    
+      .video-arrow { display: none; }
+
       #mobilePageDownButton {
         display: flex;
-        margin: 42px auto 0 auto; /* centré horizontalement */
+        margin: 42px auto 0 auto;
         width: 56px;
         height: 56px;
         border: none;
@@ -156,22 +156,11 @@
         stroke-width: 2.4;
         stroke-linecap: round;
         stroke-linejoin: round;
-        transform: rotate(90deg) scaleX(-1); /* flèche vers le bas */
+        transform: rotate(90deg) scaleX(-1);
       }
       #mobilePageDownButton:hover { color: #555; }
     }
 
-    /* CORRECTION iPhone XR et iPhone 8 : description sous la vidéo */
-    @media screen and (max-width: 414px) {
-      .video-wrapper {
-        display: block !important; 
-        margin-bottom: 10px; /* espace sous la vidéo */
-      }
-      .description {
-        position: relative !important;
-        z-index: 1 !important;
-      }
-    }
   </style>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -233,6 +222,7 @@
       </svg>
     </button>
   </div>
+
   <div class="description fade-in">
     Composition & sound design for "J4SPÄR SAISON DEUX" show.
   </div>
@@ -304,4 +294,3 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="menu.js"></script>
 </body>
 </html>
-
