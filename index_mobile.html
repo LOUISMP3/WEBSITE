@@ -364,18 +364,30 @@ if (carouselEl) {
 
 // Swipe tactile pour mobile
 let startX = 0;
+let isDragging = false;
+
 carouselEl.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+carouselEl.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  e.preventDefault(); // empêche le scroll par défaut
 });
 
 carouselEl.addEventListener('touchend', e => {
+  if (!isDragging) return;
   const endX = e.changedTouches[0].clientX;
   const diff = startX - endX;
-  if(Math.abs(diff) > 30){ // seuil de swipe
-    if(diff > 0) index = (index + 1) % cards.length;
+
+  if (Math.abs(diff) > 30) { // seuil de swipe
+    if (diff > 0) index = (index + 1) % cards.length;
     else index = (index - 1 + cards.length) % cards.length;
     updateCarousel();
   }
+
+  isDragging = false;
 });
 
 // Play vidéo au clic
