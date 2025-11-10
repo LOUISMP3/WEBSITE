@@ -346,6 +346,26 @@ function updateCarousel() {
     else if(rel === 2) card.classList.add('last');
   });
 }
+// Swipe tactile pour mobile
+let startX = 0;
+let isDragging = false;
+
+carouselEl.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+});
+
+carouselEl.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const currentX = e.touches[0].clientX;
+  const diff = startX - currentX;
+  carouselEl.scrollLeft += diff;
+  startX = currentX;
+});
+
+carouselEl.addEventListener('touchend', () => {
+  isDragging = false;
+});
 
 let lastWheel = 0;
 const cooldown = 500;
