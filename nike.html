@@ -66,6 +66,27 @@
       letter-spacing: var(--letter-spacing);
     }
 
+    .dropdown { position: relative; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      min-width: 180px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1001;
+      -webkit-transform: translateZ(0);
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 8px 15px;
+      color: var(--text-color);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     main {
       padding-top: 120px;
       text-align: center;
@@ -173,6 +194,11 @@
         transform: rotate(90deg) scaleX(-1);
       }
       #mobilePageDownButton:hover { color: #555; }
+
+      .logo {
+        font-size: 2.6em !important;
+        max-width: 90vw !important;
+      }
     }
   </style>
   <link rel="stylesheet" href="style.css" />
@@ -192,6 +218,10 @@
         <a href="pink.html">DIANEV &amp; PinkPantheress bag campaign</a>
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
         <a href="dianev.html">"THE LOOK" DIANEV campaign</a>
+        <a href="nothing-left.html">"Nothing Left" gabriel1999 shortfilm</a>
+        <a href="k3u.html">K3U mushtop campaign</a>
+        <a href="j4spar.html">"SAISON DEUX" J4SPÄR show</a>
+        <a href="dance-now.html">"DANCE NOW"</a>
       </div>
     </div>
     <div class="dropdown">
@@ -199,6 +229,10 @@
       <div class="dropdown-content">
         <a href="les-filles.html">Les Filles - sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
+        <a href="fsc.html">Feuille Shit Clope - sean</a>
+        <a href="intro.html">Introduktion - Akkai</a>
+        <a href="affa.html">N'na - Affa</a>
+        <a href="seul.html">Seul - Sidi</a>
       </div>
     </div>
     <a href='/contact.html'>Contact</a>
