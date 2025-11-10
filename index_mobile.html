@@ -83,7 +83,7 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .side-text.left { left: 100px; top: 360px; }
 .side-text.right { right: 100px; top: 380px; }
 
-/* === CAROUSEL AJUSTÉ === */
+/* === CAROUSEL === */
 .carousel {
   position: relative;
   width: 100%;
@@ -147,106 +147,30 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 
 /* === RESPONSIVE === */
 @media screen and (max-width: 768px) {
-  .carousel {
-    margin: -80px auto 20px;
-    max-width: 95%;
-    aspect-ratio: 16 / 9;
-  }
-
-  .carousel-card.middle {
-    transform: translateX(-50%) translateY(25px) scale(0.96);
-  }
-
-  .carousel-card.last {
-    transform: translateX(-50%) translateY(50px) scale(0.93);
-  }
-
-  .play-button {
-    width: 45px;
-    height: 45px;
-  }
-
-  .play-button::before {
-    border-width: 10px 0 10px 20px;
-  }
-
-  .side-text {
-    position: relative;
-    width: auto;
-    max-width: 90%;
-    margin: 25px auto;
-    text-align: center;
-    font-size: 1em;
-    top: auto;
-    left: auto;
-    right: auto;
-  }
-
-  main {
-    padding-top: 160px;
-  }
+  .carousel { margin: -80px auto 20px; max-width: 95%; aspect-ratio: 16 / 9; }
+  .carousel-card.middle { transform: translateX(-50%) translateY(25px) scale(0.96); }
+  .carousel-card.last { transform: translateX(-50%) translateY(50px) scale(0.93); }
+  .play-button { width: 45px; height: 45px; }
+  .play-button::before { border-width: 10px 0 10px 20px; }
+  .side-text { position: relative; width: auto; max-width: 90%; margin: 25px auto; text-align: center; font-size: 1em; top: auto; left: auto; right: auto; }
+  main { padding-top: 160px; }
 }
 
 @media screen and (max-width: 480px) {
-  .carousel {
-    margin: -60px auto 15px;
-    aspect-ratio: 16 / 10;
-  }
-
-  .carousel-card video {
-    border-radius: 6px;
-  }
-
-  .play-button {
-    width: 38px;
-    height: 38px;
-  }
-
-  .play-button::before {
-    border-width: 8px 0 8px 16px;
-  }
+  .carousel { margin: -60px auto 15px; aspect-ratio: 16 / 10; }
+  .carousel-card video { border-radius: 6px; }
+  .play-button { width: 38px; height: 38px; }
+  .play-button::before { border-width: 8px 0 8px 16px; }
 }
 
-/* --- FIX pour écrans très étroits (< 413px) --- */
 @media screen and (max-width: 412px) {
-  main {
-    padding-top: 240px;
-  }
-
-  .carousel {
-    margin: -5px auto 15px;
-    max-width: 95%;
-    aspect-ratio: 16 / 9;
-  }
-
-  .carousel-card.middle {
-    transform: translateX(-50%) translateY(18px) scale(0.97);
-  }
-
-  .carousel-card.last {
-    transform: translateX(-50%) translateY(36px) scale(0.94);
-  }
-
-  .play-button {
-    width: 34px;
-    height: 34px;
-  }
-
-  .play-button::before {
-    border-width: 7px 0 7px 14px;
-  }
-
-  .side-text {
-    position: static;
-    margin: 18px auto;
-    max-width: 90%;
-    text-align: center;
-    top: auto;
-    left: auto;
-    right: auto;
-    font-size: 0.95em;
-    pointer-events: none;
-  }
+  main { padding-top: 240px; }
+  .carousel { margin: -5px auto 15px; max-width: 95%; aspect-ratio: 16 / 9; }
+  .carousel-card.middle { transform: translateX(-50%) translateY(18px) scale(0.97); }
+  .carousel-card.last { transform: translateX(-50%) translateY(36px) scale(0.94); }
+  .play-button { width: 34px; height: 34px; }
+  .play-button::before { border-width: 7px 0 7px 14px; }
+  .side-text { position: static; margin: 18px auto; max-width: 90%; text-align: center; font-size: 0.95em; pointer-events: none; }
 }
 </style>
 
@@ -333,13 +257,13 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 </main>
 
 <script>
+const carouselEl = document.querySelector('.carousel');
 const cards = document.querySelectorAll('.carousel-card');
 let index = 0;
-const carouselEl = document.querySelector('.carousel'); // défini avant usage
 
 function updateCarousel() {
   const len = cards.length;
-  cards.forEach((card, i) => {
+  cards.forEach((card,i) => {
     card.classList.remove('active','middle','last');
     const rel = (i - index + len) % len;
     if(rel === 0) card.classList.add('active');
@@ -348,7 +272,7 @@ function updateCarousel() {
   });
 }
 
-// Rotation avec la molette (desktop)
+// Desktop wheel
 let lastWheel = 0;
 const cooldown = 500;
 if (carouselEl) {
@@ -362,52 +286,42 @@ if (carouselEl) {
   }, {passive:false});
 }
 
-// Swipe tactile pour mobile
+// Mobile swipe
 let startX = 0;
-let isDragging = false;
+if (carouselEl) {
+  carouselEl.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+  });
 
-carouselEl.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-});
+  carouselEl.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if(Math.abs(diff) > 30) {
+      if(diff > 0) index = (index + 1) % cards.length;
+      else index = (index - 1 + cards.length) % cards.length;
+      updateCarousel();
+    }
+  });
+}
 
-carouselEl.addEventListener('touchmove', e => {
-  if (!isDragging) return;
-  e.preventDefault(); // empêche le scroll par défaut
-});
-
-carouselEl.addEventListener('touchend', e => {
-  if (!isDragging) return;
-  const endX = e.changedTouches[0].clientX;
-  const diff = startX - endX;
-
-  if (Math.abs(diff) > 30) { // seuil de swipe
-    if (diff > 0) index = (index + 1) % cards.length;
-    else index = (index - 1 + cards.length) % cards.length;
-    updateCarousel();
-  }
-
-  isDragging = false;
-});
-
-// Play vidéo au clic
+// Play video
 cards.forEach(card => {
   const video = card.querySelector('video');
   const btn = card.querySelector('.play-button');
-  if (!video) return;
+  if(!video) return;
 
-  if (btn) btn.addEventListener('click', () => {
+  if(btn) btn.addEventListener('click', () => {
     video.play();
     btn.style.display = 'none';
   });
 
   video.addEventListener('click', () => {
-    if (!card.classList.contains('active')) return;
-    if (video.paused) { video.play(); btn.style.display='none'; }
-    else { video.pause(); btn.style.display='block'; }
+    if(!card.classList.contains('active')) return;
+    if(video.paused) { video.play(); btn.style.display = 'none'; }
+    else { video.pause(); btn.style.display = 'block'; }
   });
 
-  video.addEventListener('ended', () => { if (btn) btn.style.display='block'; });
+  video.addEventListener('ended', () => { if(btn) btn.style.display = 'block'; });
 });
 
 updateCarousel();
@@ -416,3 +330,4 @@ updateCarousel();
 <script src="navigation.js"></script>
 </body>
 </html>
+
