@@ -1,265 +1,257 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Les Filles - sean</title>
-  <style>
-    :root {
-      --main-color: #0A1E40;
-      --play-button-color: #F5F5F5;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Les Filles - Sean</title>
+<style>
+:root {
+  --main-color: #0A1E40;
+}
 
-    @font-face {
-      font-family: 'Exposure';
-      src: url('fonts/Exposure.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #F5F5F5;
+  color: var(--main-color);
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #F5F5F5;
-      color: var(--main-color);
-    }
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 30px;
+  background: #F5F5F5;
+  z-index: 1000;
+}
 
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 10px 30px;
-      background: #F5F5F5;
-      z-index: 1000;
-    }
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
 
-    .other-projects {
-      display: none;
-      text-align: center;
-      margin-top: 90px;
-    }
+.subtitle {
+  font-size: 0.5em;
+  font-weight: 300;
+  letter-spacing: 0.15px;
+  text-transform: uppercase;
+  margin-top: -2px;
+  margin-left: 2px;
+  padding-left: 2px;
+}
 
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
+nav {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
 
-    .subtitle {
-      font-size: 0.5em;
-      font-weight: 300;
-      letter-spacing: 0.15px;
-      text-transform: uppercase;
-      margin-top: -2px;
-      margin-left: 2px;
-      padding-left: 2px;
-    }
+nav a {
+  text-decoration: none;
+  color: var(--main-color);
+  font-weight: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 
-    nav {
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
-    }
+.dropdown {
+  position: relative;
+}
 
-    nav a {
-      text-decoration: none;
-      color: var(--main-color);
-      font-weight: normal;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #F5F5F5;
+  z-index: 1001;
+  padding: 10px 0;
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
 
-    .dropdown {
-      position: relative;
-    }
+.dropdown:hover .dropdown-content {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
 
-    .dropdown-content {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #F5F5F5;
-      z-index: 1001;
-      padding: 10px 0;
-      white-space: nowrap;
-      pointer-events: none;
-      visibility: hidden;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.2s ease;
-    }
+.dropdown-content a {
+  display: block;
+  padding: 6px 20px;
+  color: var(--main-color);
+  text-decoration: none;
+  font-size: 0.8em;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(-15px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
 
-    .dropdown:hover .dropdown-content {
-      pointer-events: auto;
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
-    }
+.dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
+.dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
+.dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
+.dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
+.dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
+.dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
+.dropdown:hover .dropdown-content a:nth-child(7) { transition-delay: 0.65s; }
+.dropdown:hover .dropdown-content a:nth-child(8) { transition-delay: 0.75s; }
 
-    .dropdown-content a {
-      display: block;
-      padding: 6px 20px;
-      color: var(--main-color);
-      text-decoration: none;
-      font-size: 0.8em;
-      font-weight: 500;
-      opacity: 0;
-      transform: translateX(-15px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
+.dropdown:hover .dropdown-content a {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-    .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay: 0.05s; }
-    .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay: 0.15s; }
-    .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay: 0.25s; }
-    .dropdown:hover .dropdown-content a:nth-child(4) { transition-delay: 0.35s; }
-    .dropdown:hover .dropdown-content a:nth-child(5) { transition-delay: 0.45s; }
-    .dropdown:hover .dropdown-content a:nth-child(6) { transition-delay: 0.55s; }
-    .dropdown:hover .dropdown-content a:nth-child(7) { transition-delay: 0.65s; }
-    .dropdown:hover .dropdown-content a:nth-child(8) { transition-delay: 0.75s; }
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 0.5s;
+}
 
-    .dropdown:hover .dropdown-content a {
-      opacity: 1;
-      transform: translateX(0);
-    }
+@keyframes fadeIn { to { opacity: 1; } }
 
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 0.5s;
-    }
+main {
+  padding: 180px 20px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+.track-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
 
-    main {
-      padding: 180px 20px 40px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+h2 {
+  font-size: 1.1em;
+  font-weight: bold !important;
+  margin-bottom: 12px;
+  text-align: left;
+  width: 100%;
+}
 
-    .track-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 400px;
-      width: 100%;
-      position: relative; /* pour les flèches */
-    }
+.cover {
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 12px;
+  display: block;
+}
 
-    h2 {
-      font-size: 1.1em;
-      font-weight: bold !important;
-      margin-bottom: 12px;
-      text-align: left;
-      width: 100%;
-    }
+iframe.spotify {
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  display: block;
+}
 
-    .cover {
-      max-width: 400px;
-      width: 100%;
-      margin-bottom: 12px;
-      display: block;
-    }
+.description {
+  font-size: 0.95em;
+  margin-bottom: 4px;
+  width: 100%;
+  text-align: left;
+}
 
-    iframe.spotify {
-      width: 100%;
-      max-width: 400px;
-      height: 80px;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      display: block;
-    }
+.credits {
+  font-size: 0.85em;
+  color: #555;
+  width: 100%;
+  text-align: left;
+}
 
-    .description {
-      font-size: 0.95em;
-      margin-bottom: 4px;
-      width: 100%;
-      text-align: left;
-    }
+/* Flèches desktop */
+.nav-arrow {
+  position: absolute;
+  top: 44%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  color: var(--main-color);
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 0.5s;
+}
 
-    .credits {
-      font-size: 0.85em;
-      color: #555;
-      width: 100%;
-      text-align: left;
-    }
+.nav-arrow svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
-    /* Flèches desktop */
-    .nav-arrow {
-      position: absolute;
-      top: 44%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 30;
-      color: var(--main-color);
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
-      animation-delay: 0.5s;
-    }
-    .nav-arrow svg {
-      width: 26px;
-      height: 26px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2.4;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .nav-arrow--next svg { transform: scaleX(-1); }
+.nav-arrow--next svg { transform: scaleX(-1); }
 
-    #prevButton { left: -80px; }
-    #nextButton { right: -80px; }
+#prevButton { left: -80px; }
+#nextButton { right: -80px; }
 
-    @media (max-width: 600px) {
-      .nav-arrow { display: none; }
-    }
+@media (max-width: 600px) {
+  .nav-arrow { display: none; }
+  main { padding: 172px 20px 40px; width: 85%; margin: 0 auto; justify-content: center; }
+  h2 { font-size: 1em !important; font-weight: bold !important; margin-left:1px!important; text-transform: uppercase; }
+  .description { font-size: 0.8em !important; margin-top:1px; }
+  .credits { font-size: 0.7em !important; }
 
-    /* Flèche mobile */
-    #mobilePageDownButton {
-      display: none;
-    }
+  /* Mobile dropdown open */
+  .dropdown.open .dropdown-content {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .dropdown.open .dropdown-content a {
+    opacity: 1;
+    transform: translateX(0);
+    transition: none;
+  }
 
-    @media (max-width: 600px) {
-      main { padding: 172px 20px 40px; width: 85%; margin: 0 auto; justify-content: center; }
-      h2 { font-size: 1em !important; font-weight: bold !important; margin-left:1px!important; text-transform: uppercase; }
-      .description { font-size: 0.8em !important; margin-top:1px; }
-      .credits { font-size: 0.7em !important; }
-      #mobilePageDownButton {
-        display: flex;
-        margin: -30px auto 0 auto;
-        width: 56px; height: 56px;
-        border: none;
-        background: transparent;
-        color: #000;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-      }
-      #mobilePageDownButton svg {
-        width: 28px;
-        height: 28px;
-        stroke: currentColor;
-        fill: none;
-        stroke-width: 2.4;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        transform: rotate(90deg) scaleX(-1);
-      }
-      #mobilePageDownButton:hover { color: #555; }
-    }
-  </style>
-  <link rel="stylesheet" href="header.css?v=2">
+  #mobilePageDownButton {
+    display: flex;
+    margin: -30px auto 0 auto;
+    width: 56px; height: 56px;
+    border: none;
+    background: transparent;
+    color: #000;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+  #mobilePageDownButton svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transform: rotate(90deg) scaleX(-1);
+  }
+  #mobilePageDownButton:hover { color: #555; }
+}
+</style>
+<link rel="stylesheet" href="header.css?v=2">
 </head>
 <body>
 
@@ -272,7 +264,7 @@
     <div class="dropdown">
       <a class="dropdown-toggle">Sound To Image</a>
       <div class="dropdown-content">
-        <a href="sean.html">"LA NICHE"" SEAN EP teaser</a>
+        <a href="sean.html">"LA NICHE" SEAN EP teaser</a>
         <a href="pink.html">DIANEV &amp; PinkPantheress bag campaign</a>
         <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
         <a href="dianev.html">"THE LOOK" DIANEV campaign</a>
@@ -285,9 +277,9 @@
     <div class="dropdown">
       <a class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
-        <a href="les-filles.html">Les Filles - sean</a>
+        <a href="les-filles.html">Les Filles - Sean</a>
         <a href="qui.html">Qui va écouter ça? - Elyon</a>
-        <a href="fsc.html">Feuille Shit Clope - sean</a>
+        <a href="fsc.html">Feuille Shit Clope - Sean</a>
         <a href="intro.html">Introduktion - Akkai</a>
         <a href="affa.html">N'na - Affa</a>
         <a href="seul.html">Seul - Sidi</a>
@@ -302,10 +294,9 @@
     <h2 class="fade-in">LES FILLES – SEAN</h2>
     <img src="les-filles.jpg" alt="Les Filles cover" class="cover fade-in" />
     <iframe class="spotify fade-in" src="https://open.spotify.com/embed/track/4W2qqmkWTbqPdtdSZYSOQV?utm_source=generator&theme=0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <div class="description fade-in">Composition & arrangement.</div>
+    <div class="description fade-in">Composition &amp; arrangement.</div>
     <div class="credits fade-in">2024</div>
 
-    <!-- flèches desktop -->
     <button id="prevButton" class="nav-arrow fade-in" aria-label="Précédent">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
     </button>
@@ -316,26 +307,33 @@
   </div>
 </main>
 
-<!-- flèche mobile -->
 <button id="mobilePageDownButton" aria-label="Page suivante">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M15 6l-6 6 6 6"></path>
-  </svg>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
 </button>
-
-<div class="other-projects">
-  <ul>
-    <li><a href="les-filles.html">Les Filles - sean</a></li>
-    <li><a href="qui.html">Qui va écouter ça? - Elyon</a></li>
-    <li><a href="fsc.html">Feuille Shit Clope - sean</a></li>
-    <li><a href="intro.html">Introduktion - Akkai</a></li>
-    <li><a href="affa.html">N'na - Affa</a></li>
-    <li><a href="seul.html">Seul - Sidi</a></li>
-  </ul>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+  // DROPDOWN MOBILE
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    toggle.addEventListener('click', e => {
+      if (window.innerWidth <= 600) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+        dropdowns.forEach(d => { if (d !== dropdown) d.classList.remove('open'); });
+      }
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (window.innerWidth <= 600) {
+      dropdowns.forEach(d => { if (!d.contains(e.target)) d.classList.remove('open'); });
+    }
+  });
+
+  // NAVIGATION
   const pages = ["les-filles","qui","fsc","intro","affa","seul"];
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
@@ -345,37 +343,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobile = document.getElementById('mobilePageDownButton');
   const isLocal = window.location.protocol === "file:";
 
-  if (idx === -1) {
-    if (prev) prev.style.display = 'none';
-    if (next) next.style.display = 'none';
-    if (mobile) mobile.style.display = 'none';
-    return;
-  }
+  if (idx === -1) { if (prev) prev.style.display='none'; if (next) next.style.display='none'; if (mobile) mobile.style.display='none'; return; }
 
-  if (idx > 0 && prev) {
-    prev.addEventListener('click', () => {
-      const target = pages[idx - 1];
-      window.location.href = isLocal ? target + ".html" : "/" + target;
-    });
-  } else if (prev) prev.style.display = 'none';
+  if (idx > 0 && prev) prev.addEventListener('click', () => { const target = pages[idx-1]; window.location.href = isLocal? target+".html" : "/" + target; });
+  else if(prev) prev.style.display='none';
 
-  if (idx < pages.length - 1 && next) {
-    next.addEventListener('click', () => {
-      const target = pages[idx + 1];
-      window.location.href = isLocal ? target + ".html" : "/" + target;
-    });
-  } else if (next) next.style.display = 'none';
+  if (idx < pages.length-1 && next) next.addEventListener('click', () => { const target = pages[idx+1]; window.location.href = isLocal? target+".html" : "/" + target; });
+  else if(next) next.style.display='none';
 
   if (mobile) {
-    if (idx < pages.length - 1) {
-      mobile.addEventListener('click', () => {
-        const target = pages[idx + 1];
-        window.location.href = isLocal ? target + ".html" : "/" + target;
-      });
-    } else {
-      mobile.style.display = 'none';
-    }
+    if(idx < pages.length-1) mobile.addEventListener('click', () => { const target = pages[idx+1]; window.location.href = isLocal? target+".html" : "/" + target; });
+    else mobile.style.display='none';
   }
+
 });
 </script>
 

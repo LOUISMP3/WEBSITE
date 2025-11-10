@@ -119,7 +119,7 @@
     @keyframes fadeIn { to { opacity: 1; } }
 
     main {
-      padding: 180px 20px 40px;
+      padding: 140px 20px 40px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -310,6 +310,36 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+
+  // === DROPDOWN MOBILE ===
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+
+    toggle.addEventListener('click', e => {
+      if (window.innerWidth <= 600) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+
+        // Fermer les autres dropdowns
+        dropdowns.forEach(d => {
+          if (d !== dropdown) d.classList.remove('open');
+        });
+      }
+    });
+  });
+
+  // Fermer le menu si clic en dehors (mobile)
+  document.addEventListener('click', e => {
+    if (window.innerWidth <= 600) {
+      dropdowns.forEach(d => {
+        if (!d.contains(e.target)) d.classList.remove('open');
+      });
+    }
+  });
+
+  // === NAVIGATION DES PAGES ===
   const pages = ["les-filles","qui","fsc","intro","affa","seul"];
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
@@ -352,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
 
 </body>
 </html>
