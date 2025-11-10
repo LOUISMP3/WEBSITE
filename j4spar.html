@@ -161,16 +161,15 @@
       #mobilePageDownButton:hover { color: #555; }
     }
 
-    /* CORRECTION iPhone XR : description sous la vidéo */
+    /* CORRECTION iPhone XR et iPhone 8 : description sous la vidéo */
     @media screen and (max-width: 414px) {
       .video-wrapper {
-        display: block; 
-        margin-bottom: 0;
+        display: block !important; 
+        margin-bottom: 10px; /* espace sous la vidéo */
       }
       .description {
-        position: relative;
-        margin-top: 10px; 
-        z-index: 1;
+        position: relative !important;
+        z-index: 1 !important;
       }
     }
   </style>
@@ -305,3 +304,4 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="menu.js"></script>
 </body>
 </html>
+
