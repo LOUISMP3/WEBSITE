@@ -80,6 +80,9 @@
       cursor: pointer;
       z-index: 11;
     }
+    #mobilePageDownButton {
+  display: none;
+}
 
     /* --- Flèches desktop uniquement --- */
     @media screen and (min-width: 769px) {
@@ -97,7 +100,13 @@
         cursor: pointer;
         align-items: center;
         justify-content: center;
+        transition: opacity 0.8s ease;
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards;
+        animation-delay: 0.3s;
       }
+
+      @keyframes fadeIn { to { opacity: 1; } }
 
       .video-arrow:hover { color: #555; }
 
@@ -113,16 +122,47 @@
 
       .video-arrow--next svg { transform: scaleX(-1); }
 
-      /* on masque la flèche gauche ici */
       #prevButton { display: none; }
 
       #nextButton { right: -70px; }
     }
 
-    /* Mobile : on cache complètement les flèches */
+    /* --- Mobile --- */
     @media screen and (max-width: 768px) {
       #fullscreenButton { display: block; }
       .video-arrow { display: none; }
+
+      #mobilePageDownButton {
+        display: flex;
+        margin: 75px auto 0 auto;
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1);
+      }
+      #mobilePageDownButton:hover { color: #555; }
+
+      .logo {
+        font-size: 2.8em !important;
+        max-width: 90vw !important;
+        font-weight: 500 !important;
+        letter-spacing: -0.05em !important;
+      }
     }
   </style>
   <link rel="stylesheet" href="style.css" />
@@ -173,7 +213,6 @@
       Votre navigateur ne supporte pas la lecture vidéo.
     </video>
 
-    <!-- Seule flèche droite -->
     <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M15 6l-6 6 6 6"></path>
@@ -187,15 +226,29 @@
   <div class="credits fade-in">
     Grand Musique Management / 2025
   </div>
+
+  <!-- Flèche mobile vers prochaine vidéo -->
+  <button id="mobilePageDownButton" aria-label="Page suivante">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 6l-6 6 6 6"></path>
+    </svg>
+  </button>
 </main>
 
 <script src="menu.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const nextButton = document.getElementById('nextButton');
+  const mobilePageDownButton = document.getElementById('mobilePageDownButton');
 
   if (nextButton) {
     nextButton.addEventListener('click', () => {
+      window.location.href = "pink.html";
+    });
+  }
+
+  if (mobilePageDownButton) {
+    mobilePageDownButton.addEventListener('click', () => {
       window.location.href = "pink.html";
     });
   }
