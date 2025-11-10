@@ -83,7 +83,7 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 .side-text.left { left: 100px; top: 360px; }
 .side-text.right { right: 100px; top: 380px; }
 
-/* === CAROUSEL === */
+/* === CAROUSEL AJUSTÉ === */
 .carousel {
   position: relative;
   width: 100%;
@@ -170,7 +170,7 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
   .carousel-card.last { transform: translateX(-50%) translateY(36px) scale(0.94); }
   .play-button { width: 34px; height: 34px; }
   .play-button::before { border-width: 7px 0 7px 14px; }
-  .side-text { position: static; margin: 18px auto; max-width: 90%; text-align: center; font-size: 0.95em; pointer-events: none; }
+  .side-text { position: static; margin: 18px auto; max-width: 90%; text-align: center; top: auto; left: auto; right: auto; font-size: 0.95em; pointer-events: none; }
 }
 </style>
 
@@ -288,20 +288,38 @@ if (carouselEl) {
 
 // Mobile swipe
 let startX = 0;
+let startY = 0;
+
 if (carouselEl) {
   carouselEl.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
   });
 
   carouselEl.addEventListener('touchend', e => {
     const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    if(Math.abs(diff) > 30) {
-      if(diff > 0) index = (index + 1) % cards.length;
-      else index = (index - 1 + cards.length) % cards.length;
-      updateCarousel();
+    const endY = e.changedTouches[0].clientY;
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+
+    if(Math.abs(diffX) > Math.abs(diffY)) {
+      if(Math.abs(diffX) > 30) {
+        if(diffX > 0) index = (index + 1) % cards.length;
+        else index = (index - 1 + cards.length) % cards.length;
+        updateCarousel();
+      }
+    } else {
+      if(Math.abs(diffY) > 30) {
+        if(diffY > 0) index = (index + 1) % cards.length;
+        else index = (index - 1 + cards.length) % cards.length;
+        updateCarousel();
+      }
     }
   });
+
+  carouselEl.addEventListener('touchmove', e => {
+    e.preventDefault();
+  }, {passive:false});
 }
 
 // Play video
@@ -330,4 +348,3 @@ updateCarousel();
 <script src="navigation.js"></script>
 </body>
 </html>
-
