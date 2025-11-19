@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nothing Left – Vision by gabriel1999 | LOUISMP3</title>
+  <title>Sergio Tacchini campaign | LOUISMP3</title>
   <meta name="description" content="Composition et sound design pour Nothing Left, une vision de gabriel1999. Projet audiovisuel produit par LOUISMP3." />
   <meta property="og:title" content="Nothing Left – Vision by gabriel1999" />
   <meta property="og:description" content="Composition et sound design pour Nothing Left, une vision de gabriel1999." />
@@ -237,20 +237,14 @@
 </header>
 
 <main>
-  <h2 class="fade-in">"Nothing Left" – vision by gabriel1999</h2>
+  <h2 class="fade-in">Sergio Tacchini campaign</h2>
   <div class="video-wrapper fade-in">
     <button id="playButton" aria-label="Play"></button>
     <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
-    <video id="mainVideo" playsinline poster="nl.jpg">
-      <source src="nothing-left.mp4" type="video/mp4" />
+    <video id="mainVideo" playsinline poster="st.jpg">
+      <source src="TACCHINI 2.mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la lecture vidéo.
     </video>
-
-    <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M15 6l-6 6 6 6"></path>
-      </svg>
-    </button>
 
     <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -260,9 +254,11 @@
   </div>
 
   <div class="description fade-in">
-    Composition & sound design for <em>Nothing Left</em>, an idea by gabriel1999.
+    Composition & sound design for Sergio Tacchini.
   </div>
-  <div class="credits fade-in"></div>
+  <div class="credits fade-in">
+    Sergio Tacchini / 2025
+  </div>
 </main>
 <button id="mobilePageDownButton" aria-label="Page suivante">
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -284,7 +280,7 @@
 <script src="menu.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const pages = ["pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
+  const pages = ["sergio", "sean", "pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
   if (!currentPage) return;
