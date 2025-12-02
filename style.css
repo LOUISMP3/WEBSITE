@@ -140,6 +140,9 @@ nav {
 .dropdown:hover .dropdown-content a:nth-child(9) {
   animation: slideFadeIn 0.25s ease forwards 0.85s;
 }
+.dropdown:hover .dropdown-content a:nth-child(10) {
+  animation: slideFadeIn 0.25s ease forwards 0.95s;
+}
 
 @keyframes slideFadeIn {
   to {

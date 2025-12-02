@@ -210,6 +210,7 @@
     <div class="dropdown">
       <a class="dropdown-toggle">Sound To Image</a>
       <div class="dropdown-content">
+        <a href="haraka.html">Studio Haraka short film</a>
         <a href="sergio.html">Sergio Tacchini campaign</a>
         <a href="sean.html">"LA NICHE"" SEAN EP teaser</a>
         <a href="pink.html">DIANEV &amp; PinkPantheress bag campaign</a>
@@ -246,6 +247,14 @@
       Votre navigateur ne supporte pas la lecture vidéo.
     </video>
 
+    <!-- BOUTON PRÉCÉDENT -> placé DANS le wrapper -->
+    <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+
+    <!-- BOUTON SUIVANT -->
     <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M15 6l-6 6 6 6"></path>
@@ -280,7 +289,7 @@
 <script src="menu.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const pages = ["sergio", "sean", "pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
+  const pages = ["haraka", "sergio", "sean", "pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
   let currentPage = window.location.pathname.split("/").pop();
   if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
   if (!currentPage) return;
@@ -291,20 +300,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const isLocal = window.location.protocol === "file:";
 
-  if (currentIndex !== -1) {
-    if (currentIndex > 0 && prevButton) {
-      prevButton.addEventListener('click', () => {
-        const target = pages[currentIndex - 1];
-        window.location.href = isLocal ? target + ".html" : "/" + target;
-      });
-    } else if (prevButton) prevButton.style.display = "none";
-
-    if (currentIndex < pages.length - 1 && nextButton) {
-      nextButton.addEventListener('click', () => {
-        const target = pages[currentIndex + 1];
-        window.location.href = isLocal ? target + ".html" : "/" + target;
-      });
-    } else if (nextButton) nextButton.style.display = "none";
+  if (prevButton) {
+    prevButton.addEventListener('click', () => {
+      window.location.href = "haraka.html";
+    });
+  }
+  if (nextButton) {
+    nextButton.addEventListener('click', () => {
+      window.location.href = "sean.html";
+    });
   }
 
   const mobilePageDownButton = document.getElementById('mobilePageDownButton');
