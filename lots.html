@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nike x Ourhomecoming</title>
+  <style>
+    :root {
+      --main-color: #121027;
+      --text-color: #000;
+      --letter-spacing: -0.03em;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #F5F5F5;
+      color: var(--text-color);
+      letter-spacing: var(--letter-spacing);
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 30px;
+      background: #F5F5F5;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo {
+      font-family: 'Arial', sans-serif;
+      font-size: 2.5em;
+      font-weight: bold;
+      color: var(--main-color);
+      text-decoration: none;
+      display: inline-block;
+      transform: scaleX(0.9);
+      margin-bottom: 3px;
+    }
+
+    .subtitle {
+      font-size: 0.7em;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: var(--text-color);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    nav { display: flex; gap: 30px; align-items: flex-start; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: normal;
+      text-transform: uppercase;
+      cursor: pointer;
+      letter-spacing: var(--letter-spacing);
+    }
+
+    .dropdown { position: relative; }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  min-width: 180px;
+}
+    .dropdown-content a {
+      display: block;
+      padding: 8px 15px;
+      color: var(--text-color);
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    main {
+      padding-top: 120px;
+      text-align: center;
+      letter-spacing: var(--letter-spacing);
+    }
+
+    h2, p, div, a, button {
+      letter-spacing: var(--letter-spacing);
+      color: var(--text-color);
+    }
+
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: none;
+    }
+
+    video {
+      width: 960px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      color: #000;
+      width: 56px;
+      height: 56px;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-arrow:hover { color: #555; }
+    .video-arrow svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .video-arrow--next svg { transform: scaleX(-1); }
+    #prevButton { left: -70px; }
+    #nextButton { right: -70px; }
+
+    #fullscreenButton {
+      display: none;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: none;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 11;
+    }
+
+    #mobilePageDownButton { display: none; }
+
+    /* --- Mobile --- */
+    @media screen and (max-width: 768px) {
+      .logo-container {
+        display: block;
+        text-align: center;
+      }
+      video { width: 100%; }
+      .video-arrow { display: none; }
+      #fullscreenButton { display: block; }
+
+      #mobilePageDownButton {
+        display: flex;
+        margin: 25px auto 0 auto;
+        width: 56px;
+        height: 56px;
+        border: none;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      #mobilePageDownButton svg {
+        width: 28px;
+        height: 28px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2.4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transform: rotate(90deg) scaleX(-1);
+      }
+      #mobilePageDownButton:hover { color: #555; }
+
+      .logo {
+        font-size: 2.8em !important;
+        max-width: 90vw !important;
+        font-weight: 500 !important;
+        letter-spacing: -0.04em !important;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo-container">
+    <a class='logo' href='index.html'>LOUISMP3</a>
+    <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
+  </div>
+  <nav>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Sound To Image</a>
+      <div class="dropdown-content">
+        <a href="lots.html">"Line of The Sun" short film</a>
+        <a href="haraka.html">Studio Haraka short film</a>
+        <a href="sergio.html">Sergio Tacchini campaign</a>
+        <a href="sean.html">"LA NICHE" SEAN EP teaser</a>
+        <a href="pink.html">DIANEV &amp; PinkPantheress bag campaign</a>
+        <a href="nike.html">Nike &amp; ourhomecoming T90 campaign</a>
+        <a href="dianev.html">"THE LOOK" DIANEV campaign</a>
+        <a href="nothing-left.html">"Nothing Left" gabriel1999 short film</a>
+        <a href="k3u.html">K3U mushtop campaign</a>
+        <a href="j4spar.html">"SAISON DEUX" J4SPÄR show</a>
+        <a href="dance-now.html">"DANCE NOW"</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Prod. by Louis</a>
+      <div class="dropdown-content">
+        <a href="zeudog.html">"Zeudog is back" singles - sean</a>
+        <a href="les-filles.html">Les Filles - sean</a>
+        <a href="qui.html">Qui va écouter ça? - Elyon</a>
+        <a href="fsc.html">Feuille Shit Clope - sean</a>
+        <a href="intro.html">Introduktion - Akkai</a>
+        <a href="affa.html">N'na - Affa</a>
+        <a href="seul.html">Seul - Sidi</a>
+      </div>
+    </div>
+    <a href='/contact.html'>Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h2 class="fade-in">"Line of The Sun" short film (extract)</h2>
+
+  <div class="video-wrapper fade-in">
+    <button id="playButton" aria-label="Play"></button>
+    <button id="fullscreenButton" aria-label="Plein écran">⛶</button>
+    <video id="mainVideo" playsinline poster="lots.jpg">
+      <source src="lots.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+
+    <button id="prevButton" class="video-arrow" aria-label="Vidéo précédente">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+
+    <button id="nextButton" class="video-arrow video-arrow--next" aria-label="Vidéo suivante">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="description fade-in">
+  Composition & sound design for "Line of The Sun", a short film by Klaithem Al Jabri, Roudhah Al Mazrouei and Alawash.
+  </div>
+  <div class="credits fade-in">
+    2026
+  </div>
+</main>
+
+<button id="mobilePageDownButton" aria-label="Page suivante">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 6l-6 6 6 6"></path>
+  </svg>
+</button>
+
+<script src="menu.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const pages = ["pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
+  let currentPage = window.location.pathname.split("/").pop();
+  if (currentPage.endsWith(".html")) currentPage = currentPage.replace(".html", "");
+  if (!currentPage) return;
+
+  const currentIndex = pages.indexOf(currentPage);
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const isLocal = window.location.protocol === "file:";
+
+  if (currentIndex !== -1) {
+    if (currentIndex > 0 && prevButton) {
+      prevButton.addEventListener('click', () => {
+        const target = pages[currentIndex - 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (prevButton) prevButton.style.display = "none";
+
+    if (currentIndex < pages.length - 1 && nextButton) {
+      nextButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else if (nextButton) nextButton.style.display = "none";
+  }
+
+  const mobilePageDownButton = document.getElementById('mobilePageDownButton');
+  if (mobilePageDownButton) {
+    if (currentIndex < pages.length - 1) {
+      mobilePageDownButton.addEventListener('click', () => {
+        const target = pages[currentIndex + 1];
+        window.location.href = isLocal ? target + ".html" : "/" + target;
+      });
+    } else {
+      mobilePageDownButton.style.display = 'none';
+    }
+  }
+});
+</script>
+
+</body>
+</html>
