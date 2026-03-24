@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pages = ["stillness", "lots", "haraka", "sergio", "sean", "pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
 
   let currentPage = window.location.pathname.split("/").pop();
-  if (!currentPage || !currentPage.endsWith('.html')) currentPage = 'pink.html';
+  if (!currentPage || !currentPage.endsWith('.html')) currentPage = 'pink';
   const currentIndex = pages.indexOf(currentPage);
 
   const prevButton = document.getElementById('prevButton');
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (nextButton) {
     if (currentIndex >= pages.length - 1) nextButton.style.display = "none";
     else nextButton.addEventListener('click', () => {
-      window.location.href = pages[currentIndex + 1];
+      window.location.href = "nike.html";
     });
   }
 
