@@ -2,15 +2,20 @@
   const prevBtn = document.getElementById('prevButton');
   const nextBtn = document.getElementById('nextButton');
   const mobileNextBtn = document.getElementById('mobilePageDownButton');
-  const currentPage = window.location.pathname.split('/').pop();
-  const isLocal = window.location.protocol === 'file:';
+  
+  // Extraire proprement le nom du fichier actuel (ex: "forma.html")
+  let currentPage = window.location.pathname.split('/').pop();
+  if (!currentPage || currentPage === '') {
+    currentPage = 'index.html';
+  }
+  currentPage = currentPage.split('?')[0].split('#')[0];
 
   let currentSequence = [];
-  if (projectSequence.includes(currentPage)) {
+  if (typeof projectSequence !== 'undefined' && projectSequence.includes(currentPage)) {
     currentSequence = projectSequence;
-  } else if (shortFilmSequence.includes(currentPage)) {
+  } else if (typeof shortFilmSequence !== 'undefined' && shortFilmSequence.includes(currentPage)) {
     currentSequence = shortFilmSequence;
-  } else if (othersSequence.includes(currentPage)) {
+  } else if (typeof othersSequence !== 'undefined' && othersSequence.includes(currentPage)) {
     currentSequence = othersSequence;
   }
 
@@ -19,9 +24,10 @@
   if (idx !== -1) {
     if (prevBtn) {
       if (idx > 0) {
-        prevBtn.onclick = () => {
+        prevBtn.onclick = (e) => {
+          e.preventDefault();
           const target = currentSequence[idx - 1];
-          window.location.href = isLocal ? target : '/' + target;
+          window.location.href = target;
         };
       } else {
         prevBtn.style.display = 'none';
@@ -30,9 +36,10 @@
 
     if (nextBtn) {
       if (idx < currentSequence.length - 1) {
-        nextBtn.onclick = () => {
+        nextBtn.onclick = (e) => {
+          e.preventDefault();
           const target = currentSequence[idx + 1];
-          window.location.href = isLocal ? target : '/' + target;
+          window.location.href = target;
         };
       } else {
         nextBtn.style.display = 'none';
@@ -41,13 +48,19 @@
 
     if (mobileNextBtn) {
       if (idx < currentSequence.length - 1) {
-        mobileNextBtn.onclick = () => {
+        mobileNextBtn.onclick = (e) => {
+          e.preventDefault();
           const target = currentSequence[idx + 1];
-          window.location.href = isLocal ? target : '/' + target;
+          window.location.href = target;
         };
       } else {
         mobileNextBtn.style.display = 'none';
       }
     }
+  } else {
+    // Si on ne trouve pas la page dans les listes, on cache les flèches par précaution
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (mobileNextBtn) mobileNextBtn.style.display = 'none';
   }
 })();
