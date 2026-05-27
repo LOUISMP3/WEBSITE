@@ -3,27 +3,36 @@
   const nextBtn = document.getElementById('nextButton');
   const mobileNextBtn = document.getElementById('mobilePageDownButton');
   
-  // Extraire proprement le nom du fichier actuel (ex: "forma.html")
+  // Extraire proprement le nom du fichier actuel en minuscules (ex: "forma.html")
   let currentPage = window.location.pathname.split('/').pop();
   if (!currentPage || currentPage === '') {
     currentPage = 'index.html';
   }
-  currentPage = currentPage.split('?')[0].split('#')[0];
+  currentPage = currentPage.split('?')[0].split('#')[0].toLowerCase();
 
   let currentSequence = [];
-  if (typeof projectSequence !== 'undefined' && projectSequence.includes(currentPage)) {
+  
+  // Fonction utilitaire pour chercher de façon insensible à la casse
+  const findSequence = (seq) => {
+    if (typeof seq === 'undefined' || !Array.isArray(seq)) return false;
+    return seq.map(p => p.toLowerCase()).includes(currentPage);
+  };
+
+  if (findSequence(projectSequence)) {
     currentSequence = projectSequence;
-  } else if (typeof shortFilmSequence !== 'undefined' && shortFilmSequence.includes(currentPage)) {
+  } else if (findSequence(shortFilmSequence)) {
     currentSequence = shortFilmSequence;
-  } else if (typeof othersSequence !== 'undefined' && othersSequence.includes(currentPage)) {
+  } else if (findSequence(othersSequence)) {
     currentSequence = othersSequence;
   }
 
-  const idx = currentSequence.indexOf(currentPage);
+  // Obtenir l'index de façon insensible à la casse
+  const idx = currentSequence.map(p => p.toLowerCase()).indexOf(currentPage);
 
   if (idx !== -1) {
     if (prevBtn) {
       if (idx > 0) {
+        prevBtn.style.display = ''; // Restaure l'affichage par défaut si masqué auparavant
         prevBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx - 1];
@@ -36,6 +45,7 @@
 
     if (nextBtn) {
       if (idx < currentSequence.length - 1) {
+        nextBtn.style.display = ''; // Restaure l'affichage par défaut si masqué auparavant
         nextBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx + 1];
@@ -48,6 +58,7 @@
 
     if (mobileNextBtn) {
       if (idx < currentSequence.length - 1) {
+        mobileNextBtn.style.display = ''; // Restaure l'affichage par défaut si masqué auparavant
         mobileNextBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx + 1];
