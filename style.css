@@ -146,9 +146,6 @@ nav {
 .dropdown:hover .dropdown-content a:nth-child(11) {
   animation: slideFadeIn 0.25s ease forwards 1.05s;
 }
-.dropdown:hover .dropdown-content a:nth-child(12) {
-  animation: slideFadeIn 0.25s ease forwards 1.15s;
-}
 
 @keyframes slideFadeIn {
   to {
@@ -178,7 +175,7 @@ nav a {
 }
 
 main {
-  padding: 180px 20px 40px;
+  padding: 140px 20px 40px;
   max-width: 800px;
   margin: 0 auto;
   text-align: left;

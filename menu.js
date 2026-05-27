@@ -67,7 +67,10 @@ document.addEventListener("DOMContentLoaded", function () {
       playButton.style.display = "none";
     });
 
-    video.addEventListener("click", () => {
+    video.addEventListener("click", (e) => {
+      // Do not interfere if we are in fullscreen (native player handles it)
+      if (document.fullscreenElement || document.webkitFullscreenElement) return;
+      
       video.muted = false;
       if (video.paused) {
         video.play();

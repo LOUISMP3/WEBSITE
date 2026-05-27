@@ -200,9 +200,6 @@ display: inline-block;
     .dropdown:hover .dropdown-content a:nth-child(11) {
       animation: slideFadeIn 0.25s ease forwards 1.05s;
     }
-    .dropdown:hover .dropdown-content a:nth-child(12) {
-      animation: slideFadeIn 0.25s ease forwards 1.15s;
-    }
 
     @keyframes slideFadeIn {
       to {
@@ -232,6 +229,7 @@ display: inline-block;
     }
 
     main {
+      font-size: 0.95em;
       padding: 150px 20px 40px;
       max-width: 840px;
       margin: 0 auto;
@@ -882,37 +880,55 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
 
 <header>
   <div class="logo-container">
-    <a href="index.html" class="logo">LOUISMP3</a>
+    <a class="logo" href="index.html">LOUISMP3</a>
     <div class="subtitle">COMPOSITION &amp; SOUND DESIGN</div>
   </div>
   <nav>
     <div class="dropdown">
-      <a class="dropdown-toggle">Sound To Image</a>
+      <a class="dropdown-toggle">Brands</a>
       <div class="dropdown-content">
-        <a href="stillness.html"><strong>Stillness</strong> short film</a>
-        <a href="lots.html"><strong>Line of The Sun</strong> short film</a>
-        <a href="haraka.html"><strong>Haraka</strong> short film</a>
-        <a href="sergio.html"><strong>Sergio Tacchini</strong> FW25 campaign</a>
-        <a href="sean.html"><strong>LA NICHE sean</strong> EP teaser</a>
-        <a href="pink.html"><strong>DIANEV &amp; PinkPantheress</strong> bag campaign</a>
-        <a href="nike.html"><strong>Nike &amp; ourhomecoming</strong> T90 campaign</a>
-        <a href="dianev.html"><strong>THE LOOK DIANEV</strong> campaign</a>
-        <a href="nothing-left.html"><strong>Nothing Left</strong> short film</a>
-        <a href="k3u.html"><strong>K3U</strong> mushtop campaign</a>
-        <a href="j4spar.html"><strong>SAISON DEUX J4SPÄR</strong> show</a>
-        <a href="dance-now.html"><strong>DANCE NOW</strong> promotional video</a>
+        <a href="forma.html">Forma</a>
+        <a href="lacoste.html">Lacoste</a>
+        <a href="NFPM.html">Drôle de Monsieur</a>
+        <a href="sergio.html">Sergio Tacchini</a>
+        <a href="nike.html">Nike</a>
+        <div class="submenu">
+          <a class="submenu-toggle" href="javascript:void(0)">DIANEV</a>
+          <div class="submenu-content">
+            <a href="pink.html">DIANEV x PINKPANTHERESS BAG</a>
+            <a href="dianev.html">THE LOOK DIANEV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Short Films</a>
+      <div class="dropdown-content">
+        <a href="fragments.html"><strong>WE KNEW THE WORLD IN FRAGMENTS OF COLOR</strong></a>
+        <a href="stillness.html"><strong>Stillness</strong></a>
+        <a href="lots.html"><strong>Line of The Sun</strong></a>
+        <a href="haraka.html"><strong>Haraka</strong></a>
+        <a href="nothing-left.html"><strong>Nothing Left</strong></a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a class="dropdown-toggle">Others</a>
+      <div class="dropdown-content">
+        <a href="sean.html"><strong>LA NICHE</strong></a>
+        <a href="j4spar.html"><strong>J4SPÄR</strong></a>
+        <a href="dance-now.html"><strong>DANCE NOW</strong></a>
       </div>
     </div>
     <div class="dropdown">
       <a class="dropdown-toggle">Prod. by Louis</a>
       <div class="dropdown-content">
-        <a href="zeudog.html">Zeudog is back - <strong>sean</strong></a>
-        <a href="les-filles.html">Les Filles - <strong>sean</strong></a>
-        <a href="qui.html">Qui va écouter ça? - <strong>Elyon</strong></a>
-        <a href="fsc.html">Feuille Shit Clope - <strong>sean</strong></a>
-        <a href="intro.html">Introduktion - <strong>Akkai</strong></a>
-        <a href="affa.html">N'na - <strong>Affa</strong></a>
-        <a href="seul.html">Seul - <strong>Sidi</strong></a>
+        <a href="zeudog.html">Zeudog is back</a>
+        <a href="les-filles.html">Les Filles</a>
+        <a href="qui.html">Qui va écouter ça?</a>
+        <a href="fsc.html">Feuille Shit Clope</a>
+        <a href="intro.html">Introduktion</a>
+        <a href="affa.html">N'na</a>
+        <a href="seul.html">Seul</a>
       </div>
     </div>
     <a href="contact.html">Contact</a>
@@ -980,7 +996,15 @@ body.dropdown-mode .dropdown.open .dropdown-toggle {
   <script>
 document.addEventListener('DOMContentLoaded', () => {
   // Liste des pages (sans extension)
-  const pages = ["stillness", "lots", "haraka", "sergio", "sean", "pink", "nike", "dianev", "nothing-left", "k3u", "j4spar", "dance-now"];
+  const pages = [
+    "pink",
+    "nike",
+    "dianev",
+    "nothing-left",
+    "k3u",
+    "j4spar",
+    "dance-now"
+  ];
 
   // Nom de la page actuelle
   let currentPage = window.location.pathname.split("/").pop();
