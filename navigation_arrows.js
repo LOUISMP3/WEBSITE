@@ -3,19 +3,20 @@
   const nextBtn = document.getElementById('nextButton');
   const mobileNextBtn = document.getElementById('mobilePageDownButton');
   
-  // Extraire proprement le nom du fichier actuel en minuscules (ex: "forma.html")
+  // Extraire proprement le nom du fichier actuel en minuscules (ex: "lacoste")
   let currentPage = window.location.pathname.split('/').pop();
   if (!currentPage || currentPage === '') {
     currentPage = 'index.html';
   }
-  currentPage = currentPage.split('?')[0].split('#')[0].toLowerCase();
+  // Nettoyer les paramètres, ancres, forcer en minuscules et retirer l'extension .html pour matcher les URLs propres
+  currentPage = currentPage.split('?')[0].split('#')[0].toLowerCase().replace(/\.html$/, '');
 
   let currentSequence = [];
   
-  // Fonction utilitaire pour chercher de façon insensible à la casse
+  // Fonction utilitaire pour chercher de façon insensible à la casse et sans extension .html
   const findSequence = (seq) => {
     if (typeof seq === 'undefined' || !Array.isArray(seq)) return false;
-    return seq.map(p => p.toLowerCase()).includes(currentPage);
+    return seq.map(p => p.toLowerCase().replace(/\.html$/, '')).includes(currentPage);
   };
 
   if (findSequence(projectSequence)) {
@@ -26,8 +27,8 @@
     currentSequence = othersSequence;
   }
 
-  // Obtenir l'index de façon insensible à la casse
-  const idx = currentSequence.map(p => p.toLowerCase()).indexOf(currentPage);
+  // Obtenir l'index de façon insensible à la casse et sans extension .html
+  const idx = currentSequence.map(p => p.toLowerCase().replace(/\.html$/, '')).indexOf(currentPage);
 
   if (idx !== -1) {
     if (prevBtn) {
