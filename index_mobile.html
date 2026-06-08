@@ -297,31 +297,31 @@ main { padding: 220px 20px 40px; max-width: 700px; margin: 0 auto; text-align: c
 
   <div class="carousel fade-in">
     <div class="carousel-card active">
-      <video playsinline poster="lacoste.png"><source src="lacoste1.mov" type="video/mp4"></video>
+      <video playsinline poster="lacoste.png" preload="metadata"><source src="lacoste1.mov"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card middle">
-      <video playsinline poster="nike3.jpg"><source src="T90 Lagos vF.mov" type="video/mp4"></video>
+      <video playsinline poster="nike3.jpg" preload="metadata"><source src="T90 Lagos vF.mov"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card last">
-      <video playsinline poster="sergio.png"><source src="TACCHINI.mp4" type="video/mp4"></video>
+      <video playsinline poster="sergio.png" preload="metadata"><source src="TACCHINI.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card">
-      <video playsinline poster="BOXE.png"><source src="boxe.mp4" type="video/mp4"></video>
+      <video playsinline poster="boxe.png" preload="metadata"><source src="boxe.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card">
-      <video playsinline poster="hara.jpg"><source src="HARAKA.mp4" type="video/mp4"></video>
+      <video playsinline poster="hara.jpg" preload="metadata"><source src="HARAKA.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card">
-      <video playsinline poster="stillness.png"><source src="stillness.mp4" type="video/mp4"></video>
+      <video playsinline poster="stillness.png" preload="metadata"><source src="stillness.mp4" type="video/mp4"></video>
       <button class="play-button"></button>
     </div>
     <div class="carousel-card">
-      <video playsinline poster="mini.png"><source src="sean.mov" type="video/mp4"></video>
+      <video playsinline poster="mini.png" preload="metadata"><source src="sean.mov"></video>
       <button class="play-button"></button>
     </div>
   </div>
@@ -391,7 +391,12 @@ if (carouselEl) {
   });
 
   carouselEl.addEventListener('touchmove', e => {
-    e.preventDefault();
+    const diffX = Math.abs(e.touches[0].clientX - startX);
+    const diffY = Math.abs(e.touches[0].clientY - startY);
+    // Bloque le défilement seulement si le geste est un glissement (diff > 10px)
+    if (diffX > 10 || diffY > 10) {
+      e.preventDefault();
+    }
   }, {passive:false});
 }
 
