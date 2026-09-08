@@ -33,9 +33,10 @@
       background: #F5F5F5;
       color: var(--text-color);
       letter-spacing: var(--letter-spacing);
-      opacity: 1;
-      transition: opacity 0.6s ease;
+      opacity: 0;
+      transition: opacity 0.8s ease;
     }
+    body.page-loaded { opacity: 1; }
 
     .fade-in {
       opacity: 0;
@@ -154,6 +155,10 @@
       .dropdown:hover .dropdown-content > .submenu:nth-child(4) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.4s; }
       .dropdown:hover .dropdown-content > .submenu:nth-child(5) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.5s; }
       .dropdown:hover .dropdown-content > .submenu:nth-child(6) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.6s; }
+    .dropdown:hover .dropdown-content > .submenu:nth-child(7) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.7s; }
+    .dropdown:hover .dropdown-content > .submenu:nth-child(8) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.8s; }
+    .dropdown:hover .dropdown-content > .submenu:nth-child(9) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.9s; }
+    .dropdown:hover .dropdown-content > .submenu:nth-child(10) .submenu-toggle { animation: slideFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.0s; }
 
       .submenu { position: relative; }
       .submenu-content {
@@ -480,6 +485,8 @@
       <div class="dropdown">
         <a class="dropdown-toggle">Brands</a>
         <div class="dropdown-content">
+          <a href="merrachi.html">Maison Merrachi</a>
+
           <a href="forma.html">Forma</a>
           <a href="lacoste.html">Lacoste</a>
           <a href="NFPM.html">Drôle de Monsieur</a>
@@ -497,11 +504,13 @@
       <div class="dropdown">
         <a class="dropdown-toggle">Short Films</a>
         <div class="dropdown-content">
+          <a href="soldier.html"><strong>Dark Side of the Moon</strong></a>
           <a href="fragments.html"><strong>WE KNEW THE WORLD IN FRAGMENTS OF COLOR</strong></a>
           <a href="stillness.html"><strong>Stillness</strong></a>
           <a href="lots.html"><strong>Line of The Sun</strong></a>
           <a href="haraka.html"><strong>Haraka</strong></a>
-          <a href="nothing-left.html"><strong>Nothing Left</strong></a>        </div>
+          <a href="nothing-left.html"><strong>Nothing Left</strong></a>
+        </div>
       </div>
       <div class="dropdown">
         <a class="dropdown-toggle">Others</a>
@@ -534,19 +543,11 @@
     <main class="desktop-main">
       <div class="stack-carousel fade-in visible">
         <div class="stack-item active">
-          <video class="stack-video" playsinline="" poster="lacoste.png" preload="metadata"><source src="lacoste1.mov"></video>
+          <video class="stack-video" playsinline="" poster="nike3.jpg" preload="metadata"><source src="T90 Lagos vF.mov"></video>
           <button class="play-button" style="display: block;"></button>
         </div>
         <div class="stack-item middle">
-          <video class="stack-video" playsinline="" poster="nike3.jpg" preload="metadata"><source src="T90 Lagos vF.mov"></video>
-          <button class="play-button" style="display: none;"></button>
-        </div>
-        <div class="stack-item last">
-          <video class="stack-video" playsinline="" poster="sergio.png" preload="metadata"><source src="TACCHINI.mp4" type="video/mp4"></video>
-          <button class="play-button" style="display: none;"></button>
-        </div>
-        <div class="stack-item last">
-          <video class="stack-video" playsinline="" poster="boxe.png" preload="metadata"><source src="boxe.mp4" type="video/mp4"></video>
+          <video class="stack-video" playsinline="" poster="lacoste.png" preload="metadata"><source src="lacoste1.mov"></video>
           <button class="play-button" style="display: none;"></button>
         </div>
         <div class="stack-item last">
@@ -554,11 +555,19 @@
           <button class="play-button" style="display: none;"></button>
         </div>
         <div class="stack-item last">
-          <video class="stack-video" playsinline="" poster="stillness.png" preload="metadata"><source src="stillness.mp4" type="video/mp4"></video>
+          <video class="stack-video" playsinline="" poster="merrachi.png" preload="metadata"><source src="maison merrachi.mov" type="video/mp4"></video>
           <button class="play-button" style="display: none;"></button>
         </div>
         <div class="stack-item last">
-          <video class="stack-video" playsinline="" poster="mini.png" preload="metadata"><source src="sean.mov"></video>
+          <video class="stack-video" playsinline="" poster="sergio.png" preload="metadata"><source src="TACCHINI.mp4" type="video/mp4"></video>
+          <button class="play-button" style="display: none;"></button>
+        </div>
+        <div class="stack-item last">
+          <video class="stack-video" playsinline="" poster="forma.png" preload="metadata"><source src="forma.mov" type="video/mp4"></video>
+          <button class="play-button" style="display: none;"></button>
+        </div>
+        <div class="stack-item last">
+          <video class="stack-video" playsinline="" poster="boxe.png" preload="metadata"><source src="boxe.mp4" type="video/mp4"></video>
           <button class="play-button" style="display: none;"></button>
         </div>
       </div>
@@ -577,31 +586,31 @@
 
       <div class="carousel fade-in">
         <div class="carousel-card active">
-          <video playsinline poster="lacoste.png" preload="metadata"><source src="lacoste1.mov"></video>
-          <button class="play-button"></button>
-        </div>
-        <div class="carousel-card middle">
           <video playsinline poster="nike3.jpg" preload="metadata"><source src="T90 Lagos vF.mov"></video>
           <button class="play-button"></button>
         </div>
+        <div class="carousel-card middle">
+          <video playsinline poster="lacoste.png" preload="metadata"><source src="lacoste1.mov"></video>
+          <button class="play-button"></button>
+        </div>
         <div class="carousel-card last">
+          <video playsinline poster="vic.jpeg" preload="metadata"><source src="vic.mov" type="video/mp4"></video>
+          <button class="play-button"></button>
+        </div>
+        <div class="carousel-card">
+          <video playsinline poster="merrachi.png" preload="metadata"><source src="maison merrachi.mov" type="video/mp4"></video>
+          <button class="play-button"></button>
+        </div>
+        <div class="carousel-card">
           <video playsinline poster="sergio.png" preload="metadata"><source src="TACCHINI.mp4" type="video/mp4"></video>
           <button class="play-button"></button>
         </div>
         <div class="carousel-card">
+          <video playsinline poster="forma.png" preload="metadata"><source src="forma.mov" type="video/mp4"></video>
+          <button class="play-button"></button>
+        </div>
+        <div class="carousel-card">
           <video playsinline poster="boxe.png" preload="metadata"><source src="boxe.mp4" type="video/mp4"></video>
-          <button class="play-button"></button>
-        </div>
-        <div class="carousel-card">
-          <video playsinline poster="hara.jpg" preload="metadata"><source src="HARAKA.mp4" type="video/mp4"></video>
-          <button class="play-button"></button>
-        </div>
-        <div class="carousel-card">
-          <video playsinline poster="stillness.png" preload="metadata"><source src="stillness.mp4" type="video/mp4"></video>
-          <button class="play-button"></button>
-        </div>
-        <div class="carousel-card">
-          <video playsinline poster="mini.png" preload="metadata"><source src="sean.mov"></video>
           <button class="play-button"></button>
         </div>
       </div>
@@ -617,6 +626,8 @@
     // Activation initiale globale des éléments à effet d'apparition (fade-in)
     window.addEventListener('load', () => {
       document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      // Fondu général de la page
+      document.body.classList.add('page-loaded');
     });
 
     // ---------------------------------------------------------

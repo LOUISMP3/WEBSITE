@@ -1,4 +1,5 @@
 const projectSequence = [
+  "merrachi.html",
   "forma.html",
   "lacoste.html",
   "NFPM.html",
@@ -9,6 +10,7 @@ const projectSequence = [
 ];
 
 const shortFilmSequence = [
+  "soldier.html",
   "fragments.html",
   "stillness.html",
   "lots.html",
