@@ -30,6 +30,12 @@
       background: #F5F5F5;
       color: var(--text-color);
       letter-spacing: var(--letter-spacing);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    body.is-loaded {
+      opacity: 1;
     }
 
 /* --- Font logo --- */
@@ -409,6 +415,8 @@ nav { display: flex; gap: 30px; align-items: flex-start; }
     #mobilePageDownButton { display: none; }
   </style>
   <link rel="stylesheet" href="header.css?v=2" media="screen and (max-width: 768px)" />
+  <link rel="stylesheet" href="page-fade.css" />
+  <script src="page-fade.js" defer></script>
 </head>
 <body>
 
@@ -509,6 +517,13 @@ nav { display: flex; gap: 30px; align-items: flex-start; }
 <script src="config.js"></script>
 <script src="navigation_arrows.js"></script>
 <script>
+  const showPage = () => document.body.classList.add('is-loaded');
+  if (document.readyState === 'complete') {
+    showPage();
+  } else {
+    window.addEventListener('load', showPage, { once: true });
+  }
+
   const v = document.getElementById('mainVideo');
   const b = document.getElementById('playButton');
   const p = document.getElementById('fakePoster');
