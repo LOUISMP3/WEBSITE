@@ -2,7 +2,9 @@ const projectSequence = [
   "merrachi.html",
   "forma.html",
   "lacoste.html",
+  "lacoste-ea.html",
   "NFPM.html",
+  "fw26.html",
   "sergio.html",
   "nike.html",
   "pink.html",
@@ -20,8 +22,14 @@ const shortFilmSequence = [
 
 const othersSequence = [
   "sean.html",
+  "romsii.html",
+  "dance-now.html",
+  "heat.html",
+  "hieroglyphe.html",
+  "garnier.html",
+  "olali.html",
   "j4spar.html",
-  "dance-now.html"
+  "zeudog.html"
 ];
 
 const prodByLouisSequence = [

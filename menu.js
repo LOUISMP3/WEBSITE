@@ -36,6 +36,25 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
     }
   });
 });
+// ----- SUBMENU TOGGLES (MOBILE) -----
+function initSubmenus() {
+  document.querySelectorAll('.submenu-toggle').forEach(btn => {
+    if (btn._hasSubmenuListener) return;
+    btn._hasSubmenuListener = true;
+    btn.addEventListener('click', function(e) {
+      if (window.innerWidth > 768) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const parent = this.closest('.submenu');
+      if (parent) parent.classList.toggle('open');
+    });
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSubmenus);
+} else {
+  initSubmenus();
+}
 
 // ----- FERMETURE DROPDOWN AU CLIC EXTERNE -----
 document.addEventListener('click', function(e) {
