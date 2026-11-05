@@ -37,7 +37,7 @@
         prevBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx - 1];
-          window.location.href = target;
+          (window.fadeNavigate ? window.fadeNavigate(target) : (window.location.href = target));
         };
       } else {
         prevBtn.style.display = 'none';
@@ -50,7 +50,7 @@
         nextBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx + 1];
-          window.location.href = target;
+          (window.fadeNavigate ? window.fadeNavigate(target) : (window.location.href = target));
         };
       } else {
         nextBtn.style.display = 'none';
@@ -63,7 +63,7 @@
         mobileNextBtn.onclick = (e) => {
           e.preventDefault();
           const target = currentSequence[idx + 1];
-          window.location.href = target;
+          (window.fadeNavigate ? window.fadeNavigate(target) : (window.location.href = target));
         };
       } else {
         mobileNextBtn.style.display = 'none';

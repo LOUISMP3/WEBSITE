@@ -698,11 +698,7 @@
   <!-- ========================================================================= -->
   <script>
     // Activation initiale globale des éléments à effet d'apparition (fade-in)
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-      // Fondu général de la page
-      document.body.classList.add('page-loaded');
-    });
+    // Le fondu d'apparition de la page est géré par page-fade.js (attend polices, images et vignettes vidéo).
 
     // ---------------------------------------------------------
     // SCRIPT DESKTOP (Stack 3D Carousel)

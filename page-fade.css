@@ -7,6 +7,11 @@ body.page-loaded {
   opacity: 1;
 }
 
+body.page-leaving {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -16,4 +21,10 @@ body.page-loaded {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body, body.page-loaded, body.page-leaving, .fade-in {
+    transition: none;
+  }
 }
