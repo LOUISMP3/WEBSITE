@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>Music Library - LOUISMP3</title>
+  <link rel="stylesheet" href="page-fade.css" />
+  <script src="page-fade.js" defer></script>
+  <style>
+    @font-face {
+      font-family: 'MillingTrial-Triplex25mm';
+      src: url('fonts/MillingTrial-Triplex25mm.woff2') format('woff2'), url('fonts/MillingTrial-Triplex25mm.otf') format('opentype');
+      font-weight: normal; font-style: normal;
+    }
+    :root {
+      --main-color: #121027;
+      --text-color: #000;
+      --bg: #F5F5F5;
+      --muted: #77767d;
+      --line: #dcdcdc;
+      --letter-spacing: -0.03em;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text-color); letter-spacing: var(--letter-spacing); }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 10px 30px; background: var(--bg);
+    }
+    .logo-container { display: flex; flex-direction: column; line-height: 1; }
+    .logo {
+      font-family: 'MillingTrial-Triplex25mm', Arial, sans-serif; font-size: 4em;
+      margin: -5px 0 3px -16px; color: var(--main-color); transform: scaleX(0.9);
+      text-decoration: none; display: inline-block; letter-spacing: var(--letter-spacing);
+    }
+    .logo:hover { opacity: 0.8; }
+    .subtitle { font-size: 0.5em; font-weight: 300; text-transform: uppercase; margin-left: 2px; }
+    header nav { display: flex; gap: 30px; }
+    header nav a { color: var(--text-color); text-decoration: none; text-transform: uppercase; }
+    header nav a:hover { opacity: 0.6; }
+
+    main { max-width: 980px; margin: 0 auto; padding: 150px 30px 140px; }
+    .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 40px; align-items: end; padding-bottom: 28px; border-bottom: 1px solid var(--text-color); }
+    .intro h1 { font-size: 3.2em; line-height: 0.95; margin: 0; text-transform: uppercase; letter-spacing: -0.05em; }
+    .intro p { margin: 14px 0 0; max-width: 52ch; line-height: 1.45; font-size: 0.95em; }
+    .intro .meta { text-align: right; font-size: 0.8em; text-transform: uppercase; line-height: 1.6; color: var(--muted); }
+    .intro .meta b { color: var(--text-color); font-weight: bold; }
+
+    .jump { display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 22px 0 0; font-size: 0.85em; text-transform: uppercase; }
+    .jump a { color: var(--text-color); text-decoration: none; }
+    .jump a span { color: var(--muted); }
+    .jump a:hover { opacity: 0.6; }
+
+    section { margin-top: 70px; scroll-margin-top: 130px; }
+    .shead { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 18px; align-items: baseline; }
+    .shead .num { font-size: 0.85em; color: var(--muted); }
+    .shead h2 { margin: 0; font-size: 1.9em; text-transform: uppercase; letter-spacing: -0.04em; }
+    .shead .count { font-size: 0.8em; text-transform: uppercase; color: var(--muted); }
+    .sdesc { margin: 8px 0 18px; color: var(--muted); font-size: 0.92em; max-width: 60ch; line-height: 1.45; }
+    .sub { font-size: 0.72em; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 26px 0 4px; }
+
+    ol.tracks { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+    .track { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto auto; gap: 4px 16px; align-items: center; padding: 11px 4px; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .track:hover { background: #ececec; }
+    .track.playing { background: var(--text-color); color: var(--bg); }
+    .track.playing .tag, .track.playing .dur, .track.playing .req { color: var(--bg); border-color: var(--bg); }
+    .pbtn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; padding: 0; }
+    .pbtn svg { width: 10px; height: 10px; fill: currentColor; }
+    .name { min-width: 0; font-weight: bold; text-transform: uppercase; overflow-wrap: anywhere; }
+    .tags { display: inline-flex; gap: 6px; margin-left: 10px; vertical-align: 2px; }
+    .tag { font-size: 0.62em; font-weight: normal; text-transform: uppercase; border: 1px solid var(--muted); color: var(--muted); border-radius: 2px; padding: 1px 5px; letter-spacing: 0.02em; }
+    .dur { font-size: 0.85em; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .req { font-size: 0.72em; text-transform: uppercase; color: var(--text-color); text-decoration: none; border-bottom: 1px solid currentColor; white-space: nowrap; }
+    .req:hover { opacity: 0.6; }
+
+    .terms { margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--text-color); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; font-size: 0.85em; line-height: 1.5; }
+    .terms h3 { margin: 0 0 6px; font-size: 1em; text-transform: uppercase; }
+    .terms p { margin: 0; color: #333; }
+    .terms a { color: var(--text-color); }
+
+    .player { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000; background: var(--text-color); color: var(--bg); padding: 12px 30px calc(12px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: auto minmax(0, 220px) minmax(0, 1fr) auto; gap: 18px; align-items: center; transform: translateY(110%); transition: transform 0.4s ease; }
+    .player.on { transform: none; }
+    .player .pbtn { width: 34px; height: 34px; }
+    .player .now { font-weight: bold; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .player .bar { height: 3px; background: rgba(245, 245, 245, 0.25); cursor: pointer; position: relative; }
+    .player .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bg); width: 0; }
+    .player .time { font-size: 0.8em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    button:focus-visible, a:focus-visible, .track:focus-visible { outline: 2px solid #5a5aff; outline-offset: 2px; }
+
+    @media (max-width: 768px) {
+      header { padding: 10px 16px; }
+      .logo { font-size: 2.55em; }
+      .subtitle { font-size: 0.42em; }
+      main { padding: 120px 16px 140px; }
+      .intro { grid-template-columns: 1fr; }
+      .intro h1 { font-size: 2.3em; }
+      .intro .meta { text-align: left; }
+      .track { grid-template-columns: 30px minmax(0, 1fr) auto; }
+      .track .req { grid-column: 2 / -1; justify-self: start; }
+      .tags { display: flex; margin: 4px 0 0; }
+      .terms { grid-template-columns: 1fr; }
+      .player { grid-template-columns: auto minmax(0, 1fr) auto; padding-left: 16px; padding-right: 16px; }
+      .player .bar { grid-column: 1 / -1; order: 5; }
+    }
+    @media (prefers-reduced-motion: reduce) { .player { transition: none; } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo-container">
+    <a class="logo" href="index.html">LOUISMP3</a>
+    <div class="subtitle">ORIGINAL SCORE &amp; SOUND DESIGN</div>
+  </div>
+  <nav><a href="index.html">Work</a><a href="contact.html">Contact</a></nav>
+</header>
+
+<main>
+  <div class="intro">
+    <div>
+      <h1>Music<br>Library</h1>
+      <p>Original music by Louis Le Mahec, available for licensing in advertising, brand films and series. Listen below. WAV files, stems and custom edits on request.</p>
+    </div>
+    <div class="meta" id="meta"></div>
+  </div>
+  <nav class="jump" id="jump" aria-label="Sections"></nav>
+  <div id="sections"></div>
+
+  <div class="terms">
+    <div><h3>Files</h3><p>Previews are MP3. Full-quality WAV (24-bit / 48 kHz) and stems are sent on request.</p></div>
+    <div><h3>Edits</h3><p>Every track can be cut to your format (15s, 30s, 60s) or adapted to picture.</p></div>
+    <div><h3>Licensing</h3><p>Terms depend on media, territory and duration. Write to <a href="mailto:louislouis.info@gmail.com">louislouis.info@gmail.com</a>.</p></div>
+  </div>
+</main>
+
+<div class="player" id="player" aria-live="polite">
+  <button class="pbtn" id="pp" type="button" aria-label="Pause"></button>
+  <div class="now" id="now"></div>
+  <div class="bar" id="bar"><i id="prog"></i></div>
+  <div class="time" id="time">0:00</div>
+</div>
+<audio id="au" preload="none"></audio>
+
+<script>
+const TRACKS = [{"title": "DISCOVERY", "slug": "discovery", "section": "01", "dur": "0:21", "energy": "Posé", "voice": ""}, {"title": "BLOOM", "slug": "bloom", "section": "01", "dur": "0:22", "energy": "Posé", "voice": ""}, {"title": "FLARE", "slug": "flare", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "FLASH", "slug": "flash", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "MYSTIC", "slug": "mystic", "section": "01", "dur": "0:24", "energy": "Posé", "voice": ""}, {"title": "SPARK", "slug": "spark", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "HEAT", "slug": "heat", "section": "01", "dur": "0:27", "energy": "Rythmé", "voice": ""}, {"title": "LAST CALL", "slug": "last-call", "section": "01", "dur": "0:28", "energy": "Rythmé", "voice": ""}, {"title": "SOLACE", "slug": "solace", "section": "01", "dur": "0:30", "energy": "Posé", "voice": ""}, {"title": "PULSE", "slug": "pulse", "section": "01", "dur": "0:32", "energy": "Rythmé", "voice": ""}, {"title": "DRIFT", "slug": "drift", "section": "01", "dur": "0:36", "energy": "Posé", "voice": ""}, {"title": "DREAD", "slug": "dread", "section": "01", "dur": "0:39", "energy": "Posé", "voice": ""}, {"title": "VELOCITY", "slug": "velocity", "section": "01", "dur": "0:39", "energy": "Rythmé", "voice": ""}, {"title": "CONTOUR", "slug": "contour", "section": "02", "dur": "0:47", "energy": "Posé", "voice": ""}, {"title": "BLUE HOUR", "slug": "blue-hour", "section": "02", "dur": "0:50", "energy": "Posé", "voice": ""}, {"title": "STRIDE", "slug": "stride", "section": "02", "dur": "0:51", "energy": "Posé", "voice": ""}, {"title": "UNION", "slug": "union", "section": "02", "dur": "0:52", "energy": "Rythmé", "voice": ""}, {"title": "OPHELIA", "slug": "ophelia", "section": "02", "dur": "0:53", "energy": "Posé", "voice": ""}, {"title": "FLOAT", "slug": "float", "section": "02", "dur": "0:55", "energy": "Posé", "voice": ""}, {"title": "OMEN", "slug": "omen", "section": "02", "dur": "0:56", "energy": "Posé", "voice": ""}, {"title": "FORM", "slug": "form", "section": "02", "dur": "0:58", "energy": "Posé", "voice": ""}, {"title": "HAZE", "slug": "haze", "section": "02", "dur": "0:58", "energy": "Rythmé", "voice": ""}, {"title": "LOVE", "slug": "love", "section": "02", "dur": "0:59", "energy": "Posé", "voice": ""}, {"title": "WAITING", "slug": "waiting", "section": "02", "dur": "1:00", "energy": "Posé", "voice": ""}, {"title": "CATHEDRAL", "slug": "cathedral", "section": "02", "dur": "1:01", "energy": "Posé", "voice": ""}, {"title": "FADING", "slug": "fading", "section": "02", "dur": "1:01", "energy": "Posé", "voice": ""}, {"title": "PURSUIT", "slug": "pursuit", "section": "02", "dur": "1:04", "energy": "Rythmé", "voice": ""}, {"title": "WONDER", "slug": "wonder", "section": "02", "dur": "1:08", "energy": "Posé", "voice": ""}, {"title": "TENDER", "slug": "tender", "section": "02", "dur": "1:09", "energy": "Posé", "voice": ""}, {"title": "WAVES", "slug": "waves", "section": "02", "dur": "1:12", "energy": "Posé", "voice": ""}, {"title": "TIME", "slug": "time", "section": "02", "dur": "1:14", "energy": "Posé", "voice": ""}, {"title": "AFTERGLOW", "slug": "afterglow", "section": "02", "dur": "1:19", "energy": "Posé", "voice": ""}, {"title": "PROCESSION", "slug": "procession", "section": "02", "dur": "1:20", "energy": "Rythmé", "voice": ""}, {"title": "QUIET ROOM", "slug": "quiet-room", "section": "02", "dur": "1:20", "energy": "Posé", "voice": ""}, {"title": "SHADE", "slug": "shade", "section": "02", "dur": "1:22", "energy": "Posé", "voice": ""}, {"title": "LAMENT", "slug": "lament", "section": "02", "dur": "1:27", "energy": "Posé", "voice": ""}, {"title": "UNDERCURRENT", "slug": "undercurrent", "section": "02", "dur": "1:35", "energy": "Rythmé", "voice": ""}, {"title": "LULLABY", "slug": "lullaby", "section": "02", "dur": "1:44", "energy": "Posé", "voice": ""}, {"title": "REMINISCENCE", "slug": "reminiscence", "section": "02", "dur": "1:47", "energy": "Posé", "voice": ""}, {"title": "STATE OF CARNIVAL", "slug": "state-of-carnival", "section": "02", "dur": "1:52", "energy": "Rythmé", "voice": ""}, {"title": "HORIZON", "slug": "horizon", "section": "02", "dur": "1:56", "energy": "Posé", "voice": ""}, {"title": "ALONE", "slug": "alone", "section": "02", "dur": "2:06", "energy": "Posé", "voice": ""}, {"title": "RUNWAY", "slug": "runway", "section": "02", "dur": "2:22", "energy": "Rythmé", "voice": ""}, {"title": "MIRAGE", "slug": "mirage", "section": "02", "dur": "2:30", "energy": "Rythmé", "voice": ""}, {"title": "VOYAGE", "slug": "voyage", "section": "03", "dur": "2:34", "energy": "Posé", "voice": ""}, {"title": "HOW I'M FEELING", "slug": "how-im-feeling", "section": "03", "dur": "2:49", "energy": "Posé", "voice": "Oui"}, {"title": "I'M F*CKED", "slug": "im-f-cked", "section": "03", "dur": "2:55", "energy": "Posé", "voice": "Oui"}, {"title": "NOSTALGIA", "slug": "nostalgia", "section": "03", "dur": "3:05", "energy": "Posé", "voice": ""}, {"title": "SAD", "slug": "sad", "section": "03", "dur": "3:37", "energy": "Posé", "voice": ""}, {"title": "CIGARETTES", "slug": "cigarettes", "section": "03", "dur": "3:45", "energy": "Posé", "voice": "Oui"}, {"title": "SEARCHING FOR ME", "slug": "searching-for-me", "section": "03", "dur": "4:21", "energy": "Posé", "voice": "Oui"}, {"title": "I THOUGHT", "slug": "i-thought", "section": "03", "dur": "4:26", "energy": "Posé", "voice": "Oui"}];
+const FAVS = {}; // titres mis en avant, par section
+const SECTIONS = [
+  ['01', 'Short Form', '15–45s', 'Short cues for product spots, social cuts and teasers. Quick, punchy, built to land a brand in seconds.'],
+  ['02', 'Brand Films', '45s–2:30', 'Narrative pieces with a beginning and an end, for brand films and longer campaigns.'],
+  ['03', 'Sync', 'Songs & Full Tracks', 'Complete tracks and songs with vocals, for series, films and campaigns.']
+];
+const EMAIL = 'louislouis.info@gmail.com';
+const PLAY = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l7 4-7 4z"/></svg>';
+const PAUSE = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1h2v8H2zM6 1h2v8H6z"/></svg>';
+const au = document.getElementById('au');
+let order = [], cur = -1;
+
+const secs = d => { const [m, s] = d.split(':').map(Number); return m * 60 + s; };
+const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+
+(function build() {
+  const total = TRACKS.reduce((a, t) => a + secs(t.dur), 0);
+  document.getElementById('meta').innerHTML = '<b>' + TRACKS.length + ' tracks</b><br>' + Math.round(total / 60) + ' minutes of music<br>Private link · not for distribution';
+  const jump = document.getElementById('jump'), box = document.getElementById('sections');
+  for (const [n, name, range, desc] of SECTIONS) {
+    const list = TRACKS.filter(t => t.section === n);
+    const a = document.createElement('a'); a.href = '#s' + n; a.innerHTML = n + ' ' + name + ' <span>' + list.length + '</span>'; jump.append(a);
+    const sec = document.createElement('section'); sec.id = 's' + n;
+    sec.innerHTML = '<div class="shead"><span class="num">' + n + '</span><h2>' + name + ' <span style="font-weight:normal;color:var(--muted);text-transform:none">' + range + '</span></h2><span class="count">' + list.length + ' tracks</span></div><p class="sdesc">' + desc + '</p>';
+    const favs = (FAVS[n] || []).map(t => list.find(x => x.title === t)).filter(Boolean);
+    const rest = list.filter(t => !favs.includes(t));
+    if (favs.length) { addList(sec, 'Selected', favs); addList(sec, 'More', rest); }
+    else addList(sec, '', list);
+    box.append(sec);
+  }
+})();
+
+function addList(sec, label, list) {
+  if (!list.length) return;
+  if (label) { const s = document.createElement('div'); s.className = 'sub'; s.textContent = label; sec.append(s); }
+  const ol = document.createElement('ol'); ol.className = 'tracks';
+  for (const t of list) {
+    const i = order.length; order.push(t);
+    const li = document.createElement('li'); li.className = 'track'; li.tabIndex = 0; li.dataset.i = i;
+    const b = document.createElement('button'); b.className = 'pbtn'; b.type = 'button'; b.innerHTML = PLAY; b.setAttribute('aria-label', 'Play ' + t.title);
+    const nm = document.createElement('div'); nm.className = 'name'; nm.textContent = t.title;
+    const tags = document.createElement('span'); tags.className = 'tags';
+    if (t.energy === 'Rythmé') tags.innerHTML += '<span class="tag">Upbeat</span>';
+    if (t.voice) tags.innerHTML += '<span class="tag">Vocals</span>';
+    if (tags.innerHTML) nm.append(tags);
+    const d = document.createElement('span'); d.className = 'dur'; d.textContent = t.dur;
+    const r = document.createElement('a'); r.className = 'req'; r.textContent = 'Request WAV';
+    r.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Music library: ' + t.title);
+    r.addEventListener('click', e => e.stopPropagation());
+    li.append(b, nm, d, r);
+    li.addEventListener('click', () => toggle(i));
+    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(i); } });
+    ol.append(li);
+  }
+  sec.append(ol);
+}
+
+function toggle(i) {
+  if (i === cur) { au.paused ? au.play() : au.pause(); return; }
+  cur = i; const t = order[i];
+  au.src = 'library-audio/' + t.slug + '.mp3'; au.play().catch(() => {});
+  document.getElementById('now').textContent = t.title;
+  document.getElementById('player').classList.add('on');
+  paint();
+}
+function paint() {
+  document.querySelectorAll('.track').forEach(li => {
+    const on = Number(li.dataset.i) === cur;
+    li.classList.toggle('playing', on);
+    li.querySelector('.pbtn').innerHTML = on && !au.paused ? PAUSE : PLAY;
+  });
+  document.getElementById('pp').innerHTML = au.paused ? PLAY : PAUSE;
+  document.getElementById('pp').setAttribute('aria-label', au.paused ? 'Play' : 'Pause');
+}
+au.addEventListener('play', paint); au.addEventListener('pause', paint);
+au.addEventListener('ended', () => { if (cur + 1 < order.length) toggle(cur + 1); });
+au.addEventListener('timeupdate', () => {
+  document.getElementById('time').textContent = fmt(au.currentTime) + ' / ' + (au.duration ? fmt(au.duration) : order[cur].dur);
+  if (au.duration) document.getElementById('prog').style.width = (100 * au.currentTime / au.duration) + '%';
+});
+document.getElementById('pp').addEventListener('click', () => au.paused ? au.play() : au.pause());
+document.getElementById('bar').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  if (au.duration) au.currentTime = au.duration * (e.clientX - r.left) / r.width;
+});
+</script>
+</body>
+</html>
