@@ -3,6 +3,7 @@ const projectSequence = [
   "forma.html",
   "lacoste.html",
   "lacoste-ea.html",
+  "the-repetition.html",
   "NFPM.html",
   "fw26.html",
   "sergio.html",
