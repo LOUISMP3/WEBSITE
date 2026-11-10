@@ -44,7 +44,7 @@
     main { max-width: 980px; margin: 0 auto; padding: 150px 30px 140px; }
     .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 40px; align-items: end; padding-bottom: 28px; border-bottom: 1px solid var(--text-color); }
     .intro h1 { font-size: 3.2em; line-height: 0.95; margin: 0; text-transform: uppercase; letter-spacing: -0.05em; }
-    .intro p { margin: 14px 0 0; max-width: 52ch; line-height: 1.45; font-size: 0.95em; }
+    .intro p { margin: 14px 0 0; max-width: 82ch; line-height: 1.45; font-size: 0.95em; }
     .intro .meta { text-align: right; font-size: 0.8em; text-transform: uppercase; line-height: 1.6; color: var(--muted); }
     .intro .meta b { color: var(--text-color); font-weight: bold; }
 
@@ -90,8 +90,8 @@
     .pbtn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; padding: 0; }
     .pbtn svg { width: 10px; height: 10px; fill: currentColor; }
     .name { min-width: 0; font-weight: bold; text-transform: uppercase; overflow-wrap: anywhere; }
-    .tags { display: inline-flex; gap: 6px; margin-left: 10px; vertical-align: 2px; }
-    .tag { font-size: 0.62em; font-weight: normal; text-transform: uppercase; border: 1px solid var(--muted); color: var(--muted); border-radius: 2px; padding: 1px 5px; letter-spacing: 0.02em; }
+    .tags { display: inline-flex; gap: 4px; margin-left: 10px; vertical-align: 2px; }
+    .tag { font-size: 0.52em; font-weight: normal; text-transform: uppercase; border: 1px solid #bdbdbd; color: var(--muted); border-radius: 2px; padding: 0 4px; letter-spacing: 0.02em; }
     .dur { font-size: 0.85em; color: var(--muted); font-variant-numeric: tabular-nums; }
     .req { font-size: 0.72em; text-transform: uppercase; color: var(--text-color); text-decoration: none; border-bottom: 1px solid currentColor; white-space: nowrap; }
     .req:hover { opacity: 0.6; }
@@ -278,7 +278,8 @@ function addList(sec, label, list) {
     const nm = document.createElement('div'); nm.className = 'name'; nm.textContent = t.title;
     if ((t.tags || []).length) {
       const tags = document.createElement('span'); tags.className = 'tags';
-      for (const x of t.tags) { const e = document.createElement('span'); e.className = 'tag'; e.textContent = x; tags.append(e); }
+      const shown = t.tags.filter(x => x !== 'Upbeat' && x !== 'Vocals').slice(0, 2).concat(t.tags.filter(x => x === 'Upbeat' || x === 'Vocals'));
+      for (const x of shown) { const e = document.createElement('span'); e.className = 'tag'; e.textContent = x; tags.append(e); }
       nm.append(tags);
     }
     const d = document.createElement('span'); d.className = 'dur'; d.textContent = t.dur;
