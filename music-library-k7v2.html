@@ -53,6 +53,17 @@
     .jump a span { color: var(--muted); }
     .jump a:hover { opacity: 0.6; }
 
+    .filters { margin-top: 26px; display: grid; gap: 10px; }
+    .fgroup { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 14px; align-items: baseline; }
+    .fgroup .lbl { font-size: 0.72em; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { font: inherit; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.02em; background: none; color: var(--text-color); border: 1px solid var(--text-color); border-radius: 2px; padding: 4px 8px; cursor: pointer; }
+    .chip span { color: var(--muted); margin-left: 4px; }
+    .chip[aria-pressed="true"] { background: var(--text-color); color: var(--bg); }
+    .chip[aria-pressed="true"] span { color: var(--bg); opacity: 0.6; }
+    .fstate { font-size: 0.8em; text-transform: uppercase; color: var(--muted); display: flex; gap: 14px; align-items: baseline; min-height: 1.2em; }
+    .fstate button { font: inherit; background: none; border: 0; padding: 0; color: var(--text-color); text-decoration: underline; cursor: pointer; text-transform: uppercase; }
+    .empty { padding: 30px 0; color: var(--muted); text-transform: uppercase; font-size: 0.85em; }
     section { margin-top: 70px; scroll-margin-top: 130px; }
     .shead { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 18px; align-items: baseline; }
     .shead .num { font-size: 0.85em; color: var(--muted); }
@@ -99,7 +110,8 @@
       .intro .meta { text-align: left; }
       .track { grid-template-columns: 30px minmax(0, 1fr) auto; }
       .track .req { grid-column: 2 / -1; justify-self: start; }
-      .tags { display: flex; margin: 4px 0 0; }
+      .tags { display: flex; flex-wrap: wrap; margin: 4px 0 0; }
+      .fgroup { grid-template-columns: 1fr; gap: 4px; }
       .terms { grid-template-columns: 1fr; }
       .player { grid-template-columns: auto minmax(0, 1fr) auto; padding-left: 16px; padding-right: 16px; }
       .player .bar { grid-column: 1 / -1; order: 5; }
@@ -125,6 +137,7 @@
     <div class="meta" id="meta"></div>
   </div>
   <nav class="jump" id="jump" aria-label="Sections"></nav>
+  <div class="filters" id="filters" aria-label="Filter by tag"></div>
   <div id="sections"></div>
 
   <div class="terms">
@@ -143,7 +156,7 @@
 <audio id="au" preload="none"></audio>
 
 <script>
-const TRACKS = [{"title": "DISCOVERY", "slug": "discovery", "section": "01", "dur": "0:21", "energy": "Posé", "voice": ""}, {"title": "BLOOM", "slug": "bloom", "section": "01", "dur": "0:22", "energy": "Posé", "voice": ""}, {"title": "FLARE", "slug": "flare", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "FLASH", "slug": "flash", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "MYSTIC", "slug": "mystic", "section": "01", "dur": "0:24", "energy": "Posé", "voice": ""}, {"title": "SPARK", "slug": "spark", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": ""}, {"title": "HEAT", "slug": "heat", "section": "01", "dur": "0:27", "energy": "Rythmé", "voice": ""}, {"title": "LAST CALL", "slug": "last-call", "section": "01", "dur": "0:28", "energy": "Rythmé", "voice": ""}, {"title": "SOLACE", "slug": "solace", "section": "01", "dur": "0:30", "energy": "Posé", "voice": ""}, {"title": "PULSE", "slug": "pulse", "section": "01", "dur": "0:32", "energy": "Rythmé", "voice": ""}, {"title": "DRIFT", "slug": "drift", "section": "01", "dur": "0:36", "energy": "Posé", "voice": ""}, {"title": "DREAD", "slug": "dread", "section": "01", "dur": "0:39", "energy": "Posé", "voice": ""}, {"title": "VELOCITY", "slug": "velocity", "section": "01", "dur": "0:39", "energy": "Rythmé", "voice": ""}, {"title": "CONTOUR", "slug": "contour", "section": "02", "dur": "0:47", "energy": "Posé", "voice": ""}, {"title": "BLUE HOUR", "slug": "blue-hour", "section": "02", "dur": "0:50", "energy": "Posé", "voice": ""}, {"title": "STRIDE", "slug": "stride", "section": "02", "dur": "0:51", "energy": "Posé", "voice": ""}, {"title": "UNION", "slug": "union", "section": "02", "dur": "0:52", "energy": "Rythmé", "voice": ""}, {"title": "OPHELIA", "slug": "ophelia", "section": "02", "dur": "0:53", "energy": "Posé", "voice": ""}, {"title": "FLOAT", "slug": "float", "section": "02", "dur": "0:55", "energy": "Posé", "voice": ""}, {"title": "OMEN", "slug": "omen", "section": "02", "dur": "0:56", "energy": "Posé", "voice": ""}, {"title": "FORM", "slug": "form", "section": "02", "dur": "0:58", "energy": "Posé", "voice": ""}, {"title": "HAZE", "slug": "haze", "section": "02", "dur": "0:58", "energy": "Rythmé", "voice": ""}, {"title": "LOVE", "slug": "love", "section": "02", "dur": "0:59", "energy": "Posé", "voice": ""}, {"title": "WAITING", "slug": "waiting", "section": "02", "dur": "1:00", "energy": "Posé", "voice": ""}, {"title": "CATHEDRAL", "slug": "cathedral", "section": "02", "dur": "1:01", "energy": "Posé", "voice": ""}, {"title": "FADING", "slug": "fading", "section": "02", "dur": "1:01", "energy": "Posé", "voice": ""}, {"title": "PURSUIT", "slug": "pursuit", "section": "02", "dur": "1:04", "energy": "Rythmé", "voice": ""}, {"title": "WONDER", "slug": "wonder", "section": "02", "dur": "1:08", "energy": "Posé", "voice": ""}, {"title": "TENDER", "slug": "tender", "section": "02", "dur": "1:09", "energy": "Posé", "voice": ""}, {"title": "WAVES", "slug": "waves", "section": "02", "dur": "1:12", "energy": "Posé", "voice": ""}, {"title": "TIME", "slug": "time", "section": "02", "dur": "1:14", "energy": "Posé", "voice": ""}, {"title": "AFTERGLOW", "slug": "afterglow", "section": "02", "dur": "1:19", "energy": "Posé", "voice": ""}, {"title": "PROCESSION", "slug": "procession", "section": "02", "dur": "1:20", "energy": "Rythmé", "voice": ""}, {"title": "QUIET ROOM", "slug": "quiet-room", "section": "02", "dur": "1:20", "energy": "Posé", "voice": ""}, {"title": "SHADE", "slug": "shade", "section": "02", "dur": "1:22", "energy": "Posé", "voice": ""}, {"title": "LAMENT", "slug": "lament", "section": "02", "dur": "1:27", "energy": "Posé", "voice": ""}, {"title": "UNDERCURRENT", "slug": "undercurrent", "section": "02", "dur": "1:35", "energy": "Rythmé", "voice": ""}, {"title": "LULLABY", "slug": "lullaby", "section": "02", "dur": "1:44", "energy": "Posé", "voice": ""}, {"title": "REMINISCENCE", "slug": "reminiscence", "section": "02", "dur": "1:47", "energy": "Posé", "voice": ""}, {"title": "STATE OF CARNIVAL", "slug": "state-of-carnival", "section": "02", "dur": "1:52", "energy": "Rythmé", "voice": ""}, {"title": "HORIZON", "slug": "horizon", "section": "02", "dur": "1:56", "energy": "Posé", "voice": ""}, {"title": "ALONE", "slug": "alone", "section": "02", "dur": "2:06", "energy": "Posé", "voice": ""}, {"title": "RUNWAY", "slug": "runway", "section": "02", "dur": "2:22", "energy": "Rythmé", "voice": ""}, {"title": "MIRAGE", "slug": "mirage", "section": "02", "dur": "2:30", "energy": "Rythmé", "voice": ""}, {"title": "VOYAGE", "slug": "voyage", "section": "03", "dur": "2:34", "energy": "Posé", "voice": ""}, {"title": "HOW I'M FEELING", "slug": "how-im-feeling", "section": "03", "dur": "2:49", "energy": "Posé", "voice": "Oui"}, {"title": "I'M F*CKED", "slug": "im-f-cked", "section": "03", "dur": "2:55", "energy": "Posé", "voice": "Oui"}, {"title": "NOSTALGIA", "slug": "nostalgia", "section": "03", "dur": "3:05", "energy": "Posé", "voice": ""}, {"title": "SAD", "slug": "sad", "section": "03", "dur": "3:37", "energy": "Posé", "voice": ""}, {"title": "CIGARETTES", "slug": "cigarettes", "section": "03", "dur": "3:45", "energy": "Posé", "voice": "Oui"}, {"title": "SEARCHING FOR ME", "slug": "searching-for-me", "section": "03", "dur": "4:21", "energy": "Posé", "voice": "Oui"}, {"title": "I THOUGHT", "slug": "i-thought", "section": "03", "dur": "4:26", "energy": "Posé", "voice": "Oui"}];
+const TRACKS = [{"title": "BLOOM", "slug": "bloom", "section": "01", "dur": "0:22", "energy": "Posé", "voice": "", "tags": ["Dreamy", "Synth"]}, {"title": "DISCOVERY", "slug": "discovery", "section": "01", "dur": "0:21", "energy": "Posé", "voice": "", "tags": ["Calm", "Synth", "Strings"]}, {"title": "DREAD", "slug": "dread", "section": "01", "dur": "0:39", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Guitar"]}, {"title": "DRIFT", "slug": "drift", "section": "01", "dur": "0:36", "energy": "Posé", "voice": "", "tags": ["Dark", "Guitar", "Bells"]}, {"title": "FLARE", "slug": "flare", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Upbeat"]}, {"title": "FLASH", "slug": "flash", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Synth", "Upbeat"]}, {"title": "HEAT", "slug": "heat", "section": "01", "dur": "0:27", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Woodwinds", "Upbeat"]}, {"title": "LAST CALL", "slug": "last-call", "section": "01", "dur": "0:28", "energy": "Rythmé", "voice": "", "tags": ["Uplifting", "Woodwinds", "Guitar", "Upbeat"]}, {"title": "MYSTIC", "slug": "mystic", "section": "01", "dur": "0:24", "energy": "Posé", "voice": "", "tags": ["Dark", "Guitar", "Strings"]}, {"title": "PULSE", "slug": "pulse", "section": "01", "dur": "0:32", "energy": "Rythmé", "voice": "", "tags": ["Uplifting", "Percussion", "Upbeat"]}, {"title": "SOLACE", "slug": "solace", "section": "01", "dur": "0:30", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Woodwinds"]}, {"title": "SPARK", "slug": "spark", "section": "01", "dur": "0:24", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Upbeat"]}, {"title": "VELOCITY", "slug": "velocity", "section": "01", "dur": "0:39", "energy": "Rythmé", "voice": "", "tags": ["Uplifting", "Percussion", "Upbeat"]}, {"title": "AFTERGLOW", "slug": "afterglow", "section": "02", "dur": "1:19", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Choir"]}, {"title": "ALONE", "slug": "alone", "section": "02", "dur": "2:06", "energy": "Posé", "voice": "", "tags": ["Uplifting", "Synth", "Woodwinds"]}, {"title": "BLUE HOUR", "slug": "blue-hour", "section": "02", "dur": "0:50", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Woodwinds"]}, {"title": "CATHEDRAL", "slug": "cathedral", "section": "02", "dur": "1:01", "energy": "Posé", "voice": "", "tags": ["Dark", "Strings", "Guitar"]}, {"title": "CONTOUR", "slug": "contour", "section": "02", "dur": "0:47", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Choir"]}, {"title": "FADING", "slug": "fading", "section": "02", "dur": "1:01", "energy": "Posé", "voice": "", "tags": ["Dark", "Guitar", "Strings"]}, {"title": "FLOAT", "slug": "float", "section": "02", "dur": "0:55", "energy": "Posé", "voice": "", "tags": ["Dreamy", "Synth", "Guitar"]}, {"title": "FORM", "slug": "form", "section": "02", "dur": "0:58", "energy": "Posé", "voice": "", "tags": ["Calm", "Synth", "Strings"]}, {"title": "HAZE", "slug": "haze", "section": "02", "dur": "0:58", "energy": "Rythmé", "voice": "", "tags": ["Emotional", "Woodwinds", "Upbeat"]}, {"title": "HORIZON", "slug": "horizon", "section": "02", "dur": "1:56", "energy": "Posé", "voice": "", "tags": ["Uplifting", "Synth"]}, {"title": "LAMENT", "slug": "lament", "section": "02", "dur": "1:27", "energy": "Posé", "voice": "", "tags": ["Emotional", "Piano", "Strings"]}, {"title": "LOVE", "slug": "love", "section": "02", "dur": "0:59", "energy": "Posé", "voice": "", "tags": ["Dreamy", "Guitar", "Strings"]}, {"title": "LULLABY", "slug": "lullaby", "section": "02", "dur": "1:44", "energy": "Posé", "voice": "", "tags": ["Dreamy", "Bells", "Synth"]}, {"title": "MIRAGE", "slug": "mirage", "section": "02", "dur": "2:30", "energy": "Rythmé", "voice": "", "tags": ["Epic", "Brass", "Woodwinds", "Upbeat"]}, {"title": "OMEN", "slug": "omen", "section": "02", "dur": "0:56", "energy": "Posé", "voice": "", "tags": ["Dark", "Woodwinds", "Synth"]}, {"title": "OPHELIA", "slug": "ophelia", "section": "02", "dur": "0:53", "energy": "Posé", "voice": "", "tags": ["Dark", "Choir", "Strings"]}, {"title": "PROCESSION", "slug": "procession", "section": "02", "dur": "1:20", "energy": "Rythmé", "voice": "", "tags": ["Tense", "Woodwinds", "Bells", "Upbeat"]}, {"title": "PURSUIT", "slug": "pursuit", "section": "02", "dur": "1:04", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Upbeat"]}, {"title": "QUIET ROOM", "slug": "quiet-room", "section": "02", "dur": "1:20", "energy": "Posé", "voice": "", "tags": ["Calm", "Piano", "Woodwinds"]}, {"title": "REMINISCENCE", "slug": "reminiscence", "section": "02", "dur": "1:47", "energy": "Posé", "voice": "", "tags": ["Epic", "Brass", "Strings"]}, {"title": "RUNWAY", "slug": "runway", "section": "02", "dur": "2:22", "energy": "Rythmé", "voice": "", "tags": ["Dark", "Percussion", "Upbeat"]}, {"title": "SHADE", "slug": "shade", "section": "02", "dur": "1:22", "energy": "Posé", "voice": "", "tags": ["Emotional", "Piano", "Synth"]}, {"title": "STATE OF CARNIVAL", "slug": "state-of-carnival", "section": "02", "dur": "1:52", "energy": "Rythmé", "voice": "", "tags": ["Epic", "Percussion", "Guitar", "Upbeat"]}, {"title": "STRIDE", "slug": "stride", "section": "02", "dur": "0:51", "energy": "Posé", "voice": "", "tags": ["Dark", "Woodwinds", "Brass"]}, {"title": "TENDER", "slug": "tender", "section": "02", "dur": "1:09", "energy": "Posé", "voice": "", "tags": ["Calm", "Piano", "Choir"]}, {"title": "TIME", "slug": "time", "section": "02", "dur": "1:14", "energy": "Posé", "voice": "", "tags": ["Dark", "Brass"]}, {"title": "UNDERCURRENT", "slug": "undercurrent", "section": "02", "dur": "1:35", "energy": "Rythmé", "voice": "", "tags": ["Emotional", "Synth", "Percussion", "Upbeat"]}, {"title": "UNION", "slug": "union", "section": "02", "dur": "0:52", "energy": "Rythmé", "voice": "", "tags": ["Epic", "Brass", "Woodwinds", "Upbeat"]}, {"title": "WAITING", "slug": "waiting", "section": "02", "dur": "1:00", "energy": "Posé", "voice": "", "tags": ["Elegant", "Synth", "Woodwinds"]}, {"title": "WAVES", "slug": "waves", "section": "02", "dur": "1:12", "energy": "Posé", "voice": "", "tags": ["Epic", "Woodwinds"]}, {"title": "WONDER", "slug": "wonder", "section": "02", "dur": "1:08", "energy": "Posé", "voice": "", "tags": ["Dark", "Synth", "Woodwinds"]}, {"title": "CIGARETTES", "slug": "cigarettes", "section": "03", "dur": "3:45", "energy": "Posé", "voice": "Oui", "tags": ["Emotional", "Guitar", "Vocals"]}, {"title": "HOW I'M FEELING", "slug": "how-im-feeling", "section": "03", "dur": "2:49", "energy": "Posé", "voice": "Oui", "tags": ["Epic", "Guitar", "Vocals"]}, {"title": "I THOUGHT", "slug": "i-thought", "section": "03", "dur": "4:26", "energy": "Posé", "voice": "Oui", "tags": ["Epic", "Guitar", "Vocals"]}, {"title": "I'M F*CKED", "slug": "im-f-cked", "section": "03", "dur": "2:55", "energy": "Posé", "voice": "Oui", "tags": ["Dark", "Guitar", "Vocals"]}, {"title": "NOSTALGIA", "slug": "nostalgia", "section": "03", "dur": "3:05", "energy": "Posé", "voice": "", "tags": ["Calm", "Strings", "Piano"]}, {"title": "SAD", "slug": "sad", "section": "03", "dur": "3:37", "energy": "Posé", "voice": "", "tags": ["Dark"]}, {"title": "SEARCHING FOR ME", "slug": "searching-for-me", "section": "03", "dur": "4:21", "energy": "Posé", "voice": "Oui", "tags": ["Uplifting", "Vocals"]}, {"title": "VOYAGE", "slug": "voyage", "section": "03", "dur": "2:34", "energy": "Posé", "voice": "", "tags": ["Calm", "Piano"]}];
 const FAVS = {}; // titres mis en avant, par section
 const SECTIONS = [
   ['01', 'Short Form', '15–45s', 'Short cues for product spots, social cuts and teasers. Quick, punchy, built to land a brand in seconds.'],
@@ -159,22 +172,78 @@ let order = [], cur = -1;
 const secs = d => { const [m, s] = d.split(':').map(Number); return m * 60 + s; };
 const fmt = s => Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
 
-(function build() {
+const GROUPS = [
+  ['Mood', ['Dark', 'Tense', 'Mysterious', 'Emotional', 'Calm', 'Dreamy', 'Elegant', 'Uplifting', 'Epic', 'Playful']],
+  ['Instruments', ['Piano', 'Strings', 'Choir', 'Brass', 'Woodwinds', 'Guitar', 'Synth', 'Bells', 'Percussion']],
+  ['Type', ['Upbeat', 'Vocals']]
+];
+const active = new Set();
+// ordre : les préférés d'abord (dans l'ordre choisi), puis le reste au hasard à chaque visite
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const ORDERED = {};
+for (const [n] of SECTIONS) {
+  const list = TRACKS.filter(t => t.section === n);
+  const favs = (FAVS[n] || []).map(x => list.find(t => t.title === x)).filter(Boolean);
+  ORDERED[n] = { favs, rest: shuffle(list.filter(t => !favs.includes(t))) };
+}
+function matches(t) {
+  for (const [, tags] of GROUPS) {
+    const sel = tags.filter(x => active.has(x));
+    if (sel.length && !sel.some(x => (t.tags || []).includes(x))) return false; // OU dans un groupe, ET entre groupes
+  }
+  return true;
+}
+function buildFilters() {
+  const box = document.getElementById('filters'); box.textContent = '';
+  const used = new Set(TRACKS.flatMap(t => t.tags || []));
+  for (const [label, tags] of GROUPS) {
+    const list = tags.filter(x => used.has(x)).concat([...used].filter(x => !GROUPS.some(g => g[1].includes(x)) && label === 'Type'));
+    if (!list.length) continue;
+    const g = document.createElement('div'); g.className = 'fgroup';
+    g.innerHTML = '<span class="lbl"></span><div class="chips"></div>'; g.firstChild.textContent = label;
+    for (const tag of list) {
+      const n = TRACKS.filter(t => (t.tags || []).includes(tag)).length;
+      const c = document.createElement('button'); c.type = 'button'; c.className = 'chip';
+      c.setAttribute('aria-pressed', String(active.has(tag)));
+      c.textContent = tag; const sp = document.createElement('span'); sp.textContent = n; c.append(sp);
+      c.onclick = () => { active.has(tag) ? active.delete(tag) : active.add(tag); buildFilters(); build(); };
+      g.lastChild.append(c);
+    }
+    box.append(g);
+  }
+  const st = document.createElement('div'); st.className = 'fstate';
+  if (active.size) {
+    const n = TRACKS.filter(matches).length;
+    st.innerHTML = '<span></span><button type="button">Clear filters</button>';
+    st.firstChild.textContent = n + ' track' + (n > 1 ? 's' : '') + ' match';
+    st.lastChild.onclick = () => { active.clear(); buildFilters(); build(); };
+  }
+  box.append(st);
+}
+function build() {
+  const playing = cur >= 0 ? order[cur] : null;
+  order = [];
   const total = TRACKS.reduce((a, t) => a + secs(t.dur), 0);
   document.getElementById('meta').innerHTML = '<b>' + TRACKS.length + ' tracks</b><br>' + Math.round(total / 60) + ' minutes of music<br>Private link · not for distribution';
   const jump = document.getElementById('jump'), box = document.getElementById('sections');
+  jump.textContent = ''; box.textContent = '';
+  let shown = 0;
   for (const [n, name, range, desc] of SECTIONS) {
-    const list = TRACKS.filter(t => t.section === n);
-    const a = document.createElement('a'); a.href = '#s' + n; a.innerHTML = n + ' ' + name + ' <span>' + list.length + '</span>'; jump.append(a);
+    const { favs, rest } = ORDERED[n];
+    const f = favs.filter(matches), r = rest.filter(matches), count = f.length + r.length;
+    shown += count;
+    if (!count) continue;
+    const a = document.createElement('a'); a.href = '#s' + n; a.innerHTML = n + ' ' + name + ' <span>' + count + '</span>'; jump.append(a);
     const sec = document.createElement('section'); sec.id = 's' + n;
-    sec.innerHTML = '<div class="shead"><span class="num">' + n + '</span><h2>' + name + ' <span style="font-weight:normal;color:var(--muted);text-transform:none">' + range + '</span></h2><span class="count">' + list.length + ' tracks</span></div><p class="sdesc">' + desc + '</p>';
-    const favs = (FAVS[n] || []).map(t => list.find(x => x.title === t)).filter(Boolean);
-    const rest = list.filter(t => !favs.includes(t));
-    if (favs.length) { addList(sec, 'Selected', favs); addList(sec, 'More', rest); }
-    else addList(sec, '', list);
+    sec.innerHTML = '<div class="shead"><span class="num">' + n + '</span><h2>' + name + ' <span style="font-weight:normal;color:var(--muted);text-transform:none">' + range + '</span></h2><span class="count">' + count + ' tracks</span></div><p class="sdesc">' + desc + '</p>';
+    if (f.length && r.length) { addList(sec, 'Selected', f); addList(sec, 'More', r); }
+    else addList(sec, '', f.concat(r));
     box.append(sec);
   }
-})();
+  if (!shown) box.innerHTML = '<p class="empty">No track matches these tags.</p>';
+  cur = playing ? order.indexOf(playing) : -1;
+  paint();
+}
 
 function addList(sec, label, list) {
   if (!list.length) return;
@@ -185,21 +254,23 @@ function addList(sec, label, list) {
     const li = document.createElement('li'); li.className = 'track'; li.tabIndex = 0; li.dataset.i = i;
     const b = document.createElement('button'); b.className = 'pbtn'; b.type = 'button'; b.innerHTML = PLAY; b.setAttribute('aria-label', 'Play ' + t.title);
     const nm = document.createElement('div'); nm.className = 'name'; nm.textContent = t.title;
-    const tags = document.createElement('span'); tags.className = 'tags';
-    if (t.energy === 'Rythmé') tags.innerHTML += '<span class="tag">Upbeat</span>';
-    if (t.voice) tags.innerHTML += '<span class="tag">Vocals</span>';
-    if (tags.innerHTML) nm.append(tags);
+    if ((t.tags || []).length) {
+      const tags = document.createElement('span'); tags.className = 'tags';
+      for (const x of t.tags) { const e = document.createElement('span'); e.className = 'tag'; e.textContent = x; tags.append(e); }
+      nm.append(tags);
+    }
     const d = document.createElement('span'); d.className = 'dur'; d.textContent = t.dur;
     const r = document.createElement('a'); r.className = 'req'; r.textContent = 'Request WAV';
     r.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Music library: ' + t.title);
     r.addEventListener('click', e => e.stopPropagation());
     li.append(b, nm, d, r);
-    li.addEventListener('click', () => toggle(i));
-    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(i); } });
+    li.addEventListener('click', () => toggle(Number(li.dataset.i)));
+    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(Number(li.dataset.i)); } });
     ol.append(li);
   }
   sec.append(ol);
 }
+buildFilters(); build();
 
 function toggle(i) {
   if (i === cur) { au.paused ? au.play() : au.pause(); return; }
@@ -215,6 +286,7 @@ function paint() {
     li.classList.toggle('playing', on);
     li.querySelector('.pbtn').innerHTML = on && !au.paused ? PAUSE : PLAY;
   });
+  if (cur < 0) return;
   document.getElementById('pp').innerHTML = au.paused ? PLAY : PAUSE;
   document.getElementById('pp').setAttribute('aria-label', au.paused ? 'Play' : 'Pause');
 }
