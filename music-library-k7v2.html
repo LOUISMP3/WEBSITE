@@ -53,7 +53,17 @@
     .jump a span { color: var(--muted); }
     .jump a:hover { opacity: 0.6; }
 
-    .filters { margin-top: 26px; display: grid; gap: 10px; }
+    .fbar { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; }
+    .ftoggle { font: inherit; font-size: 0.85em; text-transform: uppercase; background: none; border: 0; padding: 0; color: var(--text-color); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; letter-spacing: var(--letter-spacing); }
+    .ftoggle svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 0.25s; }
+    .ftoggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .ftoggle #fcount { color: var(--muted); }
+    .ftoggle:hover { opacity: 0.6; }
+    .factive { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 0.8em; text-transform: uppercase; color: var(--muted); }
+    .factive .chip { font-size: 0.92em; }
+    .factive button.clear { font: inherit; background: none; border: 0; padding: 0; color: var(--text-color); text-decoration: underline; cursor: pointer; text-transform: uppercase; }
+    .filters[hidden] { display: none; }
+    .filters { margin-top: 14px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
     .fgroup { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 14px; align-items: baseline; }
     .fgroup .lbl { font-size: 0.72em; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -137,7 +147,11 @@
     <div class="meta" id="meta"></div>
   </div>
   <nav class="jump" id="jump" aria-label="Sections"></nav>
-  <div class="filters" id="filters" aria-label="Filter by tag"></div>
+  <div class="fbar">
+    <button type="button" class="ftoggle" id="ftoggle" aria-expanded="false" aria-controls="filters">Filter by tag <span id="fcount"></span><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4"/></svg></button>
+    <div class="factive" id="factive"></div>
+  </div>
+  <div class="filters" id="filters" hidden></div>
   <div id="sections"></div>
 
   <div class="terms">
@@ -211,14 +225,22 @@ function buildFilters() {
     }
     box.append(g);
   }
-  const st = document.createElement('div'); st.className = 'fstate';
+  // résumé compact visible même quand le panneau est fermé
+  const fa = document.getElementById('factive'); fa.textContent = '';
+  document.getElementById('fcount').textContent = active.size ? '(' + active.size + ')' : '';
   if (active.size) {
+    for (const tag of active) {
+      const c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.setAttribute('aria-pressed', 'true');
+      c.textContent = tag + ' ×'; c.setAttribute('aria-label', 'Remove ' + tag);
+      c.onclick = () => { active.delete(tag); buildFilters(); build(); };
+      fa.append(c);
+    }
     const n = TRACKS.filter(matches).length;
-    st.innerHTML = '<span></span><button type="button">Clear filters</button>';
-    st.firstChild.textContent = n + ' track' + (n > 1 ? 's' : '') + ' match';
-    st.lastChild.onclick = () => { active.clear(); buildFilters(); build(); };
+    const m = document.createElement('span'); m.textContent = n + ' track' + (n > 1 ? 's' : '');
+    const cl = document.createElement('button'); cl.type = 'button'; cl.className = 'clear'; cl.textContent = 'Clear';
+    cl.onclick = () => { active.clear(); buildFilters(); build(); };
+    fa.append(m, cl);
   }
-  box.append(st);
 }
 function build() {
   const playing = cur >= 0 ? order[cur] : null;
@@ -270,6 +292,8 @@ function addList(sec, label, list) {
   }
   sec.append(ol);
 }
+const ft = document.getElementById('ftoggle'), fp = document.getElementById('filters');
+ft.addEventListener('click', () => { const open = fp.hidden; fp.hidden = !open; ft.setAttribute('aria-expanded', String(open)); });
 buildFilters(); build();
 
 function toggle(i) {
