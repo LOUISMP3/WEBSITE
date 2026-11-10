@@ -111,12 +111,27 @@
     button:focus-visible, a:focus-visible, .track:focus-visible { outline: 2px solid #5a5aff; outline-offset: 2px; }
 
     @media (max-width: 768px) {
+      header nav { gap: 14px; font-size: 0.78em; margin-left: auto; padding-top: 4px; }
+      .intro { gap: 10px; padding-bottom: 16px; }
+      .intro p { font-size: 0.8em; margin-top: 8px; line-height: 1.4; }
+      .intro .meta { font-size: 0.66em; line-height: 1.5; }
+      .intro .meta br { display: none; }
+      .intro .meta b::after, .intro .meta .m2::after { content: ' · '; font-weight: normal; color: var(--muted); }
+      .jump { font-size: 0.72em; margin-top: 14px; gap: 6px 16px; }
+      .fbar { margin-top: 12px; }
+      .ftoggle { font-size: 0.72em; }
+      section { margin-top: 36px; }
+      .shead h2 { font-size: 1.3em; }
+      .shead .count { font-size: 0.68em; }
+      .sdesc { font-size: 0.78em; margin: 4px 0 12px; }
+      .track { padding: 9px 2px; }
+      .name { font-size: 0.92em; }
       header { padding: 10px 16px; }
       .logo { font-size: 2.55em; }
       .subtitle { font-size: 0.42em; }
-      main { padding: 120px 16px 140px; }
+      main { padding: 100px 16px 140px; }
       .intro { grid-template-columns: 1fr; }
-      .intro h1 { font-size: 2.3em; }
+      .intro h1 { font-size: 1.9em; }
       .intro .meta { text-align: left; }
       .track { grid-template-columns: 30px minmax(0, 1fr) auto; }
       .track .req { grid-column: 2 / -1; justify-self: start; }
@@ -246,7 +261,7 @@ function build() {
   const playing = cur >= 0 ? order[cur] : null;
   order = [];
   const total = TRACKS.reduce((a, t) => a + secs(t.dur), 0);
-  document.getElementById('meta').innerHTML = '<b>' + TRACKS.length + ' tracks</b><br>' + Math.round(total / 60) + ' minutes of music<br>Private link · not for distribution';
+  document.getElementById('meta').innerHTML = '<b>' + TRACKS.length + ' tracks</b><br><span class="m2">' + Math.round(total / 60) + ' minutes of music</span><br>Private link · not for distribution';
   const jump = document.getElementById('jump'), box = document.getElementById('sections');
   jump.textContent = ''; box.textContent = '';
   let shown = 0;
