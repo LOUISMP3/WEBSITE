@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
   <title>Music Library - LOUISMP3</title>
   <link rel="stylesheet" href="page-fade.css" />
   <script src="page-fade.js" defer></script>
@@ -314,7 +316,7 @@ buildFilters(); build();
 function toggle(i) {
   if (i === cur) { au.paused ? au.play() : au.pause(); return; }
   cur = i; const t = order[i];
-  au.src = 'library-audio/' + t.slug + '.mp3'; au.play().catch(() => {});
+  au.src = 'audio-3033201c7bab/' + t.slug + '.mp3'; au.play().catch(() => {});
   document.getElementById('now').textContent = t.title;
   document.getElementById('player').classList.add('on');
   paint();
