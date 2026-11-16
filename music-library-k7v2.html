@@ -273,8 +273,7 @@ function build() {
     const a = document.createElement('a'); a.href = '#s' + n; a.innerHTML = n + ' ' + name + ' <span>' + count + '</span>'; jump.append(a);
     const sec = document.createElement('section'); sec.id = 's' + n;
     sec.innerHTML = '<div class="shead"><span class="num">' + n + '</span><h2>' + name + ' <span style="font-weight:normal;color:var(--muted);text-transform:none">' + range + '</span></h2><span class="count">' + count + ' tracks</span></div><p class="sdesc">' + desc + '</p>';
-    if (f.length && r.length) { addList(sec, 'Selected', f); addList(sec, 'More', r); }
-    else addList(sec, '', f.concat(r));
+    addList(sec, '', f.concat(r)); // une seule liste : les préférés en tête, sans séparation
     box.append(sec);
   }
   if (!shown) box.innerHTML = '<p class="empty">No track matches these tags.</p>';
