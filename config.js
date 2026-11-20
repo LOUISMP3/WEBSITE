@@ -1,4 +1,5 @@
 const projectSequence = [
+  "kotoum.html",
   "merrachi.html",
   "forma.html",
   "lacoste.html",
